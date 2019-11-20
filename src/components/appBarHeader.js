@@ -8,7 +8,6 @@ import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
 
 
-import BookingList from './BookingList'
 import home from './home';
 
 const useStyles = makeStyles(theme => ({
@@ -44,16 +43,13 @@ export default function AppBarHeader() {
 
   return (
     <div className={classes.grow}>
-      <AppBar style={{backgroundColor: "#00adb5"}}position="static">
+      <AppBar className="appbar"style={{backgroundColor: "#00adb5"}}position="static">
         <Toolbar>
-          <Button>
-            <Link to="/" >
-              HOME
-            </Link>
-          </Button>
-          <Button>
-            <Link to="/booking">Booking</Link>
-          </Button>
+          <Button><Link to="/" >HOME</Link></Button>
+          <Button><Link to="/booking">Booking</Link></Button>
+          <Button><Link to="/flight">Flights</Link></Button>
+          <Button><Link to="/date">Flight Date</Link></Button>
+          <Button><Link to="/class">Class</Link></Button>
           <div className={classes.grow} />
           <h1>Guest</h1>
         </Toolbar>

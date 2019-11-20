@@ -3,19 +3,31 @@ module.exports = {
   entry: './src/index.js',
   module: {
     rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
+        {
+          test: /\.(js|jsx)$/,
+          exclude: /node_modules/,
           use: {loader:'babel-loader'}
-      },
+        },
+        {
+          test: /\.s[ac]ss$/i,
+          use: [
+            // creates `style` nodes from JS strings
+            'style-loader',
+            //translate css -> CommonJS
+            'css-loader',
+            //compiles Sass to CSS
+            'sass-loader',
+          ],
+        },
         {
             test: /\.html$/,
             use: [{loader: "html-loader"}]
-        }
+        },
+
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx']
+    extensions: ['*', '.js', '.jsx', '.scss']
   },
   output: {
     path: __dirname + '/dist',
