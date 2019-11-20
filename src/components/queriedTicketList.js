@@ -10,8 +10,8 @@ const queriedTicketList = (props) => {
         "flight":{
             "flightId": "404",
             "plane": "Boeing 737",
-            "departureTime": "2019-11-20 10:15:70",
-            "arrivalTime": "2019-11-20 12:33:18",
+            "departureTime": "2019-11-20T8:15:70",
+            "arrivalTime": "2019-11-20T10:33:18",
             "totalSeats":"350",
             "flightPath":{
                 "srcAirport":{
@@ -32,6 +32,7 @@ const queriedTicketList = (props) => {
         }
     }
 
+    const loggit = () =>{console.log("NEXT STEP")}
 
     return(
         <Card className="cardClass">
@@ -49,19 +50,21 @@ const queriedTicketList = (props) => {
                 </Grid>
 
                 <Grid item xs={2}>
-                    <Button variant="outlined" className="buttonClass">
+                    <Button variant="outlined" className="buttonClass" onClick={loggit}>
                         <Typography className="typogClass">SELECT</Typography>
                     </Button>
                 </Grid>
 
                 <Grid item xs={5}>
                     <Typography className="typogClass">
-                    {ticket.flight.departureTime.split(" ")[1]}&nbsp;&rarr;&nbsp;{ticket.flight.arrivalTime.split(" ")[1]}
+                    {ticket.flight.departureTime.split("T")[1]}&nbsp;&rarr;&nbsp;{ticket.flight.arrivalTime.split("T")[1]}
                     </Typography>
                 </Grid>
 
                 <Grid item xs={5}>
-                    <Typography className="typogClass">TWO</Typography>
+                    <Typography className="typogClass">
+                        { (((new Date(ticket.flight.arrivalTime) - new Date(ticket.flight.departureTime)) % 86400000) % 3600000) }
+                    </Typography>
                 </Grid>
 
                 <Grid item xs={2}>
