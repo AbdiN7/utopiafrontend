@@ -1,19 +1,19 @@
 import React from 'react';
-import PathForm from './components/PathForm';
-import FlightList from './components/FlightList.js'
-import FlightDate from './components/FlightDate.js'
 
+import {Switch, Route} from 'react-router-dom';
+import home from './components/home';
+import BookingList from './components/BookingList'
+import AppBarHeader from './components/appBarHeader'
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-      </header>
-      <PathForm/>
-      <br></br>
-      <FlightDate />
-      <br></br>
-      <FlightList />
+      <AppBarHeader/>
+      <Switch>
+        <Route exact path='/' component={home}/>
+        <Route path='/booking' component={BookingList}/>
+      </Switch>
     </div>
+
   );
 }
 
