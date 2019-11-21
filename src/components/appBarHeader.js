@@ -48,8 +48,7 @@ export default function AppBarHeader() {
           <Button><Link to="/" >HOME</Link></Button>
           <Button><Link to="/booking">Booking</Link></Button>
           <Button><Link to="/flight">Flights</Link></Button>
-          <Button><Link to="/date">Flight Date</Link></Button>
-          <Button><Link to="/class">Class</Link></Button>
+          <Button><Link to="/form"> Form </Link></Button>
           <div className={classes.grow} />
           <h1>Guest</h1>
         </Toolbar>
