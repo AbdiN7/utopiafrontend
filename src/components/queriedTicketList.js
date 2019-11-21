@@ -10,7 +10,7 @@ const queriedTicketList = (props) => {
         "flight":{
             "flightId": "404",
             "plane": "Boeing 737",
-            "departureTime": "2019-11-20T8:15:70",
+            "departureTime": "2019-11-20T18:15:40",
             "arrivalTime": "2019-11-20T10:33:18",
             "totalSeats":"350",
             "flightPath":{
@@ -63,12 +63,12 @@ const queriedTicketList = (props) => {
 
                 <Grid item xs={5}>
                     <Typography className="typogClass">
-                        { (((new Date(ticket.flight.arrivalTime) - new Date(ticket.flight.departureTime)) % 86400000) % 3600000) }
+                        {Math.abs(((new Date(ticket.flight.arrivalTime).getTime() - new Date(ticket.flight.departureTime).getTime())/ (1000 * 60 * 60)).toFixed(1))} Hours
                     </Typography>
                 </Grid>
 
                 <Grid item xs={2}>
-                    <Typography className="typogClass">THREE</Typography>
+                    <Typography className="typogClass">${ticket.cost}</Typography>
                 </Grid>
             </Grid>
         </Card>
