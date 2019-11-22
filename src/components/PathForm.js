@@ -1,7 +1,7 @@
 "use strict"
 
 import React from 'react';
-import { FormControl, FormHelperText, InputLabel, Input, TextField, Paper, Grid, Button } from '@material-ui/core';
+import {TextField, Grid } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 
 const PathForm = (props) => {
