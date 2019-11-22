@@ -4,9 +4,10 @@
 .MuiInputBase-root{
     color: #EEEEEE!important;
 }
-.MuiIconButton-root{
-    color: #EEEEEE!important; 
+.MuiPaper-root{
+    background-color: #3a4750!important;
 }
+
 .MuiInput-underline::before{
     border-bottom: 2px solid #EEEEEE!important;
 }
@@ -14,5 +15,5 @@
     border-bottom: 2px solid #00adb5!important;
 }
 .MuiButton-contained{
-    background-color: #00adb5!important;
+    background-color: #00adb5;
 }
