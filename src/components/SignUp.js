@@ -12,7 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
     root:{
         color: '#EEEEEE',
-        backgroundColor: '#00adb5',
+        // backgroundColor: '#303841',
     },
       input: {
         color: "#eeeeee"
