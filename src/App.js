@@ -10,7 +10,6 @@ import FlightDate from './components/FlightDate'
 import PathForm from './components/PathForm'
 import queriedTicketList from './components/queriedTicketList'
 import UserForm from './components/UserForm'
-import SignUp from './components/SignUp'
 import './styles/app.scss';
 
 function App() {
@@ -20,7 +19,6 @@ function App() {
       <Switch>
         <Route exact path='/' component={home}/>
         <Route path='/queriedTicketList' component={queriedTicketList}/>
-        <Route path='/signup' component={SignUp}/>
         <Route path='/booking' component={BookingList}/>
         <Route path='/flight' component={FlightList}/>
         <Route path='/form' component={UserForm}/>
