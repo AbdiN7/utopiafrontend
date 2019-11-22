@@ -11,13 +11,16 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     root:{
-        color: "#eeeeee",
+        color: '#EEEEEE',
+        backgroundColor: '#00adb5',
     },
       input: {
         color: "#eeeeee"
       },
       palette: {
+        width:'90',
         textColor: "#eeeeee",
+        alignContent: 'center'
      },
      avatar: {
         margin: theme.spacing(1),
@@ -108,8 +111,8 @@ export default function SignUp(props) {
                         type="submit"
                         fullWidth
                         variant="contained"
-                        className='classes.root'
                         onClick={props.nextStep}
+                        color='primary'
                     >
                         Sign Up
                     </Button>

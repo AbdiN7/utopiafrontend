@@ -1,11 +1,29 @@
+.MuiTableCell-alignRight{
+    text-align: left!important;
+}
+
 .MuiTableCell-head{
     color: '#EEEEEE'!important;
 }
 .flightTable{
-    width: '100%'!important;
+    width: 90%!important;
 }
 .flightTable table{
+    align-items: left;
     min-width: 650px!important;
-    background-color: '#3a4750'!important;
-    color: '#EEEEEE'!important;
+    background-color: #3a4750;
+    color: #00adb5!important;
+    border-collapse: separate; 
+    width: 90%;
+    margin: 40px;
+    padding: 40px;
+}
+
+
+.MuiTableCell{
+    color: #EEEEEE!important;
+}
+
+.flightTable tableCell {
+    color: '#EEEEEE';
 }
