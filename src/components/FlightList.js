@@ -6,12 +6,12 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import Paper from '@material-ui/core/Paper/index';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles({
-    root: {
+    myRoot: {
       width: '100%',
       overflowX: 'auto',
     },
@@ -37,8 +37,7 @@ export default function SimpleTable() {
   const classes = useStyles();
 
   return (
-    <Container className='flightTable' component="main">
-    <Paper className='flightTable'>
+    <Container className='flightTableContainer' component="main">
       <Table className='flightTable' aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -59,15 +58,14 @@ export default function SimpleTable() {
               <TableCell className={classes.tableCell} align="right">{row.flightId}</TableCell>
               <TableCell className={classes.tableCell} align="right">{row.cost}</TableCell>
               <TableCell className={classes.tableCell} align="right">
-              <Button variant="contained" color="secondary">
-                  Delete
-              </Button>
+                <Button variant="contained" color="secondary">
+                    Delete
+                </Button>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-    </Paper>
     </Container>
   );
 }
