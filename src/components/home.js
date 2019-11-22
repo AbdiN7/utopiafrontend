@@ -4,7 +4,7 @@ const home = () => {
     return (
         <div className="homePg">
           <div className="homeBox">
-            Utopia Airlines
+            Utopia Airlines 
           </div>
         </div>
     )
