@@ -6,8 +6,6 @@ import home from './components/home';
 import BookingList from './components/BookingList'
 import AppBarHeader from './components/appBarHeader'
 import FlightList from './components/FlightList'
-import FlightDate from './components/FlightDate'
-import PathForm from './components/PathForm'
 import queriedTicketList from './components/queriedTicketList'
 import UserForm from './components/UserForm'
 import './styles/app.scss';

@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: "#00adb5",
       },
       paper: {
-        marginTop: theme.spacing(8),
+        marginTop: '0px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -111,8 +111,8 @@ export default function SignUp(props) {
                         type="submit"
                         fullWidth
                         variant="contained"
+                        color="primary"
                         onClick={props.nextStep}
-                        color='primary'
                     >
                         Sign Up
                     </Button>
