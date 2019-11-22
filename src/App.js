@@ -10,6 +10,7 @@ import FlightDate from './components/FlightDate'
 import PathForm from './components/PathForm'
 import queriedTicketList from './components/queriedTicketList'
 import UserForm from './components/UserForm'
+import SignUp from './components/SignUp'
 import './styles/app.scss';
 
 function App() {
