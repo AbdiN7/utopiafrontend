@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
       },
 }));
 
-export default function SignUp() {
+export default function SignUp(props) {
   
     const classes = useStyles();
 
@@ -109,6 +109,7 @@ export default function SignUp() {
                         fullWidth
                         variant="contained"
                         className='classes.root'
+                        onClick={props.nextStep}
                     >
                         Sign Up
                     </Button>
