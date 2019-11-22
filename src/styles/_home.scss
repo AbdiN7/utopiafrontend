@@ -1,0 +1,45 @@
+
+.homePg {
+    padding: 20px;
+    height: 89vh;
+    background-image: linear-gradient(to bottom, rgb(0, 172, 181), rgba(58,71,80, 0.8) ) ,url(../static/images/UtopiaAir.jpg);
+    background-size: cover;
+    text-align: center;
+    background-position: center;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.homeBox 
+{
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    right: 15%;
+    display: block;
+    font-size: 50px;
+    text-transform: uppercase;
+    letter-spacing: 12px;
+    font-weight: 600;
+}
+
+@media (min-width: 320px)
+{
+    .homeBox{
+        font-size: 30px;
+
+    }
+}
+@media (min-width: 600px)
+{
+    .homeBox{
+        font-size: 50px;
+    }
+}
+@media (min-width: 1000px)
+{
+    .homeBox{
+        top: 40%;
+        font-size: 70px;
+    }
+
+}

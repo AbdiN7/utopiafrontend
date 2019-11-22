@@ -1,13 +1,18 @@
 @import './_appbar.scss';
 @import './shared/_fonts';
+@import './_home.scss';
 @import './_signUp.scss';
 @import './_textField';
 @import './_logo.scss';
 @import './_flightTable.scss';
 @import './_queriedTicketList';
 
+
 html, body {
     background-color: #303841;
+    padding: 0px;
+    margin: 0px;
+    color: white;
     height:100%!important;
     margin:0px;
     padding:0px;
