@@ -11,17 +11,20 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     root:{
-        color: "#eeeeee",
+        color: '#EEEEEE',
+        // backgroundColor: '#303841',
     },
       input: {
         color: "#eeeeee"
       },
       palette: {
+        width:'90',
         textColor: "#eeeeee",
+        alignContent: 'center'
      },
      avatar: {
         margin: theme.spacing(1),
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: "#00adb5",
       },
       paper: {
         marginTop: '0px',

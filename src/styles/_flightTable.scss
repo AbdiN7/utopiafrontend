@@ -1,11 +1,41 @@
+.MuiTableCell-alignRight{
+    text-align: left!important;
+}
+
 .MuiTableCell-head{
     color: '#EEEEEE'!important;
 }
+
+.flgihtTableContainer{
+    position: absolute;
+    text-align: center;
+    left: 15%;
+    right: 15%;
+}
+
 .flightTable{
-    width: '100%'!important;
+    width: 100%!important;
+    background-color: #3a4750;
 }
 .flightTable table{
+    align-items: left;
     min-width: 650px!important;
-    background-color: '#3a4750'!important;
-    color: '#EEEEEE'!important;
+    background-color: #3a4750;
+    color: #00adb5!important;
+    border-collapse: separate; 
+    width: 100%;
+    margin: 40px;
+    padding: 40px;
+}
+
+.MuiPaper-myRoot{
+    background-color: #3a4750;
+}
+
+.MuiTableCell{
+    color: #EEEEEE!important;
+}
+
+.flightTable tableCell {
+    color: '#EEEEEE';
 }
