@@ -1,4 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack');
 module.exports = {
   entry: './src/index.js',
   module: {
@@ -23,7 +24,14 @@ module.exports = {
             test: /\.html$/,
             use: [{loader: "html-loader"}]
         },
-
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ]
   },
   resolve: {
@@ -38,9 +46,12 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: "./src/index.html",
             filename: "./index.html"
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ],
   devServer: {
+    port: 3000,
+    hot: true,
     contentBase: './dist'
   }
 };

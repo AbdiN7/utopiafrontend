@@ -2,8 +2,10 @@ import React from 'react';
 
 const home = () => {
     return (
-        <div>
-          HOME PAGE
+        <div className="homePg">
+          <div className="homeBox">
+            Utopia Airlines
+          </div>
         </div>
     )
 }

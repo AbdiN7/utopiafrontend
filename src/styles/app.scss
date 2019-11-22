@@ -1,25 +1,14 @@
 @import './_appbar.scss';
 @import './shared/_fonts';
+@import './_home.scss';
+
 
 html, body {
     background-color: #303841;
     height:100%;
+    padding: 0px;
+    margin: 0px;
+    color: white;
     font-family: 'Roboto', sans-serif;
   }
 
-.clickable {
-  cursor: pointer;
-}
-.self-typed {
-  font-weight: bold;
-  color: white;
-}
-
-.absolute {
-  position: absolute;
-}
-
-.base-page {
-  padding-top: 150px;
-  color: white;
-}
