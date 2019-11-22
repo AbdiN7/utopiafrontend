@@ -4,7 +4,7 @@ import React from 'react';
 import {TextField, Grid } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 
-const PathForm = () => {
+const PathForm = (props) => {
 
     let airports = 
     [{
@@ -71,6 +71,10 @@ const PathForm = () => {
                     margin="normal"
                 />
             </Grid>
+          <Button
+        onClick={props.prevStep}>
+            Prev
+          </Button>
         </Grid>
     );
 }
