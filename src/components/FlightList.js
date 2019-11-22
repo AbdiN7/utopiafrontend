@@ -9,15 +9,18 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles({
-    root: {
-      width: '100%',
-      overflowX: 'auto',
-    },
-    table: {
-      minWidth: 650,
-    },
-  });
+// const useStyles = makeStyles({
+//     root: {
+//       width: '100%',
+//       overflowX: 'auto',
+//     },
+//     table: {
+//       minWidth: 650,
+//       backgroundColor: '#3a4750',
+//       color: '#EEEEEE',
+//       .MuiTableCell-head
+//     },
+// });
   
   function createData(ticketId, userId, flightId, cost) {
     return { ticketId, userId, flightId, cost};
@@ -32,11 +35,10 @@ const useStyles = makeStyles({
   ];
   
   export default function SimpleTable() {
-    const classes = useStyles();
   
     return (
-      <Paper className={classes.root}>
-        <Table className={classes.table} aria-label="simple table">
+      <Paper className='flightTable'>
+        <Table className='flightTable' aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell align="right">Ticket Id</TableCell>
@@ -56,7 +58,7 @@ const useStyles = makeStyles({
                 <TableCell align="right">{row.flightId}</TableCell>
                 <TableCell align="right">{row.cost}</TableCell>
                 <TableCell align="right">
-                <Button variant="contained" color="secondary" className={classes.button}>
+                <Button variant="contained" color="secondary">
                     Delete
                 </Button>
                 </TableCell>
