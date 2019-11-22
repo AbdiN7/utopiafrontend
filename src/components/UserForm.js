@@ -44,28 +44,43 @@ render() {
     switch (step) {
         case 1:
             return (
-                <SignUp
-                nextStep={this.nextStep}
-                handleChange={this.handleChange}
-                values={values}
-                />
+                <div className="formContainer">
+                    <div className="formCard">
+                    <SignUp
+                    nextStep={this.nextStep}
+                    handleChange={this.handleChange}
+                    values={values}
+                    />
+                    </div>
+                </div>
             );
         case 2:
             return (
-                <FlightDate
-                nextStep={this.nextStep}
-                prevStep={this.prevStep}
-                handleChange={this.handleChange}
-                values={values}
-                />
+                <div className="formContainer">
+                    <div className="formCard">
+                        <FlightDate
+                        nextStep={this.nextStep}
+                        prevStep={this.prevStep}
+                        handleChange={this.handleChange}
+                        values={values}
+                        />
+                    </div>
+                </div>
+          
             );
         case 3:
             return (
-                <PathForm
-                prevStep={this.prevStep}
-                handleChange={this.handleChange}
-                values={values}
-                />
+                // <div className="formContainer">
+                //     <div className="formCard">
+                //     </div>
+                // </div>
+                        <PathForm
+                        prevStep={this.prevStep}
+                        handleChange={this.handleChange}
+                        values={values}
+                        />
+              
+            
             );
     }
 

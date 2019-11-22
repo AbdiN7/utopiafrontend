@@ -6,13 +6,13 @@
 @import './_logo.scss';
 @import './_flightTable.scss';
 @import './_queriedTicketList';
-
+@import './shared/_formCard';
 
 html, body {
     background-color: #303841;
     padding: 0px;
     margin: 0px;
-    color: white;
+    color: #eeeeee;
     height:100%!important;
     margin:0px;
     padding:0px;

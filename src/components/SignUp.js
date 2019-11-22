@@ -24,14 +24,14 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.primary.main,
       },
       paper: {
-        marginTop: theme.spacing(8),
+        marginTop: '0px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       },
 }));
 
-export default function SignUp() {
+export default function SignUp(props) {
   
     const classes = useStyles();
 
@@ -109,6 +109,7 @@ export default function SignUp() {
                         fullWidth
                         variant="contained"
                         color="primary"
+                        onClick={props.nextStep}
                     >
                         Sign Up
                     </Button>
