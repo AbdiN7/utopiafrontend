@@ -13,16 +13,15 @@ import './styles/app.scss';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <AppBarHeader/>
       <Switch>
-
         <Route exact path='/' component={home}/>
-        <Route path='/signup' component={SignUp}/>
         <Route path='/booking' component={BookingList}/>
         <Route path='/flight' component={FlightList}/>
         <Route path='/date' component={FlightDate}/>
         <Route path='/path' component={PathForm}/>
+        <Route path='/signup' component={SignUp}/>
       </Switch>
     </div>
 

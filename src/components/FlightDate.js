@@ -7,6 +7,7 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
+
 export default class FlightDate extends React.Component {
     // The first commit of Material-UI
     constructor(props){
@@ -28,6 +29,9 @@ export default class FlightDate extends React.Component {
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container justify="space-around">
                     <KeyboardDatePicker
+                        className={'textField'}
+                        InputProps={{className: 'textField'}}
+                        color="#EEEEEE"
                         disableToolbar
                         variant="inline"
                         format="MM/dd/yyyy"
