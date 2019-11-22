@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
      },
      avatar: {
         margin: theme.spacing(1),
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: "#00adb5",
       },
       paper: {
         marginTop: theme.spacing(8),
@@ -108,7 +108,7 @@ export default function SignUp() {
                         type="submit"
                         fullWidth
                         variant="contained"
-                        color="primary"
+                        className='classes.root'
                     >
                         Sign Up
                     </Button>

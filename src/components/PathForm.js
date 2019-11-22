@@ -71,8 +71,7 @@ const PathForm = (props) => {
                     margin="normal"
                 />
             </Grid>
-          <Button
-        onClick={props.prevStep}>
+          <Button onClick={props.prevStep}>
             Prev
           </Button>
         </Grid>
