@@ -1,3 +1,5 @@
+"use strict"
+
 import React from 'react';
 import {Route , Switch } from 'react-router-dom';
 import {Link} from 'react-router-dom';
@@ -6,8 +8,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
-
-
 import home from './home';
 
 const useStyles = makeStyles(theme => ({
@@ -40,9 +40,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function AppBarHeader() {
   const classes = useStyles();
-
+//https://i.imgur.com/Cmbf7ln.png
   return (
-    <div className={classes.grow}>
+    <div className={classes.grow} m={0}>
       <AppBar className="appbar"style={{backgroundColor: "#00adb5"}}position="static">
         <Toolbar>
           <Button><Link to="/" >HOME</Link></Button>

@@ -14,7 +14,7 @@ import './styles/app.scss';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <AppBarHeader/>
       <Switch>
         <Route exact path='/' component={home}/>
