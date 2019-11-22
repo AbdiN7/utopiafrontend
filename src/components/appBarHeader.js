@@ -45,6 +45,7 @@ export default function AppBarHeader() {
     <div className={classes.grow} m={0}>
       <AppBar className="appbar"style={{backgroundColor: "#00adb5"}}position="static">
         <Toolbar>
+          <img className='logo' src='https://i.imgur.com/5Xl9TSI.png' alt=''/>
           <Button><Link to="/" >HOME</Link></Button>
           <Button><Link to="/booking">Booking</Link></Button>
           <Button><Link to="/flight">Flights</Link></Button>
