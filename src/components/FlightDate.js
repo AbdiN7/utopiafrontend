@@ -6,6 +6,7 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import Button from '@material-ui/core/Button';
 
 export default class FlightDate extends React.Component {
     // The first commit of Material-UI
@@ -16,7 +17,6 @@ export default class FlightDate extends React.Component {
         }
         this.handleDateChange = this.handleDateChange.bind(this);
     }
-  
     handleDateChange(event){
         console.log(event);
         this.setState({
@@ -40,7 +40,16 @@ export default class FlightDate extends React.Component {
                             'aria-label': 'change date',
                         }}
                     />
+                  <Button
+            onClick={this.props.prevStep}>
+                    Prev
+              </Button>
+                  <Button
+            onClick={this.props.nextStep}>
+                    Next
+                  </Button>
                 </Grid>
+
             </MuiPickersUtilsProvider>
         )
     };

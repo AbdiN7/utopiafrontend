@@ -3,7 +3,7 @@ import React from 'react';
 const BookingList = () => {
     return (
         <div>
-          Bookings
+          Bookings 2
         </div>
     )
 }
