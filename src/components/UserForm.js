@@ -70,15 +70,16 @@ render() {
             );
         case 3:
             return (
-                // <div className="formContainer">
-                //     <div className="formCard">
-                //     </div>
-                // </div>
-                        <PathForm
+                <div className="formContainer">
+                    <div className="formCard">
+                    <PathForm
                         prevStep={this.prevStep}
                         handleChange={this.handleChange}
                         values={values}
                         />
+                    </div>
+                </div>
+                       
               
             
             );

@@ -7,3 +7,17 @@
     color: #eeeeee ;
     text-decoration: none;
 }
+
+@media (max-width: 500px)
+{
+    .appbar{
+        font-size: 15px;
+        margin-bottom:.25%!important;
+        background-color: #00adb5 !important;
+    }
+    .appbar a {
+        color: #eeeeee ;
+        text-decoration: none;
+    }
+    
+}
