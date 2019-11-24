@@ -41,7 +41,8 @@ export default function SignUp(props) {
     function handleOnClick(event){
         event.persist();
         event.preventDefault();
-        console.log(event.target.userName.value);
+        console.log(event.target.userFirstName.value);
+        console.log(event.target.userLastName.value);
         console.log(event.target.email.value);
         console.log(event.target.address.value);
         console.log(event.target.phone.value);
@@ -57,21 +58,32 @@ export default function SignUp(props) {
             Sign up
             </Typography>
             <form  onSubmit={handleOnClick} className={classes.root} noValidate>
-                <Grid container spacing={2}>
-                    <Grid item xs={12}>
+                <Grid container>
+                    <Grid item xs>
                     <TextField
-                        
                         className={classes.root}
                         InputProps={{className: classes.input}}
                         required
                         fullWidth
-                        id="userName"
-                        label="Name"
-                        name="userName"
+                        id="userFirstName"
+                        label="First Name"
+                        name="userFirstName"
                     />
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item>  </Grid>
+                    <Grid item xs>
                     <TextField
+                        className='classes.root'
+                        InputProps={{className: classes.input}}
+                        required
+                        fullWidth
+                        id="userLastName"
+                        label="LastName"
+                        name="userLastName"
+                    />
+                    </Grid>
+                </Grid>
+                <TextField
                         className='classes.root'
                         InputProps={{className: classes.input}}
                         required
@@ -79,33 +91,27 @@ export default function SignUp(props) {
                         id="email"
                         label="Email Address"
                         name="email"
-                    />
-                    </Grid>
-                    <Grid item xs={12}>
-                    <TextField
-                        className='classes.root'
-                        InputProps={{className: classes.input}}
-                        required
-                        fullWidth
-                        name="address"
-                        label="Address"
-                        type="address"
-                        id="address"
-                    />
-                    </Grid>
-                    <Grid item xs={12}>
-                    <TextField
-                        className='classes.root'
-                        InputProps={{className: classes.input}}
-                        required
-                        fullWidth
-                        name="phone"
-                        label="Phone"
-                        type="phone"
-                        id="phone"
-                    />
-                    </Grid>
-                </Grid>
+                />
+                <TextField
+                    className='classes.root'
+                    InputProps={{className: classes.input}}
+                    required
+                    fullWidth
+                    name="address"
+                    label="Address"
+                    type="address"
+                    id="address"
+                />
+                <TextField
+                    className='classes.root'
+                    InputProps={{className: classes.input}}
+                    required
+                    fullWidth
+                    name="phone"
+                    label="Phone"
+                    type="phone"
+                    id="phone"
+                />
                 <Box mt={2}>
                     <Button
                         type="submit"
