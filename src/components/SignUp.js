@@ -49,7 +49,7 @@ export default function SignUp(props) {
     }
 
     return (
-        <Container className={classes.palette} component="main" maxWidth="xs">
+        <Container spacing={1} className={classes.palette} component="main" maxWidth="xs">
         <div className={classes.paper}>
             <Avatar className={classes.avatar}>
                 <AirlineSeatReclineNormalIcon />
@@ -58,7 +58,7 @@ export default function SignUp(props) {
             Sign up
             </Typography>
             <form  onSubmit={handleOnClick} className={classes.root} noValidate>
-                <Grid container>
+                <Grid spacing={1} container>
                     <Grid item xs>
                     <TextField
                         className={classes.root}
