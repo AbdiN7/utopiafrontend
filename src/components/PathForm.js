@@ -1,7 +1,7 @@
 "use strict"
 
 import React from 'react';
-import {TextField, Grid, Button } from '@material-ui/core';
+import {TextField, Grid, Button, ButtonGroup } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 
 const PathForm = (props) => {
@@ -21,8 +21,8 @@ const PathForm = (props) => {
     }];
 
     return(
-        <Grid container spacing={3} alignItems="center">
-            <Grid item xs={9} alignItems="center">
+        <Grid container spacing={3} >
+            <Grid item xs={9} >
                 <Autocomplete
                     id="srcAirport"
                     options={airports}
@@ -33,7 +33,7 @@ const PathForm = (props) => {
                 />
             </Grid>
 
-            <Grid item xs={3} alignItems="right">
+            <Grid item xs={3} >
                 <TextField
                     id="adultCount"
                     label="Adults"
@@ -71,9 +71,15 @@ const PathForm = (props) => {
                     margin="normal"
                 />
             </Grid>
-          <Button onClick={props.prevStep}>
-            Prev
-          </Button>
+        <ButtonGroup>
+            <Button onClick={props.prevStep}>
+                Prev
+            </Button>
+            <Button onClick={props.nextStep}>
+                Next
+            </Button>
+        </ButtonGroup>
+         
         </Grid>
     );
 }

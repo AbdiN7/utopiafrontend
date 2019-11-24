@@ -7,7 +7,8 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import Button from '@material-ui/core/Button';
-
+import ButtonGroup from '@material-ui/core/ButtonGroup'
+import { Typography } from '@material-ui/core';
 
 export default class FlightDate extends React.Component {
     // The first commit of Material-UI
@@ -20,6 +21,8 @@ export default class FlightDate extends React.Component {
     }
     handleDateChange(event){
         console.log(event);
+        console.log(this.props)
+
         this.setState({
             selectedDate: event,
         })
@@ -28,6 +31,9 @@ export default class FlightDate extends React.Component {
         return(
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container justify="space-around">
+                    <Typography style={{display: 'inline-block'}}>
+                        Select a Departure date
+                    </Typography>
                     <KeyboardDatePicker
                         className={'textField'}
                         InputProps={{className: 'textField'}}
@@ -44,14 +50,20 @@ export default class FlightDate extends React.Component {
                             'aria-label': 'change date',
                         }}
                     />
+                <ButtonGroup>
+                    
                   <Button
-            onClick={this.props.prevStep}>
-                    Prev
-              </Button>
-                  <Button
-            onClick={this.props.nextStep}>
-                    Next
+                    onClick={this.props.prevStep}
+                    >
+                        Prev
                   </Button>
+                  <Button
+                    onClick={this.props.nextStep}
+                    >
+                        Next
+                  </Button>
+                </ButtonGroup>
+
                 </Grid>
 
             </MuiPickersUtilsProvider>
