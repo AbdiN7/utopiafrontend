@@ -30,11 +30,14 @@ export default class FlightDate extends React.Component {
     render(){
         return(
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <Grid container justify="space-around">
+                <Grid container justify="space-around" className="flightDateContainer">
+                    <Grid item xs={12}>
                     <Typography style={{display: 'inline-block'}}>
                         Select a Departure date
                     </Typography>
-                    <KeyboardDatePicker
+                    </Grid>
+                   <Grid item  xs={12}>
+                   <KeyboardDatePicker
                         className={'textField'}
                         InputProps={{className: 'textField'}}
                         color="#EEEEEE"
@@ -50,19 +53,24 @@ export default class FlightDate extends React.Component {
                             'aria-label': 'change date',
                         }}
                     />
-                <ButtonGroup>
+                    <Grid item>
+                    <ButtonGroup>
                     
-                  <Button
-                    onClick={this.props.prevStep}
-                    >
-                        Prev
-                  </Button>
-                  <Button
-                    onClick={this.props.nextStep}
-                    >
-                        Next
-                  </Button>
-                </ButtonGroup>
+                    <Button
+                      onClick={this.props.prevStep}
+                      >
+                          Prev
+                    </Button>
+                    <Button
+                      onClick={this.props.nextStep}
+                      >
+                          Next
+                    </Button>
+                  </ButtonGroup>
+                    </Grid>
+               
+                   </Grid>
+                   
 
                 </Grid>
 
