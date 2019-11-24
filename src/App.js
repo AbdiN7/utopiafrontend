@@ -18,6 +18,7 @@ function App() {
         <Route exact path='/' component={home}/>
         <Route path='/queriedTicketList' component={QueriedTicketList}/>
         <Route path='/booking' component={BookingList}/>
+        <Route path='/PaymentForm' component={PaymentForm}/>
         <Route path='/flight' component={FlightList}/>
         <Route path='/form' component={UserForm}/>
       </Switch>
