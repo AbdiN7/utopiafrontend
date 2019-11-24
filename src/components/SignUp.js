@@ -37,7 +37,9 @@ const useStyles = makeStyles(theme => ({
 export default function SignUp(props) {
   
     const classes = useStyles();
+
     function handleOnClick(event){
+        event.persist();
         event.preventDefault();
         console.log(event.target.userFirstName.value);
         console.log(event.target.userLastName.value);
@@ -53,15 +55,15 @@ export default function SignUp(props) {
                 <AirlineSeatReclineNormalIcon />
             </Avatar>
             <Typography className={classes.root} component="h1" variant="h5">
-            Travler Details
+            Sign up
             </Typography>
-                <Grid container spacing={2}>
-                    <Grid item xs={12}>
+            <form  onSubmit={handleOnClick} className={classes.root} noValidate>
+                <Grid container>
+                    <Grid item xs>
                     <TextField
                         className={classes.root}
                         InputProps={{className: classes.input}}
-                        onChange={props.handleChange}
-                        defaultValue={props.values.userName}
+                        required
                         fullWidth
                         id="userFirstName"
                         label="First Name"
@@ -74,35 +76,17 @@ export default function SignUp(props) {
                         className='classes.root'
                         InputProps={{className: classes.input}}
                         required
-                        onChange={props.handleChange}
-                        defaultValue={props.values.email}
                         fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
+                        id="userLastName"
+                        label="LastName"
+                        name="userLastName"
                     />
                     </Grid>
-                    <Grid item xs={12}>
-                    <TextField
+                </Grid>
+                <TextField
                         className='classes.root'
                         InputProps={{className: classes.input}}
-                        onChange={props.handleChange}
-                        defaultValue={props.values.address}
                         required
-                        fullWidth
-                        name="address"
-                        label="Address"
-                        type="address"
-                        id="address"
-                    />
-                    </Grid>
-                    <Grid item xs={12}>
-                    <TextField
-                        required
-                        className='classes.root'
-                        InputProps={{className: classes.input}}
-                        onChange={props.handleChange}
-                        defaultValue={props.values.phone}
                         fullWidth
                         id="email"
                         label="Email Address"
@@ -134,12 +118,12 @@ export default function SignUp(props) {
                         fullWidth
                         variant="contained"
                         color="primary"
-                        
                         onClick={props.nextStep}
                     >
-                        Save Travler Details
+                        Sign Up
                     </Button>
                 </Box>
+            </form>
         </div>
         </Container>
     );

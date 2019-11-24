@@ -8,6 +8,7 @@ import AppBarHeader from './components/appBarHeader'
 import FlightList from './components/FlightList'
 import QueriedTicketList from './components/QueriedTicketList'
 import UserForm from './components/UserForm'
+import PaymentForm from './components/PaymentForm'
 import './styles/app.scss';
 
 function App() {
