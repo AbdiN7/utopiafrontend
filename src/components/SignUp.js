@@ -63,6 +63,8 @@ export default function SignUp(props) {
                     <TextField
                         className={classes.root}
                         InputProps={{className: classes.input}}
+                        onChange={props.handleChange}
+                        defaultValue={props.values.userFirstName}
                         required
                         fullWidth
                         id="userFirstName"
@@ -75,6 +77,8 @@ export default function SignUp(props) {
                     <TextField
                         className='classes.root'
                         InputProps={{className: classes.input}}
+                        onChange={props.handleChange}
+                        defaultValue={props.values.userLastName}
                         required
                         fullWidth
                         id="userLastName"
@@ -86,6 +90,8 @@ export default function SignUp(props) {
                 <TextField
                         className='classes.root'
                         InputProps={{className: classes.input}}
+                        onChange={props.handleChange}
+                        defaultValue={props.values.email}
                         required
                         fullWidth
                         id="email"
@@ -97,6 +103,8 @@ export default function SignUp(props) {
                     InputProps={{className: classes.input}}
                     required
                     fullWidth
+                    onChange={props.handleChange}
+                    defaultValue={props.values.address}
                     name="address"
                     label="Address"
                     type="address"
@@ -107,6 +115,8 @@ export default function SignUp(props) {
                     InputProps={{className: classes.input}}
                     required
                     fullWidth
+                    onChange={props.handleChange}
+                    defaultValue={props.values.phone}
                     name="phone"
                     label="Phone"
                     type="phone"

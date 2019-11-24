@@ -28,13 +28,14 @@
     
 }
 
-@media (min-width: 600px)
+@media (min-width: 660px)
 {
     .formContainer{
         position: absolute;
         text-align:center;
-        left: 25%;
-        right: 25%;
+        left: 17%;
+        right: 17%;
+        font-size: 15px;
     }
     
 }
@@ -44,8 +45,8 @@
     .formContainer{
         position: absolute;
         text-align:center;
-        left: 30%;
-        right: 30%;
+        left: 25%;
+        right: 25%;
         
     }
     

@@ -10,7 +10,8 @@ export default class UserForm extends Component {
         super();
         this.state = {
             step: 1 ,
-            userName: '',
+            userFirstName: '',
+            userLastName: '',
             address: '',
             email: '',
             phone: '',
@@ -41,12 +42,12 @@ export default class UserForm extends Component {
         this.setState({ [e.target.name]: e.target.value });
     };
     handleInt(e){
-        
+
     }
 render() {
     const { step } = this.state;
-    const { userName, address, email, phone, date } = this.state;
-    const userValues = { userName, address, email , phone};
+    const { userFirstName, userLastName, address, email, phone, date } = this.state;
+    const userValues = { userFirstName, userLastName, address, email , phone};
     const tripValues = {date};
     switch (step) {
         case 1:
