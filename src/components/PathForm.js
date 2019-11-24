@@ -1,7 +1,7 @@
 "use strict"
 
 import React from 'react';
-import {TextField, Grid, Button, ButtonGroup } from '@material-ui/core';
+import {TextField, Grid, Button, ButtonGroup, createMuiTheme } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 
 const PathForm = (props) => {
@@ -20,10 +20,21 @@ const PathForm = (props) => {
         "zip": "01854"
     }];
 
+    const myTheme = createMuiTheme({
+        overrides:{
+            MuiAutocomplete:{
+                focused:{
+                    color:'#EEEEEE'
+                }
+            }
+        }
+    })
+
     return(
         <Grid container spacing={3} >
             <Grid item xs={9} >
                 <Autocomplete
+                    theme={myTheme}
                     id="srcAirport"
                     options={airports}
                     getOptionLabel={airport => airport.airportName}
@@ -53,24 +64,12 @@ const PathForm = (props) => {
                     options={airports}
                     getOptionLabel={airport => airport.airportName}
                     renderInput={params => (
-                        <TextField {...params} label="Destination Airport" variant="outlined" fullWidth />
+                        <TextField {...params} label="Destination Airport" variant="outlined" fullWidth/>
                     )}
                 />
             </Grid>
 
-            <Grid item xs={3}>
-            <TextField
-                    id="childCount"
-                    label="Children"
-                    type="number"
-                    defaultValue="0"
-                    style = {{width:"100%"}}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    margin="normal"
-                />
-            </Grid>
+            <Grid item xs={3}/>
         <ButtonGroup>
             <Button onClick={props.prevStep}>
                 Prev
