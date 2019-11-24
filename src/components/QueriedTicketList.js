@@ -1,9 +1,9 @@
 "use strict"
 
 import React from 'react';
-import { Grid, Card, Typography, Button } from '@material-ui/core';
+import { Grid, Card, Typography, Button, ButtonGroup } from '@material-ui/core';
 
-const queriedTicketList = (props) => {
+const QueriedTicketList = (props) => {
 
     let ticket = {
         "cost": "564.50",
@@ -35,8 +35,10 @@ const queriedTicketList = (props) => {
     const loggit = () =>{console.log("NEXT STEP")}
 
     return(
+        <React.Fragment>
+
         <Card className="cardClass">
-            <Grid container spacing={3} alignItems="center">
+            <Grid container spacing={0} alignItems="center">
                 <Grid item xs={5}>
                     <Typography className="typogClass">
                         {ticket.flight.flightPath.srcAirport.airportCode}&nbsp;&rarr;&nbsp;{ticket.flight.flightPath.destAirport.airportCode}
@@ -50,8 +52,8 @@ const queriedTicketList = (props) => {
                 </Grid>
 
                 <Grid item xs={2}>
-                    <Button variant="outlined" className="buttonClass" onClick={loggit}>
-                        <Typography className="typogClass">SELECT</Typography>
+                    <Button variant="outlined" className="buttonClass" >
+                        SELECT
                     </Button>
                 </Grid>
 
@@ -71,8 +73,20 @@ const queriedTicketList = (props) => {
                     <Typography className="typogClass">${ticket.cost}</Typography>
                 </Grid>
             </Grid>
+            
         </Card>
+        <ButtonGroup>
+        <Button onClick={props.prevStep}>
+        Prev
+        </Button>
+        <Button>
+            Next
+        </Button>
+        </ButtonGroup>
+       
+        </React.Fragment>
+
     );
 }
 
-export default queriedTicketList
+export default QueriedTicketList
