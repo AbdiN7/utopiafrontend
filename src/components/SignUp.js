@@ -39,7 +39,8 @@ export default function SignUp(props) {
     const classes = useStyles();
     function handleOnClick(event){
         event.preventDefault();
-        console.log(event.target.userName.value);
+        console.log(event.target.userFirstName.value);
+        console.log(event.target.userLastName.value);
         console.log(event.target.email.value);
         console.log(event.target.address.value);
         console.log(event.target.phone.value);
@@ -57,18 +58,18 @@ export default function SignUp(props) {
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
                     <TextField
-                        
                         className={classes.root}
                         InputProps={{className: classes.input}}
                         onChange={props.handleChange}
                         defaultValue={props.values.userName}
                         fullWidth
-                        id="userName"
-                        label="Name"
-                        name="userName"
+                        id="userFirstName"
+                        label="First Name"
+                        name="userFirstName"
                     />
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item>  </Grid>
+                    <Grid item xs>
                     <TextField
                         className='classes.root'
                         InputProps={{className: classes.input}}
@@ -103,13 +104,30 @@ export default function SignUp(props) {
                         onChange={props.handleChange}
                         defaultValue={props.values.phone}
                         fullWidth
-                        name="phone"
-                        label="Phone"
-                        type="phone"
-                        id="phone"
-                    />
-                    </Grid>
-                </Grid>
+                        id="email"
+                        label="Email Address"
+                        name="email"
+                />
+                <TextField
+                    className='classes.root'
+                    InputProps={{className: classes.input}}
+                    required
+                    fullWidth
+                    name="address"
+                    label="Address"
+                    type="address"
+                    id="address"
+                />
+                <TextField
+                    className='classes.root'
+                    InputProps={{className: classes.input}}
+                    required
+                    fullWidth
+                    name="phone"
+                    label="Phone"
+                    type="phone"
+                    id="phone"
+                />
                 <Box mt={2}>
                     <Button
                         type="submit"

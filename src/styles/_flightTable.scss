@@ -18,14 +18,20 @@
     background-color: #3a4750;
 }
 .flightTable table{
+    
     align-items: left;
     min-width: 650px!important;
     background-color: #3a4750;
     color: #00adb5!important;
-    border-collapse: separate; 
     width: 100%;
-    margin: 40px;
-    padding: 40px;
+    margin: 40px!important;
+    padding: 40px!important;
+}
+
+.MuiTable-root{
+    border-collapse:separate;
+    //border:solid black 1px;
+    border-radius:30px;
 }
 
 .MuiPaper-myRoot{
