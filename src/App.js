@@ -7,6 +7,7 @@ import BookingList from './components/BookingList'
 import AppBarHeader from './components/appBarHeader'
 import FlightList from './components/FlightList'
 import queriedTicketList from './components/queriedTicketList'
+import PaymentForm  from './components/PaymentForm'
 import UserForm from './components/UserForm'
 import './styles/app.scss';
 
@@ -18,6 +19,7 @@ function App() {
         <Route exact path='/' component={home}/>
         <Route path='/queriedTicketList' component={queriedTicketList}/>
         <Route path='/booking' component={BookingList}/>
+        <Route path='/PaymentForm' component={PaymentForm}/>
         <Route path='/flight' component={FlightList}/>
         <Route path='/form' component={UserForm}/>
       </Switch>
