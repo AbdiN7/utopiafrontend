@@ -21,7 +21,7 @@ const PathForm = (props) => {
     return(
         <Grid container spacing={3} >
             <Grid item xs={3}>
-                <Button onClick={props.prevStep}>
+                <Button onClick={props.prevStep} className="formButtons">
                     Prev
                 </Button>
             </Grid>
@@ -29,7 +29,7 @@ const PathForm = (props) => {
             <Grid item xs ={6}/>
 
             <Grid item xs={3}>
-                <Button onClick={props.nextStep}>
+                <Button onClick={props.nextStep} className="formButtons">
                     Next
                 </Button>
             </Grid>
@@ -83,14 +83,6 @@ const PathForm = (props) => {
                     margin="normal"
                 />
             </Grid>
-            <ButtonGroup>
-                <Button onClick={props.prevStep} className="formButtons">
-                    Prev
-                </Button>
-                <Button onClick={props.nextStep} className="formButtons">
-                    Next
-                </Button>
-            </ButtonGroup>
         </Grid>
     );
 }

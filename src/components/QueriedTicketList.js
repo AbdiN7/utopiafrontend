@@ -36,7 +36,7 @@ const QueriedTicketList = (props) => {
         <React.Fragment>
             <Grid container spacing={3}>
                 <Grid item xs={3}>
-                    <Button onClick={props.prevStep}>
+                    <Button onClick={props.prevStep} className="formButtons">
                         Prev
                     </Button>
                 </Grid>
@@ -44,7 +44,7 @@ const QueriedTicketList = (props) => {
                 <Grid item xs ={6}/>
 
                 <Grid item xs={3}>
-                    <Button onClick={props.nextStep}>
+                    <Button onClick={props.nextStep} className="formButtons">
                         Next
                     </Button>
                 </Grid>
@@ -87,15 +87,6 @@ const QueriedTicketList = (props) => {
                     </Grid>
                 </Grid>
             </Card>
-        <ButtonGroup>
-        <Button onClick={props.prevStep} className="formButtons">
-        Prev
-        </Button>
-        <Button className="formButtons">
-            Next
-        </Button>
-        </ButtonGroup>
-       
         </React.Fragment>
 
     );

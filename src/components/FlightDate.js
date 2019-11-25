@@ -32,7 +32,7 @@ export default class FlightDate extends React.Component {
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container spacing={3}>
                     <Grid item xs={3}>
-                        <Button onClick={this.props.prevStep}>
+                        <Button onClick={this.props.prevStep} className="formButtons">
                             Prev
                         </Button>
                     </Grid>
@@ -40,7 +40,7 @@ export default class FlightDate extends React.Component {
                     <Grid item xs ={6}/>
 
                     <Grid item xs={3}>
-                        <Button onClick={this.props.nextStep}>
+                        <Button onClick={this.props.nextStep} className="formButtons">
                             Next
                         </Button>
                     </Grid>
@@ -67,24 +67,6 @@ export default class FlightDate extends React.Component {
                                 'aria-label': 'change date',
                             }}
                         />
-                        <Grid item>
-                        <ButtonGroup>
-                            <Button
-                            className="formButtons"
-                            variant="contained"
-                            onClick={this.props.prevStep}
-                            >
-                                Prev
-                            </Button>
-                            <Button
-                            variant="contained"
-                            className="formButtons"
-                            onClick={this.props.nextStep}
-                            >
-                                Next
-                            </Button>
-                        </ButtonGroup>
-                        </Grid>
                    </Grid>
                 </Grid>
 
