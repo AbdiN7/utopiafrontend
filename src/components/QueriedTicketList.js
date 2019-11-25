@@ -1,5 +1,3 @@
-"use strict"
-
 import React from 'react';
 import { Grid, Card, Typography, Button, ButtonGroup } from '@material-ui/core';
 
@@ -88,8 +86,17 @@ const QueriedTicketList = (props) => {
                         <Typography className="typogClass">${ticket.cost}</Typography>
                     </Grid>
                 </Grid>
-                
-            </Card>
+            </Grid>
+        </Card>
+        <ButtonGroup>
+        <Button onClick={props.prevStep} className="formButtons">
+        Prev
+        </Button>
+        <Button className="formButtons">
+            Next
+        </Button>
+        </ButtonGroup>
+       
         </React.Fragment>
 
     );

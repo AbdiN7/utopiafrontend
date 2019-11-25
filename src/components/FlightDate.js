@@ -53,9 +53,7 @@ export default class FlightDate extends React.Component {
                     </Grid>
 
                    <Grid item  xs={12}>
-                    <KeyboardDatePicker
-                            className={'textField'}
-                            InputProps={{className: 'textField'}}
+                        <KeyboardDatePicker
                             color="#EEEEEE"
                             disableToolbar
                             variant="inline"
@@ -69,6 +67,24 @@ export default class FlightDate extends React.Component {
                                 'aria-label': 'change date',
                             }}
                         />
+                        <Grid item>
+                        <ButtonGroup>
+                            <Button
+                            className="formButtons"
+                            variant="contained"
+                            onClick={this.props.prevStep}
+                            >
+                                Prev
+                            </Button>
+                            <Button
+                            variant="contained"
+                            className="formButtons"
+                            onClick={this.props.nextStep}
+                            >
+                                Next
+                            </Button>
+                        </ButtonGroup>
+                        </Grid>
                    </Grid>
                 </Grid>
 
