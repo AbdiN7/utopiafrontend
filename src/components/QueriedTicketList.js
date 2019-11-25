@@ -43,11 +43,7 @@ const QueriedTicketList = (props) => {
 
                 <Grid item xs ={6}/>
 
-                <Grid item xs={3}>
-                    <Button onClick={props.nextStep} className="formButtons">
-                        Next
-                    </Button>
-                </Grid>
+                <Grid item xs={3}/>
             </Grid>
             
             <Card className="cardClass">
@@ -65,7 +61,7 @@ const QueriedTicketList = (props) => {
                     </Grid>
 
                     <Grid item xs={2}>
-                        <Button variant="outlined" className="buttonClass" >
+                        <Button variant="outlined" className="formButtons">
                             SELECT
                         </Button>
                     </Grid>
