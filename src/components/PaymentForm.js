@@ -38,6 +38,10 @@ const PaymentForm = (props) => {
                 id="cardNum"
                 name="cardNum"
                 label="Card Number"
+                inputProps={{ maxLength: 16, type: 'tel'}}
+                onInput={(e) => {
+                    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                }}
             />
             </Grid>
             <Grid item xs={12}>
@@ -49,7 +53,10 @@ const PaymentForm = (props) => {
                         id="cvv"
                         name="cvv"
                         label="CVV"
-                        maxLength="4"
+                        inputProps={{ maxLength: 4, type: 'tel'}}
+                        onInput={(e) => {
+                            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                        }}
                     />
                     </Grid>
                     <Grid item xs={6}/>

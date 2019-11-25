@@ -30,8 +30,6 @@ const QueriedTicketList = (props) => {
         }
     }
 
-    const loggit = () =>{console.log("NEXT STEP")}
-
     return(
         <React.Fragment>
             <Grid container spacing={3}>
