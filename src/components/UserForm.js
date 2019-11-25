@@ -52,19 +52,6 @@ render() {
     const tripValues = {date};
     switch (step) {
         case 1:
-            return (
-                <div className="formContainer">
-                    <div className="formCard">
-                    <SignUp
-                    nextStep={this.nextStep}
-                    handleChange={this.handleChange}
-                    values={userValues}
-                    />
-                    </div>
-                </div>
-                
-            );
-        case 2:
                 console.log(userValues)
 
             return (
@@ -80,7 +67,7 @@ render() {
                 </div>
           
             );
-        case 3:
+        case 2:
             console.log(tripValues)
             return (
                 <div className="formContainer">
@@ -97,7 +84,7 @@ render() {
               
             
             );
-        case 4:
+        case 3:
             return(
                 <div className="formContainer">
                     <div className="formCard">
@@ -110,6 +97,19 @@ render() {
 
                 </div>
             );
+        case 4:
+                return (
+                    <div className="formContainer">
+                        <div className="formCard">
+                        <SignUp
+                        nextStep={this.nextStep}
+                        handleChange={this.handleChange}
+                        values={userValues}
+                        />
+                        </div>
+                    </div>
+                    
+                );
         case 5:
                 return(
                     <div className="formContainer">

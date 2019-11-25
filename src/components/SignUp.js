@@ -122,17 +122,6 @@ export default function SignUp(props) {
                     type="phone"
                     id="phone"
                 />
-                <Box mt={2}>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        onClick={props.nextStep}
-                    >
-                        Sign Up
-                    </Button>
-                </Box>
             </form>
         </div>
         </Container>
