@@ -69,8 +69,8 @@ const PaymentForm = (props) => {
                         }}
                     />
                     </Grid>
-                    <Grid item xs={6}/>
-                    <Grid item xs={2}>
+                    <Grid item xs={5}/>
+                    <Grid style={{justifyItems:'left'}} item xs={2}>
                         <InputLabel id="monthLabel">Month</InputLabel>
                         <Select
                             required
@@ -87,25 +87,12 @@ const PaymentForm = (props) => {
                                 </MenuItem>
                             ))}
                         </Select>
-                        {/* <TextField
+                    </Grid>
+                    <Grid item xs={3}>
+                        <InputLabel id="yearLabel">Year</InputLabel>
+                        <Select
                             required
                             fullWidth
-                            id="expMonth"
-                            name="expMonth"
-                            label="MM"
-                            select
-                            value=''
-                        >
-                            {monthList.map(option => (
-                                <MenuItem value={option}>
-                                {option}
-                                </MenuItem>
-                            ))}
-                        </TextField> */}
-                    </Grid>
-                    <Grid item xs={2}>
-                        <InputLabel id="monthLabel">Year</InputLabel>
-                        <Select
                             labelId="expYear"
                             id="expYear"
                             Label="YYYY"
@@ -118,21 +105,6 @@ const PaymentForm = (props) => {
                                 </MenuItem>
                             ))}
                         </Select>
-                        {/* <TextField
-                            required
-                            fullWidth
-                            id="expYear"
-                            name="expYear"
-                            label="YYYY"
-                            select
-                            value=''
-                        >
-                            {yearList.map(option => (
-                                <MenuItem value={option}>
-                                {option}
-                                </MenuItem>
-                            ))}
-                        </TextField> */}
                     </Grid>
                 </Grid>
             </Grid>
