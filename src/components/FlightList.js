@@ -8,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
+import MUIDataTable from "mui-datatables";
 
 const useStyles = makeStyles({
     myRoot: {
@@ -31,82 +32,25 @@ const rows = [
   createData(5, "Today", "Eco", 1, 69.50),
 ];
 
+
 export default function SimpleTable() {
 
-  const classes = useStyles();
+  const columns = ['Ticket ID', 'Last Name', 'First Name', 'Flight Id', 'Cost'];
+
+  //const classes = useStyles();
+
+  const options = {
+    filterType: 'checkbox',
+  };
 
   return (
     <Container className='flightTableContainer' component="main">
-      <Table className='flightTable' aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell className={classes.tableCell} align="right">Ticket Id</TableCell>
-            <TableCell className={classes.tableCell} align="right">Name</TableCell>
-            <TableCell className={classes.tableCell} align="right">Flight Id</TableCell>
-            <TableCell className={classes.tableCell} align="right">Cost</TableCell>
-            <TableCell className={classes.tableCell} align="right">Action</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.name}>
-              <TableCell  className={classes.tableCell} component="th" scope="row">
-                {row.ticketId}
-              </TableCell>
-              <TableCell className={classes.tableCell} align="right">{row.userLastName.toString() + " " + row.userFirstName.toString()}</TableCell>
-              <TableCell className={classes.tableCell} align="right">{row.flightId}</TableCell>
-              <TableCell className={classes.tableCell} align="right">{row.cost}</TableCell>
-              <TableCell className={classes.tableCell} align="right">
-                <Button variant="contained" color="secondary">
-                    Cancel Ticket
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      <MUIDataTable
+        title={"Booking"}
+        data={...rows}
+        column={columns}
+        options={options}
+      />
     </Container>
   );
 }
-
-// export default class FlightList extends React.Component{
-
-//     createTicketRow() {
-//         let buttonStyle = {
-//             padding: '5px',
-//         };
-//         return (
-//             <tr>
-//                 <td> 1 </td>
-//                 <td> 1 </td>
-//                 <td> 1 </td>
-//                 <td> 79.50 </td>
-//                 <view style={buttonStyle}><button>Button</button></view>
-//             </tr>
-//         );
-//     }
-//     render() {
-//         let content = '';
-
-//         console.log("Pending...");
-//         content = (
-//             < table className="table" >
-//                 <thead>
-//                     <tr>
-//                         <th> Ticket Number </th>
-//                         <th> User ID </th>
-//                         <th> Flight ID </th>
-//                         <th> Cost </th>
-//                     </tr>
-//                 </thead>
-//                 <tbody> {this.createTicketRow} </tbody>
-//             </table>
-//         );
-    
-//         return (
-//             <div>
-//                 <h1> Tickets </h1> {content}
-//             </div>
-//         );
-//     }
-// }
