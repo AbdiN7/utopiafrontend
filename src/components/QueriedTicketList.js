@@ -34,44 +34,59 @@ const QueriedTicketList = (props) => {
 
     return(
         <React.Fragment>
-
-        <Card className="cardClass">
-            <Grid container spacing={0} alignItems="center">
-                <Grid item xs={5}>
-                    <Typography className="typogClass">
-                        {ticket.flight.flightPath.srcAirport.airportCode}&nbsp;&rarr;&nbsp;{ticket.flight.flightPath.destAirport.airportCode}
-                    </Typography>
-                </Grid>
-
-                <Grid item xs={5}>
-                    <Typography className="typogClass">
-                        UTA {ticket.flight.flightId}
-                    </Typography>
-                </Grid>
-
-                <Grid item xs={2}>
-                    <Button variant="outlined" className="buttonClass" >
-                        SELECT
+            <Grid container spacing={3}>
+                <Grid item xs={3}>
+                    <Button onClick={props.prevStep}>
+                        Prev
                     </Button>
                 </Grid>
 
-                <Grid item xs={5}>
-                    <Typography className="typogClass">
-                    {ticket.flight.departureTime.split("T")[1]}&nbsp;&rarr;&nbsp;{ticket.flight.arrivalTime.split("T")[1]}
-                    </Typography>
-                </Grid>
+                <Grid item xs ={6}/>
 
-                <Grid item xs={5}>
-                    <Typography className="typogClass">
-                        {Math.abs(((new Date(ticket.flight.arrivalTime).getTime() - new Date(ticket.flight.departureTime).getTime())/ (1000 * 60 * 60)).toFixed(1))} Hours
-                    </Typography>
-                </Grid>
-
-                <Grid item xs={2}>
-                    <Typography className="typogClass">${ticket.cost}</Typography>
+                <Grid item xs={3}>
+                    <Button onClick={props.nextStep}>
+                        Next
+                    </Button>
                 </Grid>
             </Grid>
             
+            <Card className="cardClass">
+                <Grid container spacing={0} alignItems="center">
+                    <Grid item xs={5}>
+                        <Typography className="typogClass">
+                            {ticket.flight.flightPath.srcAirport.airportCode}&nbsp;&rarr;&nbsp;{ticket.flight.flightPath.destAirport.airportCode}
+                        </Typography>
+                    </Grid>
+
+                    <Grid item xs={5}>
+                        <Typography className="typogClass">
+                            UTA {ticket.flight.flightId}
+                        </Typography>
+                    </Grid>
+
+                    <Grid item xs={2}>
+                        <Button variant="outlined" className="buttonClass" >
+                            SELECT
+                        </Button>
+                    </Grid>
+
+                    <Grid item xs={5}>
+                        <Typography className="typogClass">
+                        {ticket.flight.departureTime.split("T")[1]}&nbsp;&rarr;&nbsp;{ticket.flight.arrivalTime.split("T")[1]}
+                        </Typography>
+                    </Grid>
+
+                    <Grid item xs={5}>
+                        <Typography className="typogClass">
+                            {Math.abs(((new Date(ticket.flight.arrivalTime).getTime() - new Date(ticket.flight.departureTime).getTime())/ (1000 * 60 * 60)).toFixed(1))} Hours
+                        </Typography>
+                    </Grid>
+
+                    <Grid item xs={2}>
+                        <Typography className="typogClass">${ticket.cost}</Typography>
+                    </Grid>
+                </Grid>
+            </Grid>
         </Card>
         <ButtonGroup>
         <Button onClick={props.prevStep} className="formButtons">

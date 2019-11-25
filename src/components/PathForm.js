@@ -20,6 +20,20 @@ const PathForm = (props) => {
 
     return(
         <Grid container spacing={3} >
+            <Grid item xs={3}>
+                <Button onClick={props.prevStep}>
+                    Prev
+                </Button>
+            </Grid>
+
+            <Grid item xs ={6}/>
+
+            <Grid item xs={3}>
+                <Button onClick={props.nextStep}>
+                    Next
+                </Button>
+            </Grid>
+
             <Grid item xs={9} >
                 <Autocomplete
                     id="srcAirport"
@@ -51,7 +65,7 @@ const PathForm = (props) => {
                     options={airports}
                     getOptionLabel={airport => airport.airportName}
                     renderInput={params => (
-                        <TextField {...params} label="Destination Airport" variant="outlined" fullWidth />
+                        <TextField {...params} label="Destination Airport" variant="outlined" fullWidth/>
                     )}
                 />
             </Grid>
@@ -69,15 +83,14 @@ const PathForm = (props) => {
                     margin="normal"
                 />
             </Grid>
-        <ButtonGroup>
-            <Button onClick={props.prevStep} className="formButtons">
-                Prev
-            </Button>
-            <Button onClick={props.nextStep} className="formButtons">
-                Next
-            </Button>
-        </ButtonGroup>
-         
+            <ButtonGroup>
+                <Button onClick={props.prevStep} className="formButtons">
+                    Prev
+                </Button>
+                <Button onClick={props.nextStep} className="formButtons">
+                    Next
+                </Button>
+            </ButtonGroup>
         </Grid>
     );
 }
