@@ -31,13 +31,8 @@ export default class FlightDate extends React.Component {
         return(
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container spacing={3}>
-                    <Grid item xs={3}>
-                        <Button onClick={this.props.prevStep} className="formButtons">
-                            Prev
-                        </Button>
-                    </Grid>
 
-                    <Grid item xs ={6}/>
+                    <Grid item xs ={9}/>
 
                     <Grid item xs={3}>
                         <Button onClick={this.props.nextStep} className="formButtons">
