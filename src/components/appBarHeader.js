@@ -48,10 +48,9 @@ export default function AppBarHeader() {
           <Link to="/">
           <img className='logo' src='https://i.imgur.com/5Xl9TSI.png' alt=''/>
           </Link>
-          <Button><Link to="/" >HOME</Link></Button>
-          <Button><Link to="/booking">Booking</Link></Button>
-          <Button><Link to="/flight">Flights</Link></Button>
-          <Button><Link to="/form"> Form </Link></Button>
+          <Button><Link to="/booking"> Cancel Booking </Link></Button>
+          <Button><Link to="/flight"> Find Booking </Link></Button>
+          <Button><Link to="/form"> Create Booking </Link></Button>
           <div className={classes.grow} />
           <h1>Guest</h1>
         </Toolbar>

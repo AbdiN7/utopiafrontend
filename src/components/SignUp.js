@@ -55,7 +55,7 @@ export default function SignUp(props) {
                 <AirlineSeatReclineNormalIcon />
             </Avatar>
             <Typography className={classes.root} component="h1" variant="h5">
-            Sign up
+            Traveller Info
             </Typography>
             <form  onSubmit={handleOnClick} className={classes.root} noValidate>
                 <Grid spacing={1} container>

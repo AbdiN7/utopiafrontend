@@ -3,6 +3,7 @@ import FlightDate from './FlightDate';
 import PathForm from './PathForm';
 import SignUp from './SignUp';
 import QueriedTicketList from './QueriedTicketList';
+import PaymentForm from './PaymentForm';
 
 
 export default class UserForm extends Component {
@@ -106,7 +107,20 @@ render() {
                     </div>
 
                 </div>
-            )
+            );
+        case 5:
+                return(
+                    <div className="formContainer">
+                        <div className="formCard">
+                            <PaymentForm
+                                prevStep={this.prevStep}
+                            />
+                        </div>
+    
+                    </div>
+                );
+        default:
+            return(<div></div>);
     }
 
     }
