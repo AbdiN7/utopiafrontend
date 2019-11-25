@@ -59,7 +59,6 @@ render() {
                     <div className="formCard">
                         <FlightDate
                         nextStep={this.nextStep}
-                        prevStep={this.prevStep}
                         handleChange={this.handleChange}
                         values={tripValues}
                         />
@@ -102,6 +101,7 @@ render() {
                     <div className="formContainer">
                         <div className="formCard">
                         <SignUp
+                        prevStep={this.prevStep}
                         nextStep={this.nextStep}
                         handleChange={this.handleChange}
                         values={userValues}

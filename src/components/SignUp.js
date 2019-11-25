@@ -6,7 +6,6 @@ import Grid from '@material-ui/core/Grid';
 import AirlineSeatReclineNormalIcon from '@material-ui/icons/AirlineSeatReclineNormal';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -49,81 +48,98 @@ export default function SignUp(props) {
     }
 
     return (
-        <Container spacing={1} className={classes.palette} component="main" maxWidth="xs">
-        <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-                <AirlineSeatReclineNormalIcon />
-            </Avatar>
-            <Typography className={classes.root} component="h1" variant="h5">
-            Traveller Info
-            </Typography>
-            <form  onSubmit={handleOnClick} className={classes.root} noValidate>
-                <Grid spacing={1} container>
-                    <Grid item xs>
-                    <TextField
-                        className="classes.root"
-                        InputProps={{className: classes.input}}
-                        onChange={props.handleChange}
-                        defaultValue={props.values.userFirstName}
-                        required
-                        fullWidth
-                        id="userFirstName"
-                        label="First Name"
-                        name="userFirstName"
-                    />
+        <React.Fragment>
+            <Grid container spacing={3}>
+                    <Grid item xs={3}>
+                        <Button onClick={props.prevStep} className="formButtons">
+                            Prev
+                        </Button>
                     </Grid>
-                    <Grid item>  </Grid>
-                    <Grid item xs>
-                    <TextField
-                        className='classes.root'
-                        InputProps={{className: classes.input}}
-                        onChange={props.handleChange}
-                        defaultValue={props.values.userLastName}
-                        required
-                        fullWidth
-                        id="userLastName"
-                        label="Last Name"
-                        name="userLastName"
-                    />
+
+                    <Grid item xs ={6}/>
+
+                    <Grid item xs={3}>
+                        <Button onClick={props.nextStep} className="formButtons">
+                            Next
+                        </Button>
                     </Grid>
                 </Grid>
-                <TextField
-                        className='classes.root'
-                        InputProps={{className: classes.input}}
-                        onChange={props.handleChange}
-                        defaultValue={props.values.email}
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                />
-                <TextField
-                    className='classes.root'
-                    InputProps={{className: classes.input}}
-                    required
-                    fullWidth
-                    onChange={props.handleChange}
-                    defaultValue={props.values.address}
-                    name="address"
-                    label="Address"
-                    type="address"
-                    id="address"
-                />
-                <TextField
-                    className='classes.root'
-                    InputProps={{className: classes.input}}
-                    required
-                    fullWidth
-                    onChange={props.handleChange}
-                    defaultValue={props.values.phone}
-                    name="phone"
-                    label="Phone"
-                    type="phone"
-                    id="phone"
-                />
-            </form>
-        </div>
-        </Container>
+                <Container spacing={1} className={classes.palette} component="main" maxWidth="xs">
+                    <div className={classes.paper}>
+                        <Avatar className={classes.avatar}>
+                            <AirlineSeatReclineNormalIcon />
+                        </Avatar>
+                        <Typography className={classes.root} component="h1" variant="h5">
+                        Traveller Info
+                        </Typography>
+                        <form  onSubmit={handleOnClick} className={classes.root} noValidate>
+                            <Grid spacing={1} container>
+                                <Grid item xs>
+                                <TextField
+                                    className="classes.root"
+                                    InputProps={{className: classes.input}}
+                                    onChange={props.handleChange}
+                                    defaultValue={props.values.userFirstName}
+                                    required
+                                    fullWidth
+                                    id="userFirstName"
+                                    label="First Name"
+                                    name="userFirstName"
+                                />
+                                </Grid>
+                                <Grid item>  </Grid>
+                                <Grid item xs>
+                                <TextField
+                                    className='classes.root'
+                                    InputProps={{className: classes.input}}
+                                    onChange={props.handleChange}
+                                    defaultValue={props.values.userLastName}
+                                    required
+                                    fullWidth
+                                    id="userLastName"
+                                    label="Last Name"
+                                    name="userLastName"
+                                />
+                                </Grid>
+                            </Grid>
+                            <TextField
+                                    className='classes.root'
+                                    InputProps={{className: classes.input}}
+                                    onChange={props.handleChange}
+                                    defaultValue={props.values.email}
+                                    required
+                                    fullWidth
+                                    id="email"
+                                    label="Email Address"
+                                    name="email"
+                            />
+                            <TextField
+                                className='classes.root'
+                                InputProps={{className: classes.input}}
+                                required
+                                fullWidth
+                                onChange={props.handleChange}
+                                defaultValue={props.values.address}
+                                name="address"
+                                label="Address"
+                                type="address"
+                                id="address"
+                            />
+                            <TextField
+                                className='classes.root'
+                                InputProps={{className: classes.input}}
+                                required
+                                fullWidth
+                                onChange={props.handleChange}
+                                defaultValue={props.values.phone}
+                                name="phone"
+                                label="Phone"
+                                type="phone"
+                                id="phone"
+                            />
+                        </form>
+                    </div>
+                    </Container>
+        </React.Fragment>
     );
 }
