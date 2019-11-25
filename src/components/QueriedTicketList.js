@@ -86,8 +86,7 @@ const QueriedTicketList = (props) => {
                         <Typography className="typogClass">${ticket.cost}</Typography>
                     </Grid>
                 </Grid>
-            </Grid>
-        </Card>
+            </Card>
         <ButtonGroup>
         <Button onClick={props.prevStep} className="formButtons">
         Prev
