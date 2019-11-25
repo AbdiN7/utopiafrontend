@@ -61,7 +61,7 @@ const QueriedTicketList = (props) => {
                     </Grid>
 
                     <Grid item xs={2}>
-                        <Button variant="outlined" className="formButtons">
+                        <Button onClick={props.nextStep} className="formButtons">
                             SELECT
                         </Button>
                     </Grid>

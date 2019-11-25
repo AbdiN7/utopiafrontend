@@ -19,16 +19,16 @@ const useStyles = makeStyles({
     },
 });
   
-function createData(ticketId, userId, flightId, cost) {
-  return { ticketId, userId, flightId, cost};
+function createData(ticketId, userLastName, userFirstName, flightId, cost) {
+  return { ticketId, userLastName, userFirstName, flightId, cost};
 }
 
 const rows = [
-  createData(1, 2, 3, 79.50),
-  createData(2, 2, 1, 66.50),
-  createData(1, 2, 1, 75.50),
-  createData(1, 3, 3, 89.50),
-  createData(3, 2, 1, 69.50),
+  createData(1, "James", "Jimothy", 3, 79.50),
+  createData(2, "Bichael", "Tire", 1, 66.50),
+  createData(1, "Gertrude", "Rude", 1, 75.50),
+  createData(1, "Nicc", "Compastable", 3, 89.50),
+  createData(3, "Today", "Eco", 1, 69.50),
 ];
 
 export default function SimpleTable() {
@@ -41,7 +41,7 @@ export default function SimpleTable() {
         <TableHead>
           <TableRow>
             <TableCell className={classes.tableCell} align="right">Ticket Id</TableCell>
-            <TableCell className={classes.tableCell} align="right">User Id</TableCell>
+            <TableCell className={classes.tableCell} align="right">Name</TableCell>
             <TableCell className={classes.tableCell} align="right">Flight Id</TableCell>
             <TableCell className={classes.tableCell} align="right">Cost</TableCell>
             <TableCell className={classes.tableCell} align="right">Action</TableCell>
@@ -53,12 +53,12 @@ export default function SimpleTable() {
               <TableCell  className={classes.tableCell} component="th" scope="row">
                 {row.ticketId}
               </TableCell>
-              <TableCell className={classes.tableCell} align="right">{row.userId}</TableCell>
+              <TableCell className={classes.tableCell} align="right">{row.userLastName.toString() + " " + row.userFirstName.toString()}</TableCell>
               <TableCell className={classes.tableCell} align="right">{row.flightId}</TableCell>
               <TableCell className={classes.tableCell} align="right">{row.cost}</TableCell>
               <TableCell className={classes.tableCell} align="right">
                 <Button variant="contained" color="secondary">
-                    Delete
+                    Cancel Ticket
                 </Button>
               </TableCell>
             </TableRow>

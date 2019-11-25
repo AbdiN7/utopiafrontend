@@ -103,6 +103,8 @@ render() {
                     <div className="formCard">
                         <QueriedTicketList 
                             prevStep={this.prevStep}
+                            nextStep={this.nextStep}
+                            handleChange={this.handleChange}
                         />
                     </div>
 
