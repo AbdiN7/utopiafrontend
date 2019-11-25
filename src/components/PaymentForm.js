@@ -1,11 +1,21 @@
 import React from 'react';
-import {TextField, Grid, MenuItem, Button} from '@material-ui/core';
+import {TextField, Grid, MenuItem, Button, Select, InputLabel} from '@material-ui/core';
 
 
 const PaymentForm = (props) => {
 
-    const monthList = [1,2,3,4,5,6,7,8,9,10,11,12];
-    const yearList = [2019,2020,2021,2022,2023,2024,2025,2026,2027];
+    const monthList = ['01','02','03','04','05','06','07','08','09','10','11','12'];
+    const yearList = ['2019','2020','2021','2022','2023','2024','2025','2026','2027'];
+
+    const [month, setMonth, year, setYear] = React.useState('');
+
+    const handleMonthChange = event => {
+        setMonth(event.target.value);
+    };
+    const handleYearChange = event => {
+        setYear(event.target.value);
+    };
+
 
     return (
         <Grid container id="PaymentForm" spacing={3}>
@@ -59,40 +69,42 @@ const PaymentForm = (props) => {
                         }}
                     />
                     </Grid>
-                    <Grid item xs={6}/>
-                    <Grid item xs={2}>
-                        <TextField
+                    <Grid item xs={5}/>
+                    <Grid style={{justifyItems:'left'}} item xs={2}>
+                        <InputLabel id="monthLabel">Month</InputLabel>
+                        <Select
                             required
                             fullWidth
+                            labelId="expMonth"
                             id="expMonth"
-                            name="expMonth"
                             label="MM"
-                            select
-                            value=''
-                        >
+                            value={month}
+                            onChange={handleMonthChange}
+                            >
                             {monthList.map(option => (
                                 <MenuItem value={option}>
                                 {option}
                                 </MenuItem>
                             ))}
-                        </TextField>
+                        </Select>
                     </Grid>
-                    <Grid item xs={2}>
-                        <TextField
+                    <Grid item xs={3}>
+                        <InputLabel id="yearLabel">Year</InputLabel>
+                        <Select
                             required
                             fullWidth
+                            labelId="expYear"
                             id="expYear"
-                            name="expYear"
-                            label="YYYY"
-                            select
-                            value=''
-                        >
+                            Label="YYYY"
+                            value={year}
+                            onChange={handleYearChange}
+                            >
                             {yearList.map(option => (
                                 <MenuItem value={option}>
                                 {option}
                                 </MenuItem>
                             ))}
-                        </TextField>
+                        </Select>
                     </Grid>
                 </Grid>
             </Grid>
