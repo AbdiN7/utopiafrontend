@@ -46,7 +46,7 @@ export default function AppBarHeader() {
       <AppBar className="appbar" position="static">
         <Toolbar>
           <Link to="/">
-          <img className='logo' src='https://i.imgur.com/5Xl9TSI.png' alt=''/>
+          <img className='logo' src='https://i.imgur.com/QJhVXLz.png' alt=''/>
           </Link>
           <Button><Link to="/form"> Create Booking </Link></Button>
           <Button><Link to="/flight"> Find Booking </Link></Button>
