@@ -30,44 +30,46 @@ export default class FlightDate extends React.Component {
     render(){
         return(
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <Grid container justify="space-around" className="flightDateContainer">
+                <Grid container justify="space-around">
                     <Grid item xs={12}>
-                    <Typography style={{display: 'inline-block'}}>
-                        Select a Departure date
-                    </Typography>
+                        <Typography style={{display: 'inline-block'}}>
+                            Select a Departure date
+                        </Typography>
                     </Grid>
                    <Grid item  xs={12}>
-                   <KeyboardDatePicker
-                        className={'textField'}
-                        InputProps={{className: 'textField'}}
-                        color="#EEEEEE"
-                        disableToolbar
-                        variant="inline"
-                        format="MM/dd/yyyy"
-                        margin="normal"
-                        id="date-picker-inline"
-                        label="From"
-                        value={this.state.selectedDate}
-                        onChange={this.handleDateChange}
-                        KeyboardButtonProps={{
-                            'aria-label': 'change date',
-                        }}
-                    />
-                    <Grid item>
-                    <ButtonGroup>
-                    
-                    <Button
-                      onClick={this.props.prevStep}
-                      >
-                          Prev
-                    </Button>
-                    <Button
-                      onClick={this.props.nextStep}
-                      >
-                          Next
-                    </Button>
-                  </ButtonGroup>
-                    </Grid>
+                        <KeyboardDatePicker
+                            color="#EEEEEE"
+                            disableToolbar
+                            variant="inline"
+                            format="MM/dd/yyyy"
+                            margin="normal"
+                            id="date-picker-inline"
+                            label="From"
+                            value={this.state.selectedDate}
+                            onChange={this.handleDateChange}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change date',
+                            }}
+                        />
+                        <Grid item>
+                        <ButtonGroup>
+                        
+                            <Button
+                            className="formButtons"
+                            variant="contained"
+                            onClick={this.props.prevStep}
+                            >
+                                Prev
+                            </Button>
+                            <Button
+                            variant="contained"
+                            className="formButtons"
+                            onClick={this.props.nextStep}
+                            >
+                                Next
+                            </Button>
+                        </ButtonGroup>
+                        </Grid>
                
                    </Grid>
                    

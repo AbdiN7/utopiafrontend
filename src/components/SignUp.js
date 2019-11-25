@@ -61,7 +61,7 @@ export default function SignUp(props) {
                 <Grid spacing={1} container>
                     <Grid item xs>
                     <TextField
-                        className={classes.root}
+                        className="classes.root"
                         InputProps={{className: classes.input}}
                         onChange={props.handleChange}
                         defaultValue={props.values.userFirstName}
@@ -82,7 +82,7 @@ export default function SignUp(props) {
                         required
                         fullWidth
                         id="userLastName"
-                        label="LastName"
+                        label="Last Name"
                         name="userLastName"
                     />
                     </Grid>

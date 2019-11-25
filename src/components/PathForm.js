@@ -1,5 +1,3 @@
-"use strict"
-
 import React from 'react';
 import {TextField, Grid, Button, ButtonGroup } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
@@ -39,7 +37,7 @@ const PathForm = (props) => {
                     label="Adults"
                     type="number"
                     defaultValue="1"
-                    style = {{width:"100%"}}
+                    className="textField"
                     InputLabelProps={{
                         shrink: true,
                     }}
@@ -64,7 +62,7 @@ const PathForm = (props) => {
                     label="Children"
                     type="number"
                     defaultValue="0"
-                    style = {{width:"100%"}}
+                    className="textField"
                     InputLabelProps={{
                         shrink: true,
                     }}
@@ -72,10 +70,10 @@ const PathForm = (props) => {
                 />
             </Grid>
         <ButtonGroup>
-            <Button onClick={props.prevStep}>
+            <Button onClick={props.prevStep} className="formButtons">
                 Prev
             </Button>
-            <Button onClick={props.nextStep}>
+            <Button onClick={props.nextStep} className="formButtons">
                 Next
             </Button>
         </ButtonGroup>
