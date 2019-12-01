@@ -9,6 +9,7 @@ import FlightList from './components/FlightList'
 import QueriedTicketList from './components/QueriedTicketList'
 import UserForm from './components/UserForm'
 import PaymentForm from './components/PaymentForm'
+import Payment from './components/Payment'
 import './styles/app.scss';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path='/PaymentForm' component={PaymentForm}/>
         <Route path='/flight' component={FlightList}/>
         <Route path='/form' component={UserForm}/>
+        <Route path='/payment' component={Payment}/>
       </Switch>
     </div>
 
