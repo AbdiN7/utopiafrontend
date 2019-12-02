@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 
 class Profile extends Component {
   constructor() {
@@ -24,29 +26,22 @@ class Profile extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="jumbotron mt-5">
-          <div className="col-sm-8 mx-auto">
-            <h1 className="text-center">PROFILE</h1>
-          </div>
-          <table className="table col-md-6 mx-auto">
-            <tbody>
-              <tr>
-                <td>Fist Name</td>
-                <td>{this.state.userFirstName}</td>
-              </tr>
-              <tr>
-                <td>Last Name</td>
-                <td>{this.state.userLastName}</td>
-              </tr>
-              <tr>
-                <td>Email</td>
-                <td>{this.state.email}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div className="formContainer"
+      style={{marginTop: "40px"}}>
+           <div className="formCard" >
+            <h1 >PROFILE</h1>
+            <Grid container spacing={3}>
+              <Grid item xs={6} ><div style={{backgroundColor: "eeeeee", borderRadius: "30px"}}>First Name</div></Grid>
+              <Grid item xs={6}>{this.state.userFirstName}</Grid>
+              <Grid item xs={6}>Last Name</Grid>
+              <Grid item xs={6}>{this.state.userLastName}</Grid>
+              <Grid item xs={6}>Email</Grid>
+              <Grid item xs={6}>{this.state.email}</Grid>
+            </Grid>
       </div>
+      </div>
+   
+     
     )
   }
 }

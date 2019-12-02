@@ -55,7 +55,8 @@ render() {
                 console.log(userValues)
 
             return (
-                <div className="formContainer">
+                <div className="formContainer"
+                style={{marginTop: "40px"}}>
                     <div className="formCard">
                         <FlightDate
                         nextStep={this.nextStep}
@@ -69,7 +70,8 @@ render() {
         case 2:
             console.log(tripValues)
             return (
-                <div className="formContainer">
+                <div className="formContainer"
+                style={{marginTop: "40px"}}>
                     <div className="formCard">
                     <PathForm
                         prevStep={this.prevStep}
@@ -85,7 +87,8 @@ render() {
             );
         case 3:
             return(
-                <div className="formContainer">
+                <div className="formContainer"
+                style={{marginTop: "40px"}}>
                     <div className="formCard">
                         <QueriedTicketList 
                             prevStep={this.prevStep}
@@ -98,7 +101,8 @@ render() {
             );
         case 4:
                 return (
-                    <div className="formContainer">
+                    <div className="formContainer"
+                    style={{marginTop: "40px"}}>
                         <div className="formCard">
                         <SignUp
                         prevStep={this.prevStep}
@@ -112,7 +116,8 @@ render() {
                 );
         case 5:
                 return(
-                    <div className="formContainer">
+                    <div className="formContainer"
+                    style={{marginTop: "40px"}}>
                         <div className="formCard">
                             <PaymentForm
                                 prevStep={this.prevStep}

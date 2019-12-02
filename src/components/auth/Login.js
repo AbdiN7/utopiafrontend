@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { loginUser } from '../../actions/authActions';
 
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 class Login extends Component {
   constructor() {
     super();
@@ -53,21 +58,23 @@ class Login extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="login">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Log In</h1>
-              <p className="lead text-center">
-                Sign in
+      
+        <div className="formContainer"
+        style={{marginTop: "40px"}}>
+        <div className="formCard" >
+
+   
+              <h1 style={{marginTop: "55px"}}>Log In</h1>
+              <p style={{marginBottom: "30px"}}>
+                  Input your Utopia Airlines&trade; account information
               </p>
-              <form onSubmit={this.onSubmit}>
-                <div className="form-group">
-                  <input
+              <form onSubmit={this.onSubmit} noValidate>
+                <Grid spacing={2} container>
+                  <Grid item xs={12}>
+
+                  <TextField
+                    style={{marginBottom: '20px', width: "60%"}}
                     type="email"
-                    className={classnames('form-control form-control-lg', {
-                      'is-invalid': errors.email
-                    })}
                     placeholder="Email Address"
                     name="email"
                     value={this.state.email}
@@ -76,13 +83,12 @@ class Login extends Component {
                   {errors.email && (
                     <div className="invalid-feedback">{errors.email}</div>
                   )}
-                </div>
-                <div className="form-group">
-                  <input
+
+                  <Grid item xs={12}>
+
+                  <TextField
                     type="password"
-                    className={classnames('form-control form-control-lg', {
-                      'is-invalid': errors.password
-                    })}
+                    style={{marginBottom: '40px', width:"60%"}}
                     placeholder="Password"
                     name="password"
                     value={this.state.password}
@@ -91,13 +97,16 @@ class Login extends Component {
                   {errors.password && (
                     <div className="invalid-feedback">{errors.password}</div>
                   )}
-                </div>
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                  </Grid>
+                <Button 
+                  type="submit"
+                  className="formButtons"
+                  style={{width: "60%"}}>Sign In</Button> 
+                </Grid>
+                </Grid>
               </form>
-            </div>
-          </div>
         </div>
-      </div>
+        </div>
     );
   }
 }
