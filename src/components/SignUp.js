@@ -10,13 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Stripe from './Stripe.js';
 
 const useStyles = makeStyles(theme => ({
-    root:{
-        color: '#EEEEEE',
-        // backgroundColor: '#303841',
-    },
-      input: {
-        color: "#eeeeee"
-      },
+ 
       palette: {
         width:'90',
         textColor: "#eeeeee",
@@ -56,9 +50,7 @@ export default function SignUp(props) {
                             Prev
                         </Button>
                     </Grid>
-
                     <Grid item xs ={4}/>
-
                     <Grid item xs={5}>
                         <Stripe/>
                     </Grid>
@@ -68,15 +60,15 @@ export default function SignUp(props) {
                         <Avatar className={classes.avatar}>
                             <AirlineSeatReclineNormalIcon />
                         </Avatar>
-                        <Typography className={classes.root} component="h1" variant="h5">
+                        <Typography style={{color: "#eeeeee"}} component="h1" variant="h5">
                         Traveller Info
                         </Typography>
                         <form  onSubmit={handleOnClick} className={classes.root} noValidate>
                             <Grid spacing={1} container>
                                 <Grid item xs>
                                 <TextField
-                                    className="classes.root"
-                                    InputProps={{className: classes.input}}
+                                    style={{color: '#eeeeee'}}
+                                    
                                     onChange={props.handleChange}
                                     defaultValue={props.values.userFirstName}
                                     required
@@ -89,8 +81,8 @@ export default function SignUp(props) {
                                 <Grid item>  </Grid>
                                 <Grid item xs>
                                 <TextField
-                                    className='classes.root'
-                                    InputProps={{className: classes.input}}
+                                    style={{color: '#eeeeee'}}
+                                  
                                     onChange={props.handleChange}
                                     defaultValue={props.values.userLastName}
                                     required
@@ -102,8 +94,8 @@ export default function SignUp(props) {
                                 </Grid>
                             </Grid>
                             <TextField
-                                    className='classes.root'
-                                    InputProps={{className: classes.input}}
+                                    style={{color: '#eeeeee'}}
+                                   
                                     onChange={props.handleChange}
                                     defaultValue={props.values.email}
                                     required
@@ -113,8 +105,8 @@ export default function SignUp(props) {
                                     name="email"
                             />
                             <TextField
-                                className='classes.root'
-                                InputProps={{className: classes.input}}
+                                style={{color: '#eeeeee'}}
+                               
                                 required
                                 fullWidth
                                 onChange={props.handleChange}
@@ -125,8 +117,8 @@ export default function SignUp(props) {
                                 id="address"
                             />
                             <TextField
-                                className='classes.root'
-                                InputProps={{className: classes.input}}
+                                style={{color: '#eeeeee'}}
+                               
                                 required
                                 fullWidth
                                 onChange={props.handleChange}
