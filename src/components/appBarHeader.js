@@ -52,7 +52,9 @@ export default function AppBarHeader() {
           <Button><Link to="/flight"> Find Booking </Link></Button>
           <Button><Link to="/booking"> Cancel Booking </Link></Button>
           <div className={classes.grow} />
-          <h1>Guest</h1>
+          <Button><Link to="/login"> Login </Link></Button>
+          <Button><Link to="/profile"> Profile </Link></Button>
+          <Button><Link to="/register"> Register </Link></Button>
         </Toolbar>
       </AppBar>
     </div>
