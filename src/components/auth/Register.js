@@ -15,7 +15,6 @@ class Register extends Component {
       userLastName: '',
       email: '',
       password: '',
-    //   password2: '',
       errors: {}
     };
 
@@ -47,7 +46,6 @@ class Register extends Component {
       userLastName: this.state.userLastName,
       email: this.state.email,
       password: this.state.password,
-    //   password2: this.state.password2
     };
 
     this.props.registerUser(newUser, this.props.history);
@@ -108,6 +106,7 @@ class Register extends Component {
                 >
            
                   <TextField
+                    type="password"
                     placeholder="Password"
                     name="password"
                     style={{width: "80%"}}

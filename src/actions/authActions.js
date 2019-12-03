@@ -5,11 +5,12 @@ import jwt_decode from 'jwt-decode';
 import { GET_ERRORS, SET_CURRENT_USER } from './types';
 
 // Register User
+// creating an instance of axios so that the action hits the node.js server to register / login / authenticate a user
 const instance = axios.create({baseURL: 'http://localhost:5000'})
 export const registerUser = (userData, history) => dispatch => {
   instance
-    .post('/users/register', userData)
-    .then(res => history.push('/login'))
+    .post('/users/register', userData) 
+    .then(res => history.push('/login')) //after the post has been compeleted send user to login form to log in
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -23,18 +24,17 @@ export const loginUser = (userData, history) => dispatch => {
   instance
     .post('/users/login', userData)
     .then(res => {
-      console.log(res)
-      // Save to localStorage
       const token = res.data;
-      console.log(token)
-      // Set token to ls
-      localStorage.setItem('usertoken', token);
-      // Set token to Auth header
       
-      console.log(localStorage)
+      // Set token to LocalStorage with the key usertoken
+      localStorage.setItem('usertoken', token);
+      
+      // Set token to Auth header
       setAuthToken(token);
+
       // Decode token to get user data
       const decoded = jwt_decode(token);
+      
       // Set current user
       dispatch(setCurrentUser(decoded));
       
