@@ -17,6 +17,8 @@ export default class SimpleCard extends React.Component {
         this.state= {tickets: [],
                     cost: 0};
         this.cost = 0;
+                console.log("ldsfkj");
+        console.log(props);
     }
 
 
@@ -53,25 +55,25 @@ export default class SimpleCard extends React.Component {
                                 Name
                             </Grid>
                             <Grid item xs={9}>
-                                Last Name, First Name
+                                {this.props.userValues.userLastName}, {this.props.userValues.userFirstName}
                             </Grid>
                             <Grid item xs={3}>
                                 Address
                             </Grid>
                             <Grid item xs={9}>
-                                The User Address
+                                {this.props.userValues.address}
                             </Grid>
                             <Grid item xs={3}>
                                 Phone
                             </Grid>
                             <Grid item xs={9}>
-                                The User Phone
+                                {this.props.userValues.phone}
                             </Grid>
                             <Grid item xs={3}>
                                 Email
                             </Grid>
                             <Grid item xs={9}>
-                                The User Email
+                                {this.props.userValues.email}
                             </Grid>
                         </Grid>
                     </CardContent>

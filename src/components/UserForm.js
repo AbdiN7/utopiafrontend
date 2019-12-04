@@ -147,7 +147,7 @@ render() {
                             <PaymentForm
                                 prevStep={this.prevStep}
                                 values = {bookingValues}
-
+                                userValues = {userValues}
                             />
                         </div>
     
