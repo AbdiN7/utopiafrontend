@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import FlightDate from './FlightDate';
 import PathForm from './PathForm';
 import SignUp from './SignUp';
-import QueriedTicketList from './QueriedTicketList';
+import FlightList from './FlightList';
 import PaymentForm from './PaymentForm';
 import jwt_decode from 'jwt-decode'
 
@@ -95,7 +95,9 @@ render() {
                 <div className="formContainer"
                 style={{marginTop: "40px"}}>
                     <div className="formCard">
-                        <QueriedTicketList 
+                        <FlightList
+                            srcAirport="AAA"
+                            destAirport="BBB"
                             prevStep={this.prevStep}
                             nextStep={this.nextStep}
                             handleChange={this.handleChange}

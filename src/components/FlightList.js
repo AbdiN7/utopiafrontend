@@ -1,112 +1,52 @@
-
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
+import { Grid, Card, Typography, Button } from '@material-ui/core';
+import FlightListElement from './FlightListElement';
+import axios from 'axios';
 
-const useStyles = makeStyles({
-    myRoot: {
-      width: '100%',
-      overflowX: 'auto',
-    },
-    tableCell: {
-      color: '#EEEEEE',
-    },
-});
-  
-function createData(ticketId, userLastName, userFirstName, flightId, cost) {
-  return { ticketId, userLastName, userFirstName, flightId, cost};
+export default class FlightList extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            flights: []
+        }
+    }
+
+    componentDidMount(){
+        console.log("airports: " + this.props.srcAirport + " " + this.props.destAirport)
+        axios.get(`https://w1714otaj1.execute-api.us-east-1.amazonaws.com/dev/flight/${this.props.srcAirport}/to/${this.props.destAirport}`)
+        .then((resolve) => {
+            console.log(resolve.data);
+            this.setState({flights: resolve.data});
+        })
+        .catch((reject) => {
+            console.log("REJECTED: \n" + reject )
+        });
+    }
+
+    render(){
+        return(
+            <React.Fragment>
+                <Grid container spacing={3}>
+                    <Grid item xs={3}>
+                        <Button onClick={this.props.prevStep} className="formButtons">
+                            Prev
+                        </Button>
+                    </Grid>
+        
+                    <Grid item xs ={6}/>
+                    <Grid item xs={3}/>
+                </Grid>
+                <Grid item xs = {12}>
+                        {this.state.flights.map((flight) =>
+                            <FlightListElement 
+                                key={flight.flightId.toString()}
+                                value={flight}
+                                nextStep={this.props.nextStep}
+                                handleChange={this.handleChange}
+                            />
+                        )}
+                </Grid>
+            </React.Fragment>
+        );
+    }
 }
-
-const rows = [
-  createData(1, "James", "Jimothy", 3, 79.50),
-  createData(2, "Bichael", "Tire", 1, 66.50),
-  createData(3, "Gertrude", "Rude", 1, 75.50),
-  createData(4, "Nicc", "Compastable", 3, 89.50),
-  createData(5, "Today", "Eco", 1, 69.50),
-];
-
-export default function SimpleTable() {
-
-  const classes = useStyles();
-
-  return (
-    <Container className='flightTableContainer' component="main">
-      <Table className='flightTable' aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell className={classes.tableCell} align="right">Ticket Id</TableCell>
-            <TableCell className={classes.tableCell} align="right">Name</TableCell>
-            <TableCell className={classes.tableCell} align="right">Flight Id</TableCell>
-            <TableCell className={classes.tableCell} align="right">Cost</TableCell>
-            <TableCell className={classes.tableCell} align="right">Action</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.name}>
-              <TableCell  className={classes.tableCell} component="th" scope="row">
-                {row.ticketId}
-              </TableCell>
-              <TableCell className={classes.tableCell} align="right">{row.userLastName.toString() + " " + row.userFirstName.toString()}</TableCell>
-              <TableCell className={classes.tableCell} align="right">{row.flightId}</TableCell>
-              <TableCell className={classes.tableCell} align="right">{row.cost}</TableCell>
-              <TableCell className={classes.tableCell} align="right">
-                <Button variant="contained" color="secondary">
-                    Cancel Ticket
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Container>
-  );
-}
-
-// export default class FlightList extends React.Component{
-
-//     createTicketRow() {
-//         let buttonStyle = {
-//             padding: '5px',
-//         };
-//         return (
-//             <tr>
-//                 <td> 1 </td>
-//                 <td> 1 </td>
-//                 <td> 1 </td>
-//                 <td> 79.50 </td>
-//                 <view style={buttonStyle}><button>Button</button></view>
-//             </tr>
-//         );
-//     }
-//     render() {
-//         let content = '';
-
-//         console.log("Pending...");
-//         content = (
-//             < table className="table" >
-//                 <thead>
-//                     <tr>
-//                         <th> Ticket Number </th>
-//                         <th> User ID </th>
-//                         <th> Flight ID </th>
-//                         <th> Cost </th>
-//                     </tr>
-//                 </thead>
-//                 <tbody> {this.createTicketRow} </tbody>
-//             </table>
-//         );
-    
-//         return (
-//             <div>
-//                 <h1> Tickets </h1> {content}
-//             </div>
-//         );
-//     }
-// }

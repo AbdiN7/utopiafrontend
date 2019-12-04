@@ -20,7 +20,6 @@ class PathForm extends React.Component{
         axios.get('https://w1714otaj1.execute-api.us-east-1.amazonaws.com/dev/airport')
         .then((resolve) => {
             this.setState({airports: resolve.data});
-            console.log("AIRPORTS STATE IN MOUNT" + this.state.airports)
         });
     }
 
