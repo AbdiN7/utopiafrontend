@@ -19,7 +19,7 @@ export default class UserForm extends Component {
             phone: '',
             // booking information
             bookingId: null,
-            ticketDate: new Date(),
+            ticketDate: null,
             ticketCount: null,
             ticketCost: null,
             srcAirport: null,
@@ -30,6 +30,7 @@ export default class UserForm extends Component {
         this.nextStep = this.nextStep.bind(this);
         this.prevStep = this.prevStep.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleTicketDateChange = this.handleTicketDateChange.bind(this);
     }
 
     componentDidMount() {
@@ -63,23 +64,31 @@ export default class UserForm extends Component {
     handleChange(e){
         this.setState({ [e.target.name]: e.target.value });
     };
+
+    handleTicketDateChange(e){
+        console.log(e);
+        console.log("IM HERE")
+        this.setState({ticketDate: e});
+    };
     
    
 render() {
     const { step } = this.state;
-    const { userFirstName, userLastName, address, email, phone, airpots, ticketDate, ticketCount, ticketCost, srcAirport,destAirport, selectedFlight } = this.state;
+    const { userFirstName, userLastName, address, email, phone, ticketDate, ticketCount, ticketCost, srcAirport,destAirport, selectedFlight } = this.state;
     const userValues = { userFirstName, userLastName, address, email , phone};
     const bookingValues = {ticketDate, ticketCount, ticketCost, srcAirport,destAirport, selectedFlight};
     
     switch (step) {
         case 1:
+            console.log("BOOKING VALS:\n")
+            console.log(bookingValues)
             return (
                 <div className="formContainer"
                 style={{marginTop: "40px"}}>
                     <div className="formCard">
                         <FlightDate
                         nextStep={this.nextStep}
-                        handleChange={this.handleChange}
+                        handleChange={this.handleTicketDateChange}
                         values = {bookingValues}
                         />
                     </div>
@@ -87,6 +96,8 @@ render() {
           
             );
         case 2:
+            console.log("BOOKING VALS:\n")
+            console.log(bookingValues)
             return (
                 <div className="formContainer"
                 style={{marginTop: "40px"}}>

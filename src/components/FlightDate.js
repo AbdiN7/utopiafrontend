@@ -35,6 +35,7 @@ const FlightDate = (props) => {
                 <Grid item  xs={12}>
                     <KeyboardDatePicker
                         disableToolbar
+                        name="ticketDate"
                         variant="inline"
                         label="From"
                         color="#EEEEEE"
@@ -42,8 +43,7 @@ const FlightDate = (props) => {
                         margin="normal"
                         id="date-picker-inline"
                         value={props.values.ticketDate}
-                        // defaultValue={props.values.ticketDate}
-                        onChange={(event) => {props.values.ticketDate = event; handleDateChange(event);}}
+                        onChange={props.handleChange}
                         KeyboardButtonProps={{
                             'aria-label': 'change date',
                         }}
