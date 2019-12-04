@@ -21,7 +21,7 @@ export default class SimpleCard extends React.Component {
 
 
     componentWillMount() {
-        axios.get("http://localhost:8090/utopia/tickets/1")
+        axios.get("https://w1714otaj1.execute-api.us-east-1.amazonaws.com/dev/ticket/booking/67")
         .then((resolve) => {
             this.setState({tickets: resolve.data});
             this.findCost()

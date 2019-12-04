@@ -8,8 +8,6 @@ class Stripe extends Component {
         this.cost = props;
     }
     render() {
-        console.log("Cost-------");
-        console.log(this.props);
         return (
         <StripeProvider apiKey="pk_test_OIWeWKfTkuN2DuNcic60fqAi00CjwhKqQn">
             <div>

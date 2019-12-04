@@ -6,8 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import { textAlign } from '@material-ui/system';
 
 export default function TicketCard(props){
-    console.log("12342315");
-    console.log(props);
     return(
         <div>
             <Card className='paymentForm'>

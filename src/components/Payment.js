@@ -10,20 +10,16 @@ const url = "http://localhost:8090/charge"; // site that doesn’t send Access-C
 export default class Payment extends React.Component {
     constructor(props){
         super();
-        console.log("Payment props");
-        console.log(this.props);
         this.state=this.props;
     }
 
     onToken = (token) => {
-        console.log(JSON.stringify(token));
         fetch(url, {
             method: 'POST',
             headers: {'token': JSON.stringify(token),
                         'amount': this.props.cost},
         }).then(response => {
             response.json().then(data => {
-                console.log(this.state);
                 window.location.href = "http://localhost:3000/#/";
                 alert(`Enjoy your flight, ${data.source.name}`);
             });
@@ -31,8 +27,6 @@ export default class Payment extends React.Component {
     }
   
     render() {
-        console.log("Hello Finally");
-        console.log(this.props.cost);
         return (
             <StripeCheckout
                 stripeKey="pk_test_OIWeWKfTkuN2DuNcic60fqAi00CjwhKqQn"
