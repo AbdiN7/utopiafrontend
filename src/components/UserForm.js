@@ -11,6 +11,14 @@ export default class UserForm extends Component {
         super();
         this.state = {
             step: 1 ,
+            bookDate: '',
+            airportCode: '',
+            airportName: '',
+            plane: '',
+            arrivalTime: '',
+            departureTime: '',
+            srcAirport: '',
+            destAirport: '',
             userFirstName: '',
             userLastName: '',
             address: '',
@@ -39,17 +47,17 @@ export default class UserForm extends Component {
        
     }
     nextStep () {
-    const { step } = this.state;
-    this.setState({
-        step: step + 1
-    });
+        const { step } = this.state;
+        this.setState({
+            step: step + 1
+        });
     };
 
     prevStep () {
-    const { step } = this.state;
-    this.setState({
-        step: step -1
-    });
+        const { step } = this.state;
+        this.setState({
+            step: step -1
+        });
     };
     handleChange(e){
         this.setState({ [e.target.name]: e.target.value });
@@ -115,18 +123,22 @@ render() {
                         nextStep={this.nextStep}
                         handleChange={this.handleChange}
                         values={userValues}
+                        //billing={billingValues}
                         />
                         </div>
                     </div>
                     
                 );
         case 5:
+                console.log("Hello world");
+                console.log(this.userValues);
                 return(
                     <div className="formContainer"
                     style={{marginTop: "40px"}}>
                         <div className="formCard">
                             <PaymentForm
                                 prevStep={this.prevStep}
+                                values={this.userValues}
                             />
                         </div>
     

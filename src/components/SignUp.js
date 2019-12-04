@@ -7,28 +7,38 @@ import AirlineSeatReclineNormalIcon from '@material-ui/icons/AirlineSeatReclineN
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import Stripe from './Stripe.js';
 
+export default function SignUp(props) {
 
-const  SignUp = (props) =>  {
-    function handleOnClick(e){
-        e.persist();
-        e.preventDefault();
+    const classes = useStyles();
+
+    function handleOnClick(event){
+        event.persist();
+        event.preventDefault();
+        console.log(event.target.userFirstName.value);
+        console.log(event.target.userLastName.value);
+        console.log(event.target.email.value);
+        console.log(event.target.address.value);
+        console.log(event.target.phone.value);
     }
-    
-        
-        return (
-            <React.Fragment>
-                <Grid container spacing={3}>
-                        <Grid item xs={3}>
-                            <Button onClick={props.prevStep} className="formButtons">
-                                Prev
-                            </Button>
-                        </Grid>
-                        <Grid item xs ={4}/>
-                        <Grid item xs={5}>
-                            <Stripe/>
-                        </Grid>
+
+    return (
+        <React.Fragment>
+            <Grid container spacing={3}>
+                    <Grid item xs={3}>
+                        <Button onClick={props.prevStep} className="formButtons">
+                            Prev
+                        </Button>
+                    </Grid>
+
+                    <Grid item xs ={4}/>
+
+                    <Grid item xs={5}>
+                        {console.log("Hello world!")}
+                        {console.log(props)}
+                        <Button onClick={props.nextStep} className="formButtons">
+                            Submit
+                        </Button>
                     </Grid>
                     <Container spacing={1} style={{
                          textColor: "#eeeeee",
