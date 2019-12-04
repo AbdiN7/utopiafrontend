@@ -7,12 +7,12 @@ import { Autocomplete } from '@material-ui/lab';
 import {getAirports} from '../actions/bookingActions';
 import axios from 'axios';
 
-class PathForm extends React.Component{
+export default class PathForm extends React.Component{
 
     constructor(props){
         super(props);
         this.state = {
-            airports: this.props.getAirports()
+            airports: []
         };
     }
 
@@ -95,13 +95,13 @@ class PathForm extends React.Component{
     
 }
 
-PathForm.propTypes = {
-    getAirports: PropTypes.func.isRequired,
-    errors: PropTypes.object.isRequired
-};
+// PathForm.propTypes = {
+//     getAirports: PropTypes.func.isRequired,
+//     errors: PropTypes.object.isRequired
+// };
 
-const mapStateToProps = state => ({
-    errors: state.errors
-});
+// const mapStateToProps = state => ({
+//     errors: state.errors
+// });
 
-export default connect(mapStateToProps, { getAirports })(PathForm);
+// export default connect(mapStateToProps, { getAirports })(PathForm);

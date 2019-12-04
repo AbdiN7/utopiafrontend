@@ -11,13 +11,22 @@ export default class UserForm extends Component {
         super();
         this.state = {
             step: 1 ,
+            // user information
             userFirstName: '',
             userLastName: '',
             address: '',
             email: '',
             phone: '',
-           
+            // booking information
+            bookingId: null,
+            ticketDate: new Date(),
+            ticketCount: null,
+            ticketCost: null,
+            srcAirport: null,
+            destAirport: null,
+            selectedFlight: null
         }
+
         this.nextStep = this.nextStep.bind(this);
         this.prevStep = this.prevStep.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -50,6 +59,7 @@ export default class UserForm extends Component {
             step: step -1
         });
     };
+
     handleChange(e){
         this.setState({ [e.target.name]: e.target.value });
     };
@@ -57,8 +67,10 @@ export default class UserForm extends Component {
    
 render() {
     const { step } = this.state;
-    const { userFirstName, userLastName, address, email, phone, airpots } = this.state;
+    const { userFirstName, userLastName, address, email, phone, airpots, ticketDate, ticketCount, ticketCost, srcAirport,destAirport, selectedFlight } = this.state;
     const userValues = { userFirstName, userLastName, address, email , phone};
+    const bookingValues = {ticketDate, ticketCount, ticketCost, srcAirport,destAirport, selectedFlight};
+    
     switch (step) {
         case 1:
             return (
@@ -68,6 +80,7 @@ render() {
                         <FlightDate
                         nextStep={this.nextStep}
                         handleChange={this.handleChange}
+                        values = {bookingValues}
                         />
                     </div>
                 </div>
@@ -82,6 +95,7 @@ render() {
                         prevStep={this.prevStep}
                         nextStep={this.nextStep}
                         handleChange={this.handleChange}
+                        values = {bookingValues}
                         // values={values}
                         />
                     </div>
@@ -101,6 +115,7 @@ render() {
                             prevStep={this.prevStep}
                             nextStep={this.nextStep}
                             handleChange={this.handleChange}
+                            values = {bookingValues}
                         />
                     </div>
 
@@ -128,6 +143,7 @@ render() {
                         <div className="formCard">
                             <PaymentForm
                                 prevStep={this.prevStep}
+                                values = {bookingValues}
                             />
                         </div>
     

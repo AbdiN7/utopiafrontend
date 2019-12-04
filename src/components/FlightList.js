@@ -36,16 +36,16 @@ export default class FlightList extends React.Component{
                     <Grid item xs ={6}/>
                     <Grid item xs={3}/>
                 </Grid>
-                <Grid item xs = {12}>
-                        {this.state.flights.map((flight) =>
-                            <FlightListElement 
+                    {this.state.flights.map((flight) =>
+                        <Grid item xs = {12}>
+                            <FlightListElement
                                 key={flight.flightId.toString()}
                                 value={flight}
                                 nextStep={this.props.nextStep}
                                 handleChange={this.handleChange}
                             />
-                        )}
-                </Grid>
+                        </Grid>
+                    )}
             </React.Fragment>
         );
     }
