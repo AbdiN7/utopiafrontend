@@ -12,17 +12,16 @@
 @import './shared/_formButtons';
 @import './_pathForm.scss';
 @import './cardElement';
+@import './checkoutCard.scss';
 
 html, body {
     background-color: #303841;
-    padding: 0px;
-    margin: 0px;
-    overflow: hidden;
+    overflow: auto;
     color: #eeeeee;
     height:100%!important;
     width: 100% !important;
-    margin:0px;
-    padding:0px;
+    margin:0px!important;
+    padding:0px!important;
     font-family: 'Roboto', sans-serif!important;
   }
 

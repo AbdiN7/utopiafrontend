@@ -7,7 +7,6 @@ import AirlineSeatReclineNormalIcon from '@material-ui/icons/AirlineSeatReclineN
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import Stripe from './Stripe.js';
 
 const useStyles = makeStyles(theme => ({
     root:{
@@ -35,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function SignUp(props) {
-  
+
     const classes = useStyles();
 
     function handleOnClick(event){
@@ -60,7 +59,11 @@ export default function SignUp(props) {
                     <Grid item xs ={4}/>
 
                     <Grid item xs={5}>
-                        <Stripe/>
+                        {console.log("Hello world!")}
+                        {console.log(props)}
+                        <Button onClick={props.nextStep} className="formButtons">
+                            Submit
+                        </Button>
                     </Grid>
                 </Grid>
                 <Container spacing={1} className={classes.palette} component="main" maxWidth="xs">
