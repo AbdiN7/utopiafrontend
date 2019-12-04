@@ -120,7 +120,7 @@ export default function SignUp(props) {
                             </form>
                         </div>
                         </Container>
+                        </Grid>
             </React.Fragment>
         );
     }
-    export default SignUp;
