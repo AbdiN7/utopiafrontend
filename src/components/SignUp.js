@@ -38,6 +38,10 @@ export default function SignUp(props) {
   
     const classes = useStyles();
 
+    function createUserBookingTicket(event){
+        
+    }
+
     function handleOnClick(event){
         event.persist();
         event.preventDefault();
@@ -57,7 +61,11 @@ export default function SignUp(props) {
                         </Button>
                     </Grid>
 
-                    <Grid item xs ={4}/>
+                    <Grid item xs ={4}>
+                        {/* <Button className="formButtons">
+                            Create Booking
+                        </Button> */}
+                    </Grid>
 
                     <Grid item xs={5}>
                         <Stripe/>
