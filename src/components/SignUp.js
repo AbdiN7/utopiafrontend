@@ -10,8 +10,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default function SignUp(props) {
 
-    const classes = useStyles();
-
     function handleOnClick(event){
         event.persist();
         event.preventDefault();
