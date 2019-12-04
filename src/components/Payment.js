@@ -6,7 +6,7 @@ import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
-const url = "https://localhost:8090/charge"; // site that doesn’t send Access-Control-*
+const url = "http://albua-1112387281.us-east-2.elb.amazonaws.com:8090/charge"; // site that doesn’t send Access-Control-*
 // fetch(proxyurl + url)
 // .then(response => response.text())
 // .then(contents => console.log(contents))

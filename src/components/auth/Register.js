@@ -4,17 +4,17 @@ import { withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
-
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
 class Register extends Component {
   constructor() {
     super();
     this.state = {
       userFirstName: '',
       userLastName: '',
-      cardNumber: '',
       email: '',
       password: '',
-    //   password2: '',
       errors: {}
     };
 
@@ -46,8 +46,6 @@ class Register extends Component {
       userLastName: this.state.userLastName,
       email: this.state.email,
       password: this.state.password,
-      cardNumber: this.state.cardNumber
-    //   password2: this.state.password2
     };
 
     this.props.registerUser(newUser, this.props.history);
@@ -57,21 +55,20 @@ class Register extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="register">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Sign Up</h1>
-              <p className="lead text-center">
-                Create your Utopia Airline's Account
+      <div className="formContainer"
+      style={{marginTop: "40px"}}>
+       <div className="formCard">
+ 
+              <h1>Sign Up</h1>
+              <p>
+                Create your Utopia Airlines&trade;  Account
               </p>
               <form noValidate onSubmit={this.onSubmit}>
-                <div className="form-group">
-                  <input
+              <Grid container spacing={3}>
+                <Grid item xs={1}></Grid>
+                <Grid item xs={5} className="form-group">
+                  <TextField
                     type="text"
-                    className={classnames('form-control form-control-lg', {
-                      'is-invalid': errors.name
-                    })}
                     placeholder="First Name"
                     name="userFirstName"
                     value={this.state.userFirstName}
@@ -80,13 +77,10 @@ class Register extends Component {
                   {errors.name && (
                     <div className="invalid-feedback">{errors.name}</div>
                   )}
-                </div>
-                <div className="form-group">
-                  <input
+                </Grid>
+                <Grid item xs={5}>
+                  <TextField
                     type="text"
-                    className={classnames('form-control form-control-lg', {
-                      'is-invalid': errors.name
-                    })}
                     placeholder="Last Name"
                     name="userLastName"
                     value={this.state.userLastName}
@@ -95,30 +89,11 @@ class Register extends Component {
                   {errors.name && (
                     <div className="invalid-feedback">{errors.name}</div>
                   )}
-                </div>
-                
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className={classnames('form-control form-control-lg', {
-                      'is-invalid': errors.name
-                    })}
-                    placeholder="card Number"
-                    name="cardNumber"
-                    value={this.state.cardNumber}
-                    onChange={this.onChange}
-                  />
-                  {errors.name && (
-                    <div className="invalid-feedback">{errors.name}</div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="email"
-                    className={classnames('form-control form-control-lg', {
-                      'is-invalid': errors.email
-                    })}
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
                     placeholder="Email Address"
+                    style={{width: "80%"}}
                     name="email"
                     value={this.state.email}
                     onChange={this.onChange}
@@ -126,30 +101,32 @@ class Register extends Component {
                   {errors.email && (
                     <div className="invalid-feedback">{errors.email}</div>
                   )}
+                </Grid>
+                <Grid item xs={12}
+                >
            
-                </div>
-                <div className="form-group">
-                  <input
+                  <TextField
                     type="password"
-                    className={classnames('form-control form-control-lg', {
-                      'is-invalid': errors.password
-                    })}
                     placeholder="Password"
                     name="password"
+                    style={{width: "80%"}}
                     value={this.state.password}
                     onChange={this.onChange}
                   />
                   {errors.password && (
                     <div className="invalid-feedback">{errors.password}</div>
                   )}
-                </div>
-
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                </Grid>
+                <Grid item xs={12}>
+                <Button 
+                  style={{width: "80%"}}
+                  className="formButtons" 
+                  type="submit">Sign Up</Button>
+                </Grid>
+                </Grid>
               </form>
             </div>
-          </div>
-        </div>
-      </div>
+          </div>      
     );
   }
 }
