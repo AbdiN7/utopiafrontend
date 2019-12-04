@@ -4,7 +4,7 @@ import PathForm from './PathForm';
 import SignUp from './SignUp';
 import QueriedTicketList from './QueriedTicketList';
 import PaymentForm from './PaymentForm';
-
+import jwt_decode from 'jwt-decode'
 
 export default class UserForm extends Component {
     constructor() {
@@ -15,17 +15,29 @@ export default class UserForm extends Component {
             userLastName: '',
             address: '',
             email: '',
+            airpots: [],
             phone: '',
-            date: '',
-            YYYY: ''
            
         }
         this.nextStep = this.nextStep.bind(this);
         this.prevStep = this.prevStep.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.handleInt = this.handleInt.bind(this);
     }
 
+    componentDidMount() {
+        if(localStorage.usertoken)
+        {
+            const token = localStorage.usertoken
+            const decoded = jwt_decode(token)
+            this.setState({
+            userFirstName: decoded.userFirstName,
+            userLastName: decoded.userLastName,
+            email: decoded.email
+            })
+        }
+
+       
+    }
     nextStep () {
     const { step } = this.state;
     this.setState({
@@ -42,18 +54,14 @@ export default class UserForm extends Component {
     handleChange(e){
         this.setState({ [e.target.name]: e.target.value });
     };
-    handleInt(e){
-
-    }
+    
+   
 render() {
     const { step } = this.state;
-    const { userFirstName, userLastName, address, email, phone, date } = this.state;
+    const { userFirstName, userLastName, address, email, phone, airpots } = this.state;
     const userValues = { userFirstName, userLastName, address, email , phone};
-    const tripValues = {date};
     switch (step) {
         case 1:
-                console.log(userValues)
-
             return (
                 <div className="formContainer"
                 style={{marginTop: "40px"}}>
@@ -61,14 +69,12 @@ render() {
                         <FlightDate
                         nextStep={this.nextStep}
                         handleChange={this.handleChange}
-                        values={tripValues}
                         />
                     </div>
                 </div>
           
             );
         case 2:
-            console.log(tripValues)
             return (
                 <div className="formContainer"
                 style={{marginTop: "40px"}}>

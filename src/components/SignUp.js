@@ -9,128 +9,108 @@ import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import Stripe from './Stripe.js';
 
-const useStyles = makeStyles(theme => ({
- 
-      palette: {
-        width:'90',
-        textColor: "#eeeeee",
-        alignContent: 'center'
-     },
-     avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: "#00adb5",
-      },
-      paper: {
-        marginTop: '0px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      },
-}));
 
-export default function SignUp(props) {
-  
-    const classes = useStyles();
-
-    function handleOnClick(event){
-        event.persist();
-        event.preventDefault();
-        console.log(event.target.userFirstName.value);
-        console.log(event.target.userLastName.value);
-        console.log(event.target.email.value);
-        console.log(event.target.address.value);
-        console.log(event.target.phone.value);
+const  SignUp = (props) =>  {
+    function handleOnClick(e){
+        e.persist();
+        e.preventDefault();
     }
-
-    return (
-        <React.Fragment>
-            <Grid container spacing={3}>
-                    <Grid item xs={3}>
-                        <Button onClick={props.prevStep} className="formButtons">
-                            Prev
-                        </Button>
+    
+        
+        return (
+            <React.Fragment>
+                <Grid container spacing={3}>
+                        <Grid item xs={3}>
+                            <Button onClick={props.prevStep} className="formButtons">
+                                Prev
+                            </Button>
+                        </Grid>
+                        <Grid item xs ={4}/>
+                        <Grid item xs={5}>
+                            <Stripe/>
+                        </Grid>
                     </Grid>
-                    <Grid item xs ={4}/>
-                    <Grid item xs={5}>
-                        <Stripe/>
-                    </Grid>
-                </Grid>
-                <Container spacing={1} className={classes.palette} component="main" maxWidth="xs">
-                    <div className={classes.paper}>
-                        <Avatar className={classes.avatar}>
-                            <AirlineSeatReclineNormalIcon />
-                        </Avatar>
-                        <Typography style={{color: "#eeeeee"}} component="h1" variant="h5">
-                        Traveller Info
-                        </Typography>
-                        <form  onSubmit={handleOnClick} className={classes.root} noValidate>
-                            <Grid spacing={1} container>
-                                <Grid item xs>
-                                <TextField
-                                    style={{color: '#eeeeee'}}
-                                    
-                                    onChange={props.handleChange}
-                                    defaultValue={props.values.userFirstName}
-                                    required
-                                    fullWidth
-                                    id="userFirstName"
-                                    label="First Name"
-                                    name="userFirstName"
-                                />
+                    <Container spacing={1} style={{
+                         textColor: "#eeeeee",
+                         alignContent: 'center'
+                    }} 
+                    component="main" maxWidth="xs">
+                        <div >
+                            <Avatar style={{ backgroundColor: "#00adb5"}}>
+                                <AirlineSeatReclineNormalIcon />
+                            </Avatar>
+                            <Typography style={{color: "#eeeeee"}} component="h1" variant="h5">
+                            Traveller Info
+                            </Typography>
+                            <form  onSubmit={props.handleOnClick} noValidate>
+                                <Grid spacing={1} container>
+                                    <Grid item xs>
+                                    <TextField
+                                        style={{color: '#eeeeee'}}
+                                        
+                                        onChange={props.handleChange}
+                                        defaultValue={props.values.userFirstName}
+                                        required
+                                        fullWidth
+                                        id="userFirstName"
+                                        label="First Name"
+                                        name="userFirstName"
+                                    />
+                                    </Grid>
+                                    <Grid item>  </Grid>
+                                    <Grid item xs>
+                                    <TextField
+                                        style={{color: '#eeeeee'}}
+                                      
+                                        onChange={props.handleChange}
+                                        defaultValue={props.values.userLastName}
+                                        required
+                                        fullWidth
+                                        id="userLastName"
+                                        label="Last Name"
+                                        name="userLastName"
+                                    />
+                                    </Grid>
                                 </Grid>
-                                <Grid item>  </Grid>
-                                <Grid item xs>
                                 <TextField
-                                    style={{color: '#eeeeee'}}
-                                  
-                                    onChange={props.handleChange}
-                                    defaultValue={props.values.userLastName}
-                                    required
-                                    fullWidth
-                                    id="userLastName"
-                                    label="Last Name"
-                                    name="userLastName"
+                                        style={{color: '#eeeeee'}}
+                                       
+                                        onChange={props.handleChange}
+                                        defaultValue={props.values.email}
+                                        required
+                                        fullWidth
+                                        id="email"
+                                        label="Email Address"
+                                        name="email"
                                 />
-                                </Grid>
-                            </Grid>
-                            <TextField
+                                <TextField
                                     style={{color: '#eeeeee'}}
                                    
-                                    onChange={props.handleChange}
-                                    defaultValue={props.values.email}
                                     required
                                     fullWidth
-                                    id="email"
-                                    label="Email Address"
-                                    name="email"
-                            />
-                            <TextField
-                                style={{color: '#eeeeee'}}
-                               
-                                required
-                                fullWidth
-                                onChange={props.handleChange}
-                                defaultValue={props.values.address}
-                                name="address"
-                                label="Address"
-                                type="address"
-                                id="address"
-                            />
-                            <TextField
-                                style={{color: '#eeeeee'}}
-                               
-                                required
-                                fullWidth
-                                onChange={props.handleChange}
-                                defaultValue={props.values.phone}
-                                name="phone"
-                                label="Phone"
-                                type="phone"
-                                id="phone"
-                            />
-                        </form>
-                    </div>
-                    </Container>
-        </React.Fragment>
-    );
-}
+                                    onChange={props.handleChange}
+                                    defaultValue={props.values.address}
+                                    name="address"
+                                    label="Address"
+                                    type="address"
+                                    id="address"
+                                />
+                                <TextField
+                                    style={{color: '#eeeeee'}}
+                                   
+                                    required
+                                    fullWidth
+                                    onChange={props.handleChange}
+                                    defaultValue={props.values.phone}
+                                    name="phone"
+                                    label="Phone"
+                                    type="phone"
+                                    id="phone"
+                                />
+                            </form>
+                        </div>
+                        </Container>
+            </React.Fragment>
+        );
+    }
+    export default SignUp;
