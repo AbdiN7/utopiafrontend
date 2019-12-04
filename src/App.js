@@ -12,8 +12,8 @@ import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import home from './components/home';
 import BookingList from './components/BookingList'
 import AppBarHeader from './components/appBarHeader'
+import TicketTable from './components/TicketTable'
 import FlightList from './components/FlightList'
-import QueriedTicketList from './components/QueriedTicketList'
 import UserForm from './components/UserForm'
 import PaymentForm from './components/PaymentForm'
 import Payment from './components/Payment'
@@ -45,23 +45,22 @@ function App() {
   return (
     <Provider store={store}>
 
-    <Router>
+      <Router>
       <AppBarHeader/>
-      <Switch>
-        <Route exact path='/' component={home}/>
-        <Route path='/queriedTicketList' component={QueriedTicketList}/>
-        <Route path='/booking' component={BookingList}/>
-        <Route path='/PaymentForm' component={PaymentForm}/>
-        <Route path='/flight' component={FlightList}/>
-        <Route path='/form' component={UserForm}/>
-        <Route path="/profile" component={Profile} />
-        <Route path='/payment' component={Payment}/>
-        <Route path='/login' component={Login}/>
-        <Route path='/register' component={Register}/>
-      </Switch>
-    </Router>
+        <Switch>
+          <Route exact path='/' component={home}/>
+          <Route path='/flightList' component={FlightList}/>
+          <Route path='/booking' component={BookingList}/>
+          <Route path='/PaymentForm' component={PaymentForm}/>
+          <Route path='/flight' component={TicketTable}/>
+          <Route path='/form' component={UserForm}/>
+          <Route path="/profile" component={Profile} />
+          <Route path='/payment' component={Payment}/>
+          <Route path='/login' component={Login}/>
+          <Route path='/register' component={Register}/>
+        </Switch>
+      </Router>
     </Provider>
-
   );
 }
 
