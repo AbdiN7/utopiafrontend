@@ -131,12 +131,15 @@ render() {
                         nextStep={this.nextStep}
                         handleChange={this.handleChange}
                         values={userValues}
+                        //billing={billingValues}
                         />
                         </div>
                     </div>
                     
                 );
         case 5:
+                console.log("Hello world");
+                console.log(this.userValues);
                 return(
                     <div className="formContainer"
                     style={{marginTop: "40px"}}>
@@ -144,6 +147,7 @@ render() {
                             <PaymentForm
                                 prevStep={this.prevStep}
                                 values = {bookingValues}
+
                             />
                         </div>
     

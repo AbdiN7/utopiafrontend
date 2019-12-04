@@ -1,150 +1,150 @@
-// import React, {Component} from 'react';
-// import {CardElement, injectStripe} from 'react-stripe-elements';
+// import React from 'react';
+ import Grid from '@material-ui/core/Grid';
+// //import Button from '@material-ui/core/Button';
+ import Stripe from './Stripe.js';
+// import Container from '@material-ui/core/Container';
+// import Typography from '@material-ui/core/Typography';
 
-// class PaymentForm extends Component {
+import TicketCard from './TicketCard'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+
+// const useStyles = makeStyles({
+
+//     card: {
+//         minWidth: 275,
+//     },
+//     bullet: {
+//         display: 'inline-block',
+//         margin: '0 2px',
+//         transform: 'scale(0.8)',
+//     },
+//     title: {
+//         fontSize: 14,
+//     },
+//     pos: {
+//         marginBottom: 0,
+//     },
+// });
+
+export default class SimpleCard extends React.Component {
+
+  //const classes = useStyles();
+    render(){
+        const tickets = [{
+            ticketId: 1,
+            flightId: 1,
+            bookingId: 1,
+            cost: 55.75,
+            ticketDate: '2020-11-11'
+        },
+        {
+            ticketId: 1,
+            flightId: 1,
+            bookingId: 1,
+            cost: 255.15,
+            ticketDate: '2020-12-12'
+        },
+        ]
+        return (
+            <div>
+                <h1>Checkout</h1>
+                <Card className='paymentForm'>
+                    <CardContent>
+                        <Typography variant='h6'>
+                            Traveller Info
+                        </Typography>
+                        <Grid item xs={12}>
+                            <Grid item xs={3}>
+                                Name
+                            </Grid>
+                            <Grid item xs={9}>
+                                Last Name, First Name
+                            </Grid>
+                            <Grid item xs={3}>
+                                Address
+                            </Grid>
+                            <Grid item xs={9}>
+                                The User Address
+                            </Grid>
+                            <Grid item xs={3}>
+                                Phone
+                            </Grid>
+                            <Grid item xs={9}>
+                                The User Phone
+                            </Grid>
+                            <Grid item xs={3}>
+                                Email
+                            </Grid>
+                            <Grid item xs={9}>
+                                The User Email
+                            </Grid>
+                        </Grid>
+                    </CardContent>
+                </Card>
+                <TicketCard props = {tickets}/>
+
+                {/* <Stripe values={this.state}/> */}
+            </div>
+        );
+    }
+}
+
+// class PaymentForm extends React.Component {
 //   constructor(props) {
 //     super(props);
-//     this.submit = this.submit.bind(this);
+//     console.log("These are payment form props");
+//     console.log(props);
+//     this.state=props;
 //   }
 
-//   async submit(ev) {
-//     let {token} = await this.props.stripe.createToken({name: "Name"});
-//     let response = await fetch("https://localhost:8090/charge", {
-//       method: "POST",
-//       headers: {"Content-Type": "text/plain"},
-//       body: token.id
-//     });
-  
-//     if (response.ok) console.log("Purchase Complete!")
-//   }
-
-//   render() {
-//     return (
-//       <div className="checkout">
-//         <p>Would you like to complete the purchase?</p>
-//         <CardElement />
-//         <button onClick={this.submit}>Purchase</button>
-//       </div>
-//     );
-//   }
-// }
-
-// export default injectStripe(PaymentForm);
-
-
-
-// import React from 'react';
-// import {TextField, Grid, MenuItem, Button, Select, InputLabel} from '@material-ui/core';
-
-
-// const PaymentForm = (props) => {
-
-//     const monthList = ['01','02','03','04','05','06','07','08','09','10','11','12'];
-//     const yearList = ['2019','2020','2021','2022','2023','2024','2025','2026','2027'];
-
-//     const [month, setMonth, year, setYear] = React.useState('');
-
-//     const handleMonthChange = event => {
-//         setMonth(event.target.value);
-//     };
-//     const handleYearChange = event => {
-//         setYear(event.target.value);
-//     };
-
-
-//     return (
-//         <Grid container id="PaymentForm" spacing={3}>
-//             <Grid item xs={3}>
-//                 <Button onClick={props.prevStep} className="formButtons">
-//                     Prev
-//                 </Button>
-//             </Grid>
-
-//             <Grid item xs ={6}/>
-
-//             <Grid item xs={3}>
-//                 <Button onClick={props.nextStep} className="formButtons">
-//                     Submit
-//                 </Button>
-//             </Grid>
-//             <Grid item xs={12}>
-//                 <TextField
-//                 required
-//                 fullWidth
-//                 id="nameOnCard"
-//                 name="nameOnCard"
-//                 label="Cardholder Name"
-//                 />
-//             </Grid>
-//             <Grid item xs={12}>
-//             <TextField
-//                 required
-//                 fullWidth
-//                 id="cardNum"
-//                 name="cardNum"
-//                 label="Card Number"
-//                 inputProps={{ maxLength: 16, type: 'tel'}}
-//                 onInput={(e) => {
-//                     e.target.value = e.target.value.replace(/[^0-9]/g, '');
-//                 }}
-//             />
-//             </Grid>
-//             <Grid item xs={12}>
-//                 <Grid container id="dateForm" spacing={3}>
-//                     <Grid item xs={2}>
-//                     <TextField
-//                         required
-//                         fullWidth
-//                         id="cvv"
-//                         name="cvv"
-//                         label="CVV"
-//                         inputProps={{ maxLength: 4, type: 'tel'}}
-//                         onInput={(e) => {
-//                             e.target.value = e.target.value.replace(/[^0-9]/g, '');
-//                         }}
-//                     />
-//                     </Grid>
-//                     <Grid item xs={5}/>
-//                     <Grid style={{justifyItems:'left'}} item xs={2}>
-//                         <InputLabel id="monthLabel">Month</InputLabel>
-//                         <Select
-//                             required
-//                             fullWidth
-//                             labelId="expMonth"
-//                             id="expMonth"
-//                             label="MM"
-//                             value={month}
-//                             onChange={handleMonthChange}
-//                             >
-//                             {monthList.map(option => (
-//                                 <MenuItem value={option}>
-//                                 {option}
-//                                 </MenuItem>
-//                             ))}
-//                         </Select>
-//                     </Grid>
-//                     <Grid item xs={3}>
-//                         <InputLabel id="yearLabel">Year</InputLabel>
-//                         <Select
-//                             required
-//                             fullWidth
-//                             labelId="expYear"
-//                             id="expYear"
-//                             Label="YYYY"
-//                             value={year}
-//                             onChange={handleYearChange}
-//                             >
-//                             {yearList.map(option => (
-//                                 <MenuItem value={option}>
-//                                 {option}
-//                                 </MenuItem>
-//                             ))}
-//                         </Select>
-//                     </Grid>
+//   render(){
+//       return(
+//             <div>
+//                 <Grid container xs={12}>
+//                         <Grid item xs={12}>
+//                             <h1>Checkout</h1>
+//                         </Grid>
+//                         <Container>
+//                             <Typography variant='h6'>
+//                                 Traveller Info
+//                             </Typography>
+//                             <Grid item xs={12}>
+//                                 <Grid item xs={3}>
+//                                     Name
+//                                 </Grid>
+//                                 <Grid item xs={9}>
+//                                     Last Name, First Name
+//                                 </Grid>
+//                             </Grid>
+//                         </Container>
+//                         <Container>
+//                             <Typography>
+//                                 Flight Info
+//                             </Typography>
+//                             <Grid item xs={8}>
+//                                 Items
+//                             </Grid>
+//                         </Container>
+//                         <Container>
+//                             <Typography>
+//                                 Booking Info
+//                             </Typography>
+//                             <Grid item xs={8}>
+//                                 Items
+//                             </Grid>
+//                         </Container>
+                        
 //                 </Grid>
-//             </Grid>
-//         </Grid>
-//     );
+//                 <br></br>
+//                 <br></br>
+//                 <Stripe values={this.state}/>
+//             </div>
+//       )
+//   }
+ 
 // }
-
-// export default PaymentForm
+//export default PaymentForm
