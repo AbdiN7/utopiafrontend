@@ -10,39 +10,71 @@ import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
 import home from './home';
 
-const useStyles = makeStyles(theme => ({
-  grow: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
-  },
 
-  sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
-  },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
-}));
 
-export default function AppBarHeader() {
-  const classes = useStyles();
+export default class AppBarHeader extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      loggedIn: false
+    }
+  }
+  logOut(e) {
+    e.preventDefault()
+    localStorage.removeItem('usertoken')
+    this.setState({loggedIn: false})
+    this.props.history.push(`/`)
+  }
+  login(e) {
+    e.preventDefault()
+    this.setState({loggedIn: true})
+  }
+  render(){
+    const loginRegLink = (
+      <div >
+          <Button onClick={this.login.bind(this)}><Link to='/login'>Login</Link></Button>
+          <Button><Link to='/register'>Register</Link></Button>
+      </div>
+    )
+    const LogoutProfileLink = (
+      <div >
+        <Button><Link to='/profile'>Profile</Link></Button>
+        <Button 
+        onClick={this.logOut.bind(this)}
+        ><Link to='/'>Logout</Link></Button>
+      </div>
+    )
+    // const useStyles = makeStyles(theme => ({
+    //   grow: {
+    //     flexGrow: 1,
+    //   },
+    //   menuButton: {
+    //     marginRight: theme.spacing(2),
+    //   },
+    //   title: {
+    //     display: 'none',
+    //     [theme.breakpoints.up('sm')]: {
+    //       display: 'block',
+    //     },
+    //   },
+    
+    //   sectionDesktop: {
+    //     display: 'none',
+    //     [theme.breakpoints.up('md')]: {
+    //       display: 'flex',
+    //     },
+    //   },
+    //   sectionMobile: {
+    //     display: 'flex',
+    //     [theme.breakpoints.up('md')]: {
+    //       display: 'none',
+    //     },
+    //   },
+    // })
+    // );
 //https://i.imgur.com/Cmbf7ln.png
   return (
-    <div className={classes.grow} m={0}>
+    <div style={{flexGrow: 1}}>
       <AppBar className="appbar" position="static">
         <Toolbar>
           <Link to="/">
@@ -51,10 +83,11 @@ export default function AppBarHeader() {
           <Button><Link to="/form"> Create Booking </Link></Button>
           <Button><Link to="/flight"> Find Booking </Link></Button>
           <Button><Link to="/booking"> Cancel Booking </Link></Button>
-          <div className={classes.grow} />
-          <h1>Guest</h1>
+          <div style={{flexGrow: 1}} />
+          {localStorage.usertoken ? LogoutProfileLink : loginRegLink}
         </Toolbar>
       </AppBar>
     </div>
   );
+}
 }
