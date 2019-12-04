@@ -15,7 +15,6 @@ export default class UserForm extends Component {
             userLastName: '',
             address: '',
             email: '',
-            airpots: [],
             phone: '',
            
         }
@@ -39,17 +38,17 @@ export default class UserForm extends Component {
        
     }
     nextStep () {
-    const { step } = this.state;
-    this.setState({
-        step: step + 1
-    });
+        const { step } = this.state;
+        this.setState({
+            step: step + 1
+        });
     };
 
     prevStep () {
-    const { step } = this.state;
-    this.setState({
-        step: step -1
-    });
+        const { step } = this.state;
+        this.setState({
+            step: step -1
+        });
     };
     handleChange(e){
         this.setState({ [e.target.name]: e.target.value });
