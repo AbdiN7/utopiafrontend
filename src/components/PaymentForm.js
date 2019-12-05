@@ -8,6 +8,7 @@ import axios from 'axios';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 //const url = "http://localhost:8090/utopia/tickets/1";
 
@@ -15,15 +16,17 @@ export default class SimpleCard extends React.Component {
     constructor(props){
         super(props);
         this.state= {tickets: [],
-                    cost: 0};
+                    cost: 0,
+                    spinning: true};
         this.cost = 0;
     }
 
 
-    componentWillMount() {
-        axios.get("https://w1714otaj1.execute-api.us-east-1.amazonaws.com/dev/ticket/booking/67")
+    componentDidMount() {
+        axios.get("http://localhost:8090/utopia/tickets/1")
         .then((resolve) => {
-            this.setState({tickets: resolve.data});
+            this.setState({tickets: resolve.data,
+                            spinning: false});
             this.findCost()
         })
         .catch((reject) => {
@@ -40,48 +43,57 @@ export default class SimpleCard extends React.Component {
     }
 
     render(){
-        return (
-            <div>
-                <h1>Checkout</h1>
-                <Card className='paymentForm'>
-                    <CardContent>
-                        <Typography variant='h6'>
-                            Traveller Info
-                        </Typography>
-                        <Grid item xs={12}>
-                            <Grid item xs={3}>
-                                Name
+        if(this.state.spinning){
+            return(
+                <div>
+                    <h1>Checkout</h1>
+                    <CircularProgress className='spinner'/>
+                </div>
+            )
+        } else{
+            return (
+                <div>
+                    <h1>Checkout</h1>
+                    <Card className='paymentForm'>
+                        <CardContent>
+                            <Typography variant='h6'>
+                                Traveller Info
+                            </Typography>
+                            <Grid item xs={12}>
+                                <Grid item xs={3}>
+                                    Name
+                                </Grid>
+                                <Grid item xs={9}>
+                                    Last Name, First Name
+                                </Grid>
+                                <Grid item xs={3}>
+                                    Address
+                                </Grid>
+                                <Grid item xs={9}>
+                                    The User Address
+                                </Grid>
+                                <Grid item xs={3}>
+                                    Phone
+                                </Grid>
+                                <Grid item xs={9}>
+                                    The User Phone
+                                </Grid>
+                                <Grid item xs={3}>
+                                    Email
+                                </Grid>
+                                <Grid item xs={9}>
+                                    The User Email
+                                </Grid>
                             </Grid>
-                            <Grid item xs={9}>
-                                Last Name, First Name
-                            </Grid>
-                            <Grid item xs={3}>
-                                Address
-                            </Grid>
-                            <Grid item xs={9}>
-                                The User Address
-                            </Grid>
-                            <Grid item xs={3}>
-                                Phone
-                            </Grid>
-                            <Grid item xs={9}>
-                                The User Phone
-                            </Grid>
-                            <Grid item xs={3}>
-                                Email
-                            </Grid>
-                            <Grid item xs={9}>
-                                The User Email
-                            </Grid>
-                        </Grid>
-                    </CardContent>
-                </Card>
-                {this.state.tickets.map((ticket) => 
-                    <TicketCard ticket = {ticket}/>
-                )}
+                        </CardContent>
+                    </Card>
+                    {this.state.tickets.map((ticket) => 
+                        <TicketCard key= {ticket.ticketId} ticket = {ticket}/>
+                    )}
 
-                <Stripe values={this.state.cost}/>
-            </div>
-        );
+                    <Stripe values={this.state.cost}/>
+                </div>
+            );
+        }
     }
 }

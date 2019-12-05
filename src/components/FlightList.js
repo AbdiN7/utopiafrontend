@@ -13,7 +13,7 @@ export default class FlightList extends React.Component{
 
     componentDidMount(){
         console.log("airports: " + this.props.srcAirport + " " + this.props.destAirport)
-        axios.get(`https://w1714otaj1.execute-api.us-east-1.amazonaws.com/dev/flight/${this.props.srcAirport}/to/${this.props.destAirport}`)
+        axios.get(`https://awkx15u5u0.execute-api.us-east-1.amazonaws.com/dev/flight/${this.props.srcAirport}/to/${this.props.destAirport}`)
         .then((resolve) => {
             console.log(resolve.data);
             this.setState({flights: resolve.data});

@@ -37,7 +37,6 @@ const FlightDate = (props) => {
                         disableToolbar
                         variant="inline"
                         label="From"
-                        color="#EEEEEE"
                         format="MM-dd-yyyy"
                         margin="normal"
                         id="date-picker-inline"
