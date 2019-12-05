@@ -22,7 +22,7 @@ export default class SimpleCard extends React.Component {
     }
 
 
-    componentWillMount() {
+    componentDidMount() {
         axios.get("http://localhost:8090/utopia/tickets/1")
         .then((resolve) => {
             this.setState({tickets: resolve.data,
@@ -44,7 +44,12 @@ export default class SimpleCard extends React.Component {
 
     render(){
         if(this.state.spinning){
-            return(<CircularProgress/>)
+            return(
+                <div>
+                    <h1>Checkout</h1>
+                    <CircularProgress className='spinner'/>
+                </div>
+            )
         } else{
             return (
                 <div>
@@ -83,7 +88,7 @@ export default class SimpleCard extends React.Component {
                         </CardContent>
                     </Card>
                     {this.state.tickets.map((ticket) => 
-                        <TicketCard ticket = {ticket}/>
+                        <TicketCard key= {ticket.ticketId} ticket = {ticket}/>
                     )}
 
                     <Stripe values={this.state.cost}/>
