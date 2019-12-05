@@ -40,24 +40,27 @@ export default class PathForm extends React.Component{
                     </Button>
                 </Grid>
     
-                <Grid item xs={9} >
+                <Grid item xs={9}>
                     <Autocomplete
                         id="srcAirport"
+                        name="srcAirport"
+                        onChange={this.props.handleSrcAirportChange}
                         options={this.state.airports}
-                        getOptionLabel={airport => '(' + airport.airportCode + ') ' + airport.airportName}
+                        getOptionLabel={airport => airport.airportCode + ' - ' + airport.airportName}
                         renderInput={params => (
                             <TextField {...params} label="Source Airport" variant="outlined" fullWidth />
                         )}
                     />
                 </Grid>
     
-                <Grid item xs={3} >
+                <Grid item xs={3}>
                     <TextField
                         id="adultCount"
                         label="Adults"
                         type="number"
-                        defaultValue="1"
+                        defaultValue={this.props.values.ticketCount}
                         className="textField"
+                        onChange={this.props.handleTicketCountChange}
                         InputLabelProps={{
                             shrink: true,
                         }}
@@ -68,27 +71,18 @@ export default class PathForm extends React.Component{
                 <Grid item xs={9}>
                     <Autocomplete
                         id="destAirport"
+                        name="destAirport"
+                        onChange={this.props.handleDestAirportChange}
+                        defaultValue={this.state.airports.find(ele => ele.airportCode == this.props.values.destAirport)}
                         options={this.state.airports}
-                        getOptionLabel={airport => '(' + airport.airportCode + ') ' + airport.airportName}
+                        getOptionLabel={airport => airport.airportCode + ' - ' + airport.airportName}
                         renderInput={params => (
                             <TextField {...params} label="Destination Airport" variant="outlined" fullWidth/>
                         )}
                     />
                 </Grid>
     
-                <Grid item xs={3}>
-                <TextField
-                        id="childCount"
-                        label="Children"
-                        type="number"
-                        defaultValue="0"
-                        className="textField"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        margin="normal"
-                    />
-                </Grid>
+                <Grid item xs={3}/>
             </Grid>
         );
     };

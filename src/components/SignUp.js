@@ -9,7 +9,6 @@ import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 
 export default function SignUp(props) {
-
     function handleOnClick(event){
         event.persist();
         event.preventDefault();

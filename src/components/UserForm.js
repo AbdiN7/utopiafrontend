@@ -18,18 +18,23 @@ export default class UserForm extends Component {
             email: '',
             phone: '',
             // booking information
-            bookingId: null,
             ticketDate: new Date(),
-            ticketCount: null,
+            ticketCount: 1,
             ticketCost: null,
             srcAirport: null,
             destAirport: null,
-            selectedFlight: null
+            selectedFlight: {},
+            createdBooking: {},
         }
 
         this.nextStep = this.nextStep.bind(this);
         this.prevStep = this.prevStep.bind(this);
         this.handleChange = this.handleChange.bind(this);
+
+        this.handleTicketDateChange = this.handleTicketDateChange.bind(this);
+        this.handleSrcAirportChange = this.handleSrcAirportChange.bind(this);
+        this.handleDestAirportChange = this.handleDestAirportChange.bind(this);
+        this.handleTicketCountChange = this.handleTicketCountChange.bind(this);
     }
 
     componentDidMount() {
@@ -63,23 +68,41 @@ export default class UserForm extends Component {
     handleChange(e){
         this.setState({ [e.target.name]: e.target.value });
     };
+
+    handleTicketDateChange(e){
+        this.setState({ticketDate: e});
+    };
+
+    handleSrcAirportChange(e){
+        this.setState({srcAirport: e.target.textContent.split(' ')[0]});
+    }
+
+    handleDestAirportChange(e){
+        this.setState({destAirport: e.target.textContent.split(' ')[0]});
+    }
+
+    handleTicketCountChange(e){
+        this.setState({ticketCount: e.target.value});
+    }
     
    
 render() {
     const { step } = this.state;
-    const { userFirstName, userLastName, address, email, phone, airpots, ticketDate, ticketCount, ticketCost, srcAirport,destAirport, selectedFlight } = this.state;
+    const { userFirstName, userLastName, address, email, phone, ticketDate, ticketCount, ticketCost, srcAirport,destAirport, selectedFlight } = this.state;
     const userValues = { userFirstName, userLastName, address, email , phone};
     const bookingValues = {ticketDate, ticketCount, ticketCost, srcAirport,destAirport, selectedFlight};
     
     switch (step) {
         case 1:
+                console.log("\n\n\nBOOKING VALS:\n")
+            console.log(bookingValues)
             return (
                 <div className="formContainer"
                 style={{marginTop: "40px"}}>
                     <div className="formCard">
                         <FlightDate
                         nextStep={this.nextStep}
-                        handleChange={this.handleChange}
+                        handleTicketDateChange={this.handleTicketDateChange}
                         values = {bookingValues}
                         />
                     </div>
@@ -87,6 +110,8 @@ render() {
           
             );
         case 2:
+            console.log("\n\n\nBOOKING VALS:\n")
+            console.log(bookingValues)
             return (
                 <div className="formContainer"
                 style={{marginTop: "40px"}}>
@@ -94,7 +119,9 @@ render() {
                     <PathForm
                         prevStep={this.prevStep}
                         nextStep={this.nextStep}
-                        handleChange={this.handleChange}
+                        handleSrcAirportChange={this.handleSrcAirportChange}
+                        handleDestAirportChange= {this.handleDestAirportChange}
+                        handleTicketCountChange={this.handleTicketCountChange}
                         values = {bookingValues}
                         // values={values}
                         />
@@ -105,6 +132,8 @@ render() {
             
             );
         case 3:
+            console.log("\n\n\nBOOKING VALS:\n")
+            console.log(bookingValues)
             return(
                 <div className="formContainer"
                 style={{marginTop: "40px"}}>
@@ -122,37 +151,41 @@ render() {
                 </div>
             );
         case 4:
-                return (
-                    <div className="formContainer"
-                    style={{marginTop: "40px"}}>
-                        <div className="formCard">
-                        <SignUp
-                        prevStep={this.prevStep}
-                        nextStep={this.nextStep}
-                        handleChange={this.handleChange}
-                        values={userValues}
-                        //billing={billingValues}
-                        />
-                        </div>
+            console.log("\n\n\nBOOKING VALS:\n")
+            console.log(bookingValues)
+            return (
+                <div className="formContainer"
+                style={{marginTop: "40px"}}>
+                    <div className="formCard">
+                    <SignUp
+                    prevStep={this.prevStep}
+                    nextStep={this.nextStep}
+                    handleChange={this.handleChange}
+                    values={userValues}
+                    //billing={billingValues}
+                    />
                     </div>
-                    
-                );
+                </div>
+                
+            );
         case 5:
-                console.log("Hello world");
-                console.log(this.userValues);
-                return(
-                    <div className="formContainer"
-                    style={{marginTop: "40px"}}>
-                        <div className="formCard">
-                            <PaymentForm
-                                prevStep={this.prevStep}
-                                values = {bookingValues}
+            console.log("\n\n\nBOOKING VALS:\n")
+            console.log(bookingValues)
+            console.log("Hello world");
+            console.log(this.userValues);
+            return(
+                <div className="formContainer"
+                style={{marginTop: "40px"}}>
+                    <div className="formCard">
+                        <PaymentForm
+                            prevStep={this.prevStep}
+                            values = {bookingValues}
 
-                            />
-                        </div>
-    
+                        />
                     </div>
-                );
+
+                </div>
+            );
         default:
             return(<div></div>);
     }
