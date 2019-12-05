@@ -64,10 +64,11 @@ export default class UserForm extends Component {
         this.setState({ [e.target.name]: e.target.value });
     };
     
+    
    
 render() {
     const { step } = this.state;
-    const { userFirstName, userLastName, address, email, phone, airpots, ticketDate, ticketCount, ticketCost, srcAirport,destAirport, selectedFlight } = this.state;
+    const { userFirstName, userLastName, address, email, phone, ticketDate, ticketCount, ticketCost, srcAirport,destAirport, selectedFlight } = this.state;
     const userValues = { userFirstName, userLastName, address, email , phone};
     const bookingValues = {ticketDate, ticketCount, ticketCost, srcAirport,destAirport, selectedFlight};
     

@@ -1,7 +1,7 @@
 
 import Grid from '@material-ui/core/Grid';
 import Stripe from './Stripe.js';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 import TicketCard from './TicketCard';
 import React from 'react';
 import axios from 'axios';
@@ -15,22 +15,27 @@ export default class SimpleCard extends React.Component {
     constructor(props){
         super(props);
         this.state= {tickets: [],
-                    cost: 0};
+                    cost: 0,
+                    spinner: false,};
         this.cost = 0;
                 console.log("ldsfkj");
         console.log(props);
+        this.contents = <CircularProgress />;
     }
 
-
-    componentWillMount() {
+    componentDidMount() {
         axios.get("https://w1714otaj1.execute-api.us-east-1.amazonaws.com/dev/ticket/booking/67")
         .then((resolve) => {
             this.setState({tickets: resolve.data});
-            this.findCost()
+            this.findCost();
         })
         .catch((reject) => {
             console.log("REJECTED: \n" + reject )
         });
+    }
+
+    setSpinOff(){
+        this.setState({spinner: 1});
     }
 
     findCost(){
@@ -50,7 +55,7 @@ export default class SimpleCard extends React.Component {
                         <Typography variant='h6'>
                             Traveller Info
                         </Typography>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} className='ticketListRight'>
                             <Grid item xs={3}>
                                 Name
                             </Grid>
@@ -78,11 +83,17 @@ export default class SimpleCard extends React.Component {
                         </Grid>
                     </CardContent>
                 </Card>
-                {this.state.tickets.map((ticket) => 
+                {this.contents}
+                {
+                    if (this.state.spinning){
+                        
+                    }
+                }
+                {/* {this.state.tickets.map((ticket) => 
                     <TicketCard ticket = {ticket}/>
                 )}
 
-                <Stripe values={this.state.cost}/>
+                <Stripe values={this.state.cost}/> */}
             </div>
         );
     }
