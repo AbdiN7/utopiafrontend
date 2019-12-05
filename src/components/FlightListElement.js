@@ -3,19 +3,24 @@ import { Grid, Card, Typography, Button } from '@material-ui/core';
 
 const FlightListElement = (props) => {
 
+    const doit = () => {
+        console.log("HI")
+        console.log(props)
+    }
     return(
         <React.Fragment>
+            {doit()}
             <Card className="cardClass">
                 <Grid container spacing={0} alignItems="center">
                     <Grid item xs={5}>
                         <Typography className="typogClass">
-                            {props.value.flightPath.srcAirport.airportCode}&nbsp;&rarr;&nbsp;{props.value.flightPath.destAirport.airportCode}
+                            {props.values.flightPath.srcAirport.airportCode}&nbsp;&rarr;&nbsp;{props.values.flightPath.destAirport.airportCode}
                         </Typography>
                     </Grid>
 
                     <Grid item xs={5}>
                         <Typography className="typogClass">
-                            UTA {props.value.flightId}
+                            UTA {props.values.flightId}
                         </Typography>
                     </Grid>
 
@@ -27,13 +32,13 @@ const FlightListElement = (props) => {
 
                     <Grid item xs={5}>
                         <Typography className="typogClass">
-                        {props.value.departureTime}&nbsp;&rarr;&nbsp;{props.value.arrivalTime}
+                        {props.values.departureTime}&nbsp;&rarr;&nbsp;{props.values.arrivalTime}
                         </Typography>
                     </Grid>
 
                     <Grid item xs={5}>
                         <Typography className="typogClass">
-                            DATE
+                            {props.ticketDate.toDateString()}
                             {/* {Math.abs(((new Date(ticket.flight.arrivalTime).getTime() - new Date(ticket.flight.departureTime).getTime())/ (1000 * 60 * 60)).toFixed(1))} Hours */}
                         </Typography>
                     </Grid>
