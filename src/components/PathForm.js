@@ -17,7 +17,7 @@ export default class PathForm extends React.Component{
     }
 
     componentDidMount() {
-        axios.get('https://w1714otaj1.execute-api.us-east-1.amazonaws.com/dev/airport')
+        axios.get('https://awkx15u5u0.execute-api.us-east-1.amazonaws.com/dev/airport')
         .then((resolve) => {
             this.setState({airports: resolve.data});
         });
