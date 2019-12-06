@@ -94,6 +94,9 @@ export default class UserForm extends Component {
 
     handleBookingChange(booking){
         this.setState({createdBooking: booking});
+
+        console.log("BOOKING MADE:");
+        console.log(this.state.createdBooking);
     }
     
    

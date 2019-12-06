@@ -23,6 +23,8 @@ export default class SimpleCard extends React.Component {
 
 
     componentDidMount() {
+        console.log("the booking im gonna look at:")
+        console.log(this.props.bookingValues.createdBooking.bookingId);
         axios.get(`https://5tg2w27q83.execute-api.us-east-1.amazonaws.com/dev/ticket/booking/${this.props.bookingValues.createdBooking.bookingId}`)
         .then((resolve) => {
             this.setState({tickets: resolve.data,

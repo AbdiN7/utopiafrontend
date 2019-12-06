@@ -34,9 +34,8 @@ export default function SignUp(props) {
 
         axios.post('https://5tg2w27q83.execute-api.us-east-1.amazonaws.com/dev/booking', bookingData)
         .then((resolve) => {
-            console.log("BOOKING MADE:");
-            console.log(resolve.data);
-            props.handleBookingChange(resolve.data)
+            props.handleBookingChange(resolve.data);
+            props.nextStep();
         })
         .catch((reject) => {
             console.log("BOOKING REJECTED:\n");
@@ -58,7 +57,7 @@ export default function SignUp(props) {
                     <Grid item xs={5}>
                         {console.log("Hello world!")}
                         {console.log(props)}
-                        <Button onClick={() => {submitBooking(); props.nextStep()}} className="formButtons">
+                        <Button onClick={submitBooking} className="formButtons">
                             Submit
                         </Button>
                     </Grid>
