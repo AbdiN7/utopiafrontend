@@ -55,8 +55,6 @@ export default function SignUp(props) {
                     <Grid item xs ={4}/>
 
                     <Grid item xs={5}>
-                        {console.log("Hello world!")}
-                        {console.log(props)}
                         <Button onClick={submitBooking} className="formButtons">
                             Submit
                         </Button>
