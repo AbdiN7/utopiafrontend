@@ -7,6 +7,7 @@ import AirlineSeatReclineNormalIcon from '@material-ui/icons/AirlineSeatReclineN
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
 
 export default function SignUp(props) {
     function handleOnClick(event){
@@ -17,6 +18,30 @@ export default function SignUp(props) {
         console.log(event.target.email.value);
         console.log(event.target.address.value);
         console.log(event.target.phone.value);
+    }
+
+    function submitBooking(){
+        const bookingData = {
+            userId: 1, // TODO use created user
+            flightId: props.bookingValues.selectedFlight.flightId,
+            ticketCount: props.bookingValues.ticketCount,
+            ticketDate: props.bookingValues.ticketDate.toISOString().split('T')[0],
+            ticketCost: props.bookingValues.ticketCost,
+        };
+
+        console.log("bookingData:\n")
+        console.log(bookingData)
+
+        axios.post('https://5tg2w27q83.execute-api.us-east-1.amazonaws.com/dev/booking', bookingData)
+        .then((resolve) => {
+            console.log("BOOKING MADE:");
+            console.log(resolve.data);
+            props.handleBookingChange(resolve.data)
+        })
+        .catch((reject) => {
+            console.log("BOOKING REJECTED:\n");
+            console.log(reject);
+        });
     }
 
     return (
@@ -33,7 +58,7 @@ export default function SignUp(props) {
                     <Grid item xs={5}>
                         {console.log("Hello world!")}
                         {console.log(props)}
-                        <Button onClick={props.nextStep} className="formButtons">
+                        <Button onClick={() => {submitBooking(); props.nextStep()}} className="formButtons">
                             Submit
                         </Button>
                     </Grid>
@@ -56,7 +81,7 @@ export default function SignUp(props) {
                                         style={{color: '#eeeeee'}}
                                         
                                         onChange={props.handleChange}
-                                        defaultValue={props.values.userFirstName}
+                                        defaultValue={props.userValues.userFirstName}
                                         required
                                         fullWidth
                                         id="userFirstName"
@@ -70,7 +95,7 @@ export default function SignUp(props) {
                                         style={{color: '#eeeeee'}}
                                       
                                         onChange={props.handleChange}
-                                        defaultValue={props.values.userLastName}
+                                        defaultValue={props.userValues.userLastName}
                                         required
                                         fullWidth
                                         id="userLastName"
@@ -83,7 +108,7 @@ export default function SignUp(props) {
                                         style={{color: '#eeeeee'}}
                                        
                                         onChange={props.handleChange}
-                                        defaultValue={props.values.email}
+                                        defaultValue={props.userValues.email}
                                         required
                                         fullWidth
                                         id="email"
@@ -96,7 +121,7 @@ export default function SignUp(props) {
                                     required
                                     fullWidth
                                     onChange={props.handleChange}
-                                    defaultValue={props.values.address}
+                                    defaultValue={props.userValues.address}
                                     name="address"
                                     label="Address"
                                     type="address"
@@ -108,7 +133,7 @@ export default function SignUp(props) {
                                     required
                                     fullWidth
                                     onChange={props.handleChange}
-                                    defaultValue={props.values.phone}
+                                    defaultValue={props.userValues.phone}
                                     name="phone"
                                     label="Phone"
                                     type="phone"
