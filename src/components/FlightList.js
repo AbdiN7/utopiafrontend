@@ -7,12 +7,21 @@ export default class FlightList extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            flights: []
+            flights: [],
+            selectedFlightChild: {},
         }
+
+        this.selectButtonClicked = this.selectButtonClicked.bind(this);
     }
 
+    selectButtonClicked(flight, cost){
+        this.props.handleFlightChange(flight, cost);
+        this.props.nextStep();
+    }
+    
+
     componentDidMount(){
-        axios.get(`https://awkx15u5u0.execute-api.us-east-1.amazonaws.com/dev/flight/${this.props.values.srcAirport}/to/${this.props.values.destAirport}`)
+        axios.get(`https://5tg2w27q83.execute-api.us-east-1.amazonaws.com/dev/flight/${this.props.values.srcAirport}/to/${this.props.values.destAirport}`)
         .then((resolve) => {
             console.log(resolve.data);
             this.setState({flights: resolve.data});
@@ -42,8 +51,7 @@ export default class FlightList extends React.Component{
                             key={flight.flightId.toString()}
                             values={flight}
                             ticketDate={this.props.values.ticketDate}
-                            nextStep={this.props.nextStep}
-                            handleChange={this.handleChange}
+                            selectButtonClicked={this.selectButtonClicked}
                         />
                     )}
                 </Grid>

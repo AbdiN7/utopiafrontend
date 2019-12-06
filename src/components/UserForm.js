@@ -21,8 +21,8 @@ export default class UserForm extends Component {
             ticketDate: new Date(),
             ticketCount: 1,
             ticketCost: null,
-            srcAirport: null,
-            destAirport: null,
+            srcAirport: 'AAA',
+            destAirport: 'BBB',
             selectedFlight: {},
             createdBooking: {},
         }
@@ -35,6 +35,8 @@ export default class UserForm extends Component {
         this.handleSrcAirportChange = this.handleSrcAirportChange.bind(this);
         this.handleDestAirportChange = this.handleDestAirportChange.bind(this);
         this.handleTicketCountChange = this.handleTicketCountChange.bind(this);
+        this.handleFlightChange = this.handleFlightChange.bind(this);
+        this.handleBookingChange = this.handleBookingChange.bind(this);
     }
 
     componentDidMount() {
@@ -48,9 +50,8 @@ export default class UserForm extends Component {
             email: decoded.email
             })
         }
-
-       
     }
+
     nextStep () {
         const { step } = this.state;
         this.setState({
@@ -74,6 +75,7 @@ export default class UserForm extends Component {
     };
 
     handleSrcAirportChange(e){
+        console.log(e.target.textContent)
         this.setState({srcAirport: e.target.textContent.split(' ')[0]});
     }
 
@@ -84,17 +86,29 @@ export default class UserForm extends Component {
     handleTicketCountChange(e){
         this.setState({ticketCount: e.target.value});
     }
+
+    handleFlightChange(flight, cost){
+        this.setState({selectedFlight: flight});
+        this.setState({ticketCost: cost});
+    }
+
+    handleBookingChange(booking){
+        this.setState({createdBooking: booking});
+
+        console.log("BOOKING MADE:");
+        console.log(this.state.createdBooking);
+    }
     
    
 render() {
     const { step } = this.state;
-    const { userFirstName, userLastName, address, email, phone, ticketDate, ticketCount, ticketCost, srcAirport,destAirport, selectedFlight } = this.state;
+    const { userFirstName, userLastName, address, email, phone, ticketDate, ticketCount, ticketCost, srcAirport, destAirport, selectedFlight, createdBooking } = this.state;
     const userValues = { userFirstName, userLastName, address, email , phone};
-    const bookingValues = {ticketDate, ticketCount, ticketCost, srcAirport,destAirport, selectedFlight};
+    const bookingValues = {ticketDate, ticketCount, ticketCost, srcAirport, destAirport, selectedFlight, createdBooking};
     
     switch (step) {
         case 1:
-                console.log("\n\n\nBOOKING VALS:\n")
+            console.log("\nBOOKING VALS:\n")
             console.log(bookingValues)
             return (
                 <div className="formContainer"
@@ -110,7 +124,7 @@ render() {
           
             );
         case 2:
-            console.log("\n\n\nBOOKING VALS:\n")
+            console.log("\nBOOKING VALS:\n")
             console.log(bookingValues)
             return (
                 <div className="formContainer"
@@ -127,12 +141,9 @@ render() {
                         />
                     </div>
                 </div>
-                       
-              
-            
             );
         case 3:
-            console.log("\n\n\nBOOKING VALS:\n")
+            console.log("\nBOOKING VALS:\n")
             console.log(bookingValues)
             return(
                 <div className="formContainer"
@@ -143,7 +154,7 @@ render() {
                             destAirport="BBB"
                             prevStep={this.prevStep}
                             nextStep={this.nextStep}
-                            handleChange={this.handleChange}
+                            handleFlightChange={this.handleFlightChange}
                             values = {bookingValues}
                         />
                     </div>
@@ -151,27 +162,29 @@ render() {
                 </div>
             );
         case 4:
-            console.log("\n\n\nBOOKING VALS:\n")
+            console.log("\nBOOKING VALS:\n")
             console.log(bookingValues)
             return (
                 <div className="formContainer"
                 style={{marginTop: "40px"}}>
                     <div className="formCard">
                     <SignUp
-                    prevStep={this.prevStep}
-                    nextStep={this.nextStep}
-                    handleChange={this.handleChange}
-                    values={userValues}
-                    //billing={billingValues}
+                        prevStep={this.prevStep}
+                        nextStep={this.nextStep}
+                        handleChange={this.handleChange}
+                        handleBookingChange = {this.handleBookingChange}
+                        bookingValues = {bookingValues}
+                        userValues = {userValues}
+                        //billing={billingValues}
                     />
                     </div>
                 </div>
                 
             );
         case 5:
-            console.log("\n\n\nBOOKING VALS:\n")
+            console.log("\nBOOKING VALS:\n")
             console.log(bookingValues)
-            console.log("Hello world");
+            console.log("\nUSER VALS:\n")
             console.log(this.userValues);
             return(
                 <div className="formContainer"
@@ -179,8 +192,8 @@ render() {
                     <div className="formCard">
                         <PaymentForm
                             prevStep={this.prevStep}
-                            values = {bookingValues}
-
+                            bookingValues = {bookingValues}
+                            userValues = {userValues}
                         />
                     </div>
 
