@@ -22,7 +22,7 @@ export default function SignUp(props) {
 
     function submitBooking(){
         const bookingData = {
-            userId: 1, // TODO use created user
+            userId: props.userValues.userId,
             flightId: props.bookingValues.selectedFlight.flightId,
             ticketCount: props.bookingValues.ticketCount,
             ticketDate: props.bookingValues.ticketDate.toISOString().split('T')[0],
