@@ -10,8 +10,10 @@ export default class UserForm extends Component {
     constructor() {
         super();
         this.state = {
+            // form state
             step: 1 ,
             // user information
+            userId: 0,
             userFirstName: '',
             userLastName: '',
             address: '',
@@ -45,11 +47,13 @@ export default class UserForm extends Component {
             const token = localStorage.usertoken
             const decoded = jwt_decode(token)
             this.setState({
-            userFirstName: decoded.userFirstName,
-            userLastName: decoded.userLastName,
-            email: decoded.email
+                userId: decoded.userId,
+                userFirstName: decoded.userFirstName,
+                userLastName: decoded.userLastName,
+                email: decoded.email
             })
         }
+
     }
 
     nextStep () {
@@ -102,14 +106,16 @@ export default class UserForm extends Component {
    
 render() {
     const { step } = this.state;
-    const { userFirstName, userLastName, address, email, phone, ticketDate, ticketCount, ticketCost, srcAirport, destAirport, selectedFlight, createdBooking } = this.state;
-    const userValues = { userFirstName, userLastName, address, email , phone};
+    const { userId, userFirstName, userLastName, address, email, phone, ticketDate, ticketCount, ticketCost, srcAirport, destAirport, selectedFlight, createdBooking } = this.state;
+    const userValues = { userId, userFirstName, userLastName, address, email , phone};
     const bookingValues = {ticketDate, ticketCount, ticketCost, srcAirport, destAirport, selectedFlight, createdBooking};
     
     switch (step) {
         case 1:
             console.log("\nBOOKING VALS:\n")
             console.log(bookingValues)
+            console.log("\USER VALS:\n")
+            console.log(userValues)
             return (
                 <div className="formContainer"
                 style={{marginTop: "40px"}}>
@@ -126,6 +132,8 @@ render() {
         case 2:
             console.log("\nBOOKING VALS:\n")
             console.log(bookingValues)
+            console.log("\USER VALS:\n")
+            console.log(userValues)
             return (
                 <div className="formContainer"
                 style={{marginTop: "40px"}}>
@@ -145,6 +153,8 @@ render() {
         case 3:
             console.log("\nBOOKING VALS:\n")
             console.log(bookingValues)
+            console.log("\USER VALS:\n")
+            console.log(userValues)
             return(
                 <div className="formContainer"
                 style={{marginTop: "40px"}}>
@@ -164,6 +174,8 @@ render() {
         case 4:
             console.log("\nBOOKING VALS:\n")
             console.log(bookingValues)
+            console.log("\USER VALS:\n")
+            console.log(userValues)
             return (
                 <div className="formContainer"
                 style={{marginTop: "40px"}}>
