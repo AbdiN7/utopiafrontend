@@ -1,0 +1,16 @@
+.MuiFormLabel-root{
+    color: #EEEEEE!important;
+}
+.MuiInputBase-root{
+    color: #EEEEEE!important;
+}
+.MuiInput-underline:after{
+    border-bottom: 2px solid #00adb5!important;
+}
+.MuiInput-underline:before{
+    border-bottom: 2px solid #EEEEEE!important;
+}
+.textField .MuiInputBase-input{
+    width:"100%";
+    padding: 0px!important;
+}

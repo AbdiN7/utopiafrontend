@@ -1,13 +1,18 @@
 .logo{
-    min-width: 50px;
-    min-height: 50px;
-    width: 200px;
-    height: 100px;
+    width: 150px;
+    max-height: auto;
     object-fit: cover;
     background-repeat: no-repeat;
     background-size: contain;
-    background-image: url('../images/airplane.png');
+    //background-image: url('../images/airplane.png');
     // margin: 0px; padding:0px;
     // margin: -25px 0 0 190px;
     // border:0px;
+}
+
+@media (max-width)
+{
+    .logo{
+        width: 50px;
+    }
 }

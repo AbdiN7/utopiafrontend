@@ -2,20 +2,29 @@
 @import './shared/_fonts';
 @import './_home.scss';
 @import './_signUp.scss';
-@import './_textField';
+@import './shared/_textField';
 @import './_logo.scss';
 @import './_flightTable.scss';
 @import './_queriedTicketList';
 @import './shared/_formCard';
+@import './_flightDate';
+@import './_datePicker';
+@import './shared/_formButtons';
+@import './_pathForm.scss';
+@import './cardElement';
+@import './checkoutCard.scss';
+@import './ticketList.scss';
+@import './spinner.scss';
 
 html, body {
     background-color: #303841;
-    padding: 0px;
-    margin: 0px;
+    overflow: auto;
     color: #eeeeee;
     height:100%!important;
-    margin:0px;
-    padding:0px;
+    width: 100% !important;
+    margin:0px!important;
+    padding:0px!important;
     font-family: 'Roboto', sans-serif!important;
   }
 
+  

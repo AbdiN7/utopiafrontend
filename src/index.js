@@ -2,11 +2,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {HashRouter} from 'react-router-dom'
 ReactDOM.render(
-    <HashRouter>
-    <App />
-    </HashRouter>, document.getElementById('root'));
+    <App />, document.getElementById('root'));
 
 module.hot.accept();
 // If you want your app to work offline and load faster, you can change
