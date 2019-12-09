@@ -65,26 +65,26 @@ export default class SimpleCard extends React.Component {
                                 <Grid item xs={3}>
                                     Name
                                 </Grid>
-                                <Grid item xs={9}>
-                                    Last Name, First Name
+                                <Grid className= 'ticketListRight' item xs={8}>
+                                    {this.props.userValues.userLastName}, {this.props.userValues.userFirstName}
                                 </Grid>
                                 <Grid item xs={3}>
                                     Address
                                 </Grid>
-                                <Grid item xs={9}>
-                                    The User Address
+                                <Grid className= 'ticketListRight' item xs={8}>
+                                    {this.props.userValues.email}
                                 </Grid>
                                 <Grid item xs={3}>
                                     Phone
                                 </Grid>
-                                <Grid item xs={9}>
-                                    The User Phone
+                                <Grid className= 'ticketListRight' item xs={8}>
+                                    {this.props.userValues.phone}
                                 </Grid>
                                 <Grid item xs={3}>
                                     Email
                                 </Grid>
-                                <Grid item xs={9}>
-                                    The User Email
+                                <Grid className= 'ticketListRight' item xs={8}>
+                                    {this.props.userValues.email}
                                 </Grid>
                             </Grid>
                         </CardContent>
