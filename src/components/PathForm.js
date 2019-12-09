@@ -14,10 +14,19 @@ export default class PathForm extends React.Component{
         this.state = {
             airports: []
         };
+
+        this.findIt = this.findIt.bind(this);
+    }
+
+    findIt(){
+        const it = this.state.airports.find(ele => ele.airportCode == this.props.values.destAirport)
+        console.log("IT:");
+        console.log(it);
+        return it;
     }
 
     componentDidMount() {
-        axios.get('https://awkx15u5u0.execute-api.us-east-1.amazonaws.com/dev/airport')
+        axios.get('https://5tg2w27q83.execute-api.us-east-1.amazonaws.com/dev/airport')
         .then((resolve) => {
             this.setState({airports: resolve.data});
         });
@@ -45,6 +54,7 @@ export default class PathForm extends React.Component{
                         id="srcAirport"
                         name="srcAirport"
                         onChange={this.props.handleSrcAirportChange}
+                        defaultValue={{airportCode: "AAA", airportName: "name1"}}
                         options={this.state.airports}
                         getOptionLabel={airport => airport.airportCode + ' - ' + airport.airportName}
                         renderInput={params => (
@@ -73,7 +83,7 @@ export default class PathForm extends React.Component{
                         id="destAirport"
                         name="destAirport"
                         onChange={this.props.handleDestAirportChange}
-                        defaultValue={this.state.airports.find(ele => ele.airportCode == this.props.values.destAirport)}
+                        defaultValue={{airportCode: "BBB", airportName: "name2"}}
                         options={this.state.airports}
                         getOptionLabel={airport => airport.airportCode + ' - ' + airport.airportName}
                         renderInput={params => (
