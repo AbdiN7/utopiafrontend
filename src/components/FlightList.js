@@ -1,13 +1,16 @@
 import React from 'react';
 import { Grid, Card, Typography, Button } from '@material-ui/core';
 import FlightListElement from './FlightListElement';
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux';
+import {getFlightsByAirports} from '../actions/bookingActions';
 import axios from 'axios';
 
-export default class FlightList extends React.Component{
+class FlightList extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            flights: [],
+            // flights: [],
             selectedFlightChild: {},
         }
 
@@ -20,15 +23,18 @@ export default class FlightList extends React.Component{
     }
     
 
+    // componentDidMount(){
+    //     axios.get(`https://5tg2w27q83.execute-api.us-east-1.amazonaws.com/dev/flight/${this.props.values.srcAirport}/to/${this.props.values.destAirport}`)
+    //     .then((resolve) => {
+    //         console.log(resolve.data);
+    //         this.setState({flights: resolve.data});
+    //     })
+    //     .catch((reject) => {
+    //         console.log("REJECTED: \n" + reject )
+    //     });
+    // }
     componentDidMount(){
-        axios.get(`https://5tg2w27q83.execute-api.us-east-1.amazonaws.com/dev/flight/${this.props.values.srcAirport}/to/${this.props.values.destAirport}`)
-        .then((resolve) => {
-            console.log(resolve.data);
-            this.setState({flights: resolve.data});
-        })
-        .catch((reject) => {
-            console.log("REJECTED: \n" + reject )
-        });
+        this.props.getFlightsByAirports();
     }
 
     render(){
@@ -46,7 +52,7 @@ export default class FlightList extends React.Component{
                 </Grid>
 
                 <Grid item xs = {12}>
-                    {this.state.flights.map((flight) =>
+                    {this.props.flights.map((flight) =>
                         <FlightListElement
                             key={flight.flightId.toString()}
                             values={flight}
@@ -59,3 +65,13 @@ export default class FlightList extends React.Component{
         );
     }
 }
+
+FlightList.propTypes = {
+    getFlightsByAirports: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+    flights: state.booking.flights
+});
+
+export default connect(mapStateToProps, { getFlightsByAirports })(FlightList);
