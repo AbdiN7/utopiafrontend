@@ -6,5 +6,5 @@ import bookingReducer from './bookingReducer';
 export default combineReducers({
   auth: authReducer,
   booking: bookingReducer,
-//   errors: errorReducer
+  // errors: errorReducer
 });

@@ -10,8 +10,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-//const url = "http://localhost:8090/utopia/tickets/1";
-
 export default class SimpleCard extends React.Component {
     constructor(props){
         super(props);
@@ -21,11 +19,10 @@ export default class SimpleCard extends React.Component {
         this.cost = 0;
     }
 
-
     componentDidMount() {
         console.log("the booking im gonna look at:")
         console.log(this.props.bookingValues.createdBooking.bookingId);
-        axios.get(`https://5tg2w27q83.execute-api.us-east-1.amazonaws.com/dev/ticket/booking/${this.props.bookingValues.createdBooking.bookingId}`)
+        axios.get(`https://ma35v84odj.execute-api.us-east-2.amazonaws.com/dev/ticket/booking/${this.props.bookingValues.createdBooking.bookingId}`)
         .then((resolve) => {
             this.setState({tickets: resolve.data,
                             spinning: false});

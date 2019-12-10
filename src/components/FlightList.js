@@ -10,7 +10,6 @@ class FlightList extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            // flights: [],
             selectedFlightChild: {},
         }
 
@@ -21,10 +20,9 @@ class FlightList extends React.Component{
         this.props.handleFlightChange(flight, cost);
         this.props.nextStep();
     }
-    
 
     // componentDidMount(){
-    //     axios.get(`https://5tg2w27q83.execute-api.us-east-1.amazonaws.com/dev/flight/${this.props.values.srcAirport}/to/${this.props.values.destAirport}`)
+    //     axios.get(`https://ma35v84odj.execute-api.us-east-2.amazonaws.com/dev/flight/${this.props.values.srcAirport}/to/${this.props.values.destAirport}`)
     //     .then((resolve) => {
     //         console.log(resolve.data);
     //         this.setState({flights: resolve.data});
@@ -33,8 +31,9 @@ class FlightList extends React.Component{
     //         console.log("REJECTED: \n" + reject )
     //     });
     // }
+
     componentDidMount(){
-        this.props.getFlightsByAirports();
+        this.props.getFlightsByAirports(this.props.values.srcAirport, this.props.values.destAirport);
     }
 
     render(){
