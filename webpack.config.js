@@ -53,6 +53,6 @@ module.exports = {
   devServer: {
     port: 3000,
     hot: true,
-    contentBase: './dist'
+    contentBase:  __dirname + '/dist'
   }
 };

@@ -13,7 +13,7 @@ export default class UserForm extends Component {
             // form state
             step: 1 ,
             // user information
-            userId: 0, // TODO REMEMBER TO CHANGE!
+            userId: 0,
             userFirstName: '',
             userLastName: '',
             address: '',

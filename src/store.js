@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose} from 'redux'
 import thunk from 'redux-thunk';
-import rootReducer from './reducers'; //redux can only have a single reducer, so they are imported to reducer/index.js
+import rootReducer from './reducers/RootReducer'; //redux can only have a single reducer, so they are imported to reducer/index.js
 
 const initialState = {};
 const middleware = [thunk]
