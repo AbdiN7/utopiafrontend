@@ -19,6 +19,7 @@ import PaymentForm from './components/PaymentForm'
 import Payment from './components/Payment'
 import './styles/app.scss';
 import Profile from './components/auth/Profile';
+import { getAirports } from './actions/bookingActions';
 
 
 if (localStorage.jwtToken) {
@@ -28,6 +29,7 @@ if (localStorage.jwtToken) {
   const decoded = jwt_decode(localStorage.jwtToken);
   // Set user and isAuthenticated
   store.dispatch(setCurrentUser(decoded));
+ 
 
   // Check for expired token
   const currentTime = Date.now() / 1000;

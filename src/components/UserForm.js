@@ -56,6 +56,7 @@ export default class UserForm extends Component {
 
     }
 
+
     nextStep () {
         const { step } = this.state;
         this.setState({

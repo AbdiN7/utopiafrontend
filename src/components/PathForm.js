@@ -6,30 +6,16 @@ import { bindActionCreators } from 'redux'
 import { Autocomplete } from '@material-ui/lab';
 import {getAirports} from '../actions/bookingActions';
 import axios from 'axios';
+import store from '../store';
 
-export default class PathForm extends React.Component{
+class PathForm extends React.Component{
 
     constructor(props){
         super(props);
-        this.state = {
-            airports: []
-        };
+    }   
 
-        this.findIt = this.findIt.bind(this);
-    }
-
-    findIt(){
-        const it = this.state.airports.find(ele => ele.airportCode == this.props.values.destAirport)
-        console.log("IT:");
-        console.log(it);
-        return it;
-    }
-
-    componentDidMount() {
-        axios.get('https://5tg2w27q83.execute-api.us-east-1.amazonaws.com/dev/airport')
-        .then((resolve) => {
-            this.setState({airports: resolve.data});
-        });
+    componentDidMount(){
+        this.props.getAirports();
     }
 
     render(){
@@ -55,7 +41,7 @@ export default class PathForm extends React.Component{
                         name="srcAirport"
                         onChange={this.props.handleSrcAirportChange}
                         defaultValue={{airportCode: "AAA", airportName: "name1"}}
-                        options={this.state.airports}
+                        options={this.props.airports}
                         getOptionLabel={airport => airport.airportCode + ' - ' + airport.airportName}
                         renderInput={params => (
                             <TextField {...params} label="Source Airport" variant="outlined" fullWidth />
@@ -84,7 +70,7 @@ export default class PathForm extends React.Component{
                         name="destAirport"
                         onChange={this.props.handleDestAirportChange}
                         defaultValue={{airportCode: "BBB", airportName: "name2"}}
-                        options={this.state.airports}
+                        options={this.props.airports}
                         getOptionLabel={airport => airport.airportCode + ' - ' + airport.airportName}
                         renderInput={params => (
                             <TextField {...params} label="Destination Airport" variant="outlined" fullWidth/>
@@ -99,13 +85,12 @@ export default class PathForm extends React.Component{
     
 }
 
-// PathForm.propTypes = {
-//     getAirports: PropTypes.func.isRequired,
-//     errors: PropTypes.object.isRequired
-// };
+PathForm.propTypes = {
+    getAirports: PropTypes.func.isRequired
+};
 
-// const mapStateToProps = state => ({
-//     errors: state.errors
-// });
+const mapStateToProps = state => ({
+    airports: state.booking.airports
+});
 
-// export default connect(mapStateToProps, { getAirports })(PathForm);
+export default connect(mapStateToProps, { getAirports })(PathForm);
