@@ -53,9 +53,7 @@ export default class UserForm extends Component {
                 email: decoded.email
             })
         }
-
     }
-
 
     nextStep () {
         const { step } = this.state;
@@ -105,115 +103,115 @@ export default class UserForm extends Component {
     }
     
    
-render() {
-    const { step } = this.state;
-    const { userId, userFirstName, userLastName, address, email, phone, ticketDate, ticketCount, ticketCost, srcAirport, destAirport, selectedFlight, createdBooking } = this.state;
-    const userValues = { userId, userFirstName, userLastName, address, email , phone};
-    const bookingValues = {ticketDate, ticketCount, ticketCost, srcAirport, destAirport, selectedFlight, createdBooking};
-    
-    switch (step) {
-        case 1:
-            console.log("\nBOOKING VALS:\n")
-            console.log(bookingValues)
-            console.log("\USER VALS:\n")
-            console.log(userValues)
-            return (
-                <div className="formContainer"
-                style={{marginTop: "40px"}}>
-                    <div className="formCard">
-                        <FlightDate
-                        nextStep={this.nextStep}
-                        handleTicketDateChange={this.handleTicketDateChange}
-                        values = {bookingValues}
-                        />
+    render() {
+        const { step } = this.state;
+        const { userId, userFirstName, userLastName, address, email, phone, ticketDate, ticketCount, ticketCost, srcAirport, destAirport, selectedFlight, createdBooking } = this.state;
+        const userValues = { userId, userFirstName, userLastName, address, email , phone};
+        const bookingValues = {ticketDate, ticketCount, ticketCost, srcAirport, destAirport, selectedFlight, createdBooking};
+        
+        switch (step) {
+            case 1:
+                console.log("\nBOOKING VALS:\n")
+                console.log(bookingValues)
+                console.log("\USER VALS:\n")
+                console.log(userValues)
+                return (
+                    <div className="formContainer"
+                    style={{marginTop: "40px"}}>
+                        <div className="formCard">
+                            <FlightDate
+                            nextStep={this.nextStep}
+                            handleTicketDateChange={this.handleTicketDateChange}
+                            values = {bookingValues}
+                            />
+                        </div>
                     </div>
-                </div>
-          
-            );
-        case 2:
-            console.log("\nBOOKING VALS:\n")
-            console.log(bookingValues)
-            console.log("\USER VALS:\n")
-            console.log(userValues)
-            return (
-                <div className="formContainer"
-                style={{marginTop: "40px"}}>
-                    <div className="formCard">
-                    <PathForm
-                        prevStep={this.prevStep}
-                        nextStep={this.nextStep}
-                        handleSrcAirportChange={this.handleSrcAirportChange}
-                        handleDestAirportChange= {this.handleDestAirportChange}
-                        handleTicketCountChange={this.handleTicketCountChange}
-                        values = {bookingValues}
-                        // values={values}
-                        />
-                    </div>
-                </div>
-            );
-        case 3:
-            console.log("\nBOOKING VALS:\n")
-            console.log(bookingValues)
-            console.log("\USER VALS:\n")
-            console.log(userValues)
-            return(
-                <div className="formContainer"
-                style={{marginTop: "40px"}}>
-                    <div className="formCard">
-                        <FlightList
-                            srcAirport="AAA"
-                            destAirport="BBB"
+            
+                );
+            case 2:
+                console.log("\nBOOKING VALS:\n")
+                console.log(bookingValues)
+                console.log("\USER VALS:\n")
+                console.log(userValues)
+                return (
+                    <div className="formContainer"
+                    style={{marginTop: "40px"}}>
+                        <div className="formCard">
+                        <PathForm
                             prevStep={this.prevStep}
                             nextStep={this.nextStep}
-                            handleFlightChange={this.handleFlightChange}
+                            handleSrcAirportChange={this.handleSrcAirportChange}
+                            handleDestAirportChange= {this.handleDestAirportChange}
+                            handleTicketCountChange={this.handleTicketCountChange}
                             values = {bookingValues}
-                        />
+                            // values={values}
+                            />
+                        </div>
                     </div>
+                );
+            case 3:
+                console.log("\nBOOKING VALS:\n")
+                console.log(bookingValues)
+                console.log("\USER VALS:\n")
+                console.log(userValues)
+                return(
+                    <div className="formContainer"
+                    style={{marginTop: "40px"}}>
+                        <div className="formCard">
+                            <FlightList
+                                srcAirport="AAA"
+                                destAirport="BBB"
+                                prevStep={this.prevStep}
+                                nextStep={this.nextStep}
+                                handleFlightChange={this.handleFlightChange}
+                                values = {bookingValues}
+                            />
+                        </div>
 
-                </div>
-            );
-        case 4:
-            console.log("\nBOOKING VALS:\n")
-            console.log(bookingValues)
-            console.log("\USER VALS:\n")
-            console.log(userValues)
-            return (
-                <div className="formContainer"
-                style={{marginTop: "40px"}}>
-                    <div className="formCard">
-                    <SignUp
-                        prevStep={this.prevStep}
-                        nextStep={this.nextStep}
-                        handleChange={this.handleChange}
-                        handleBookingChange = {this.handleBookingChange}
-                        bookingValues = {bookingValues}
-                        userValues = {userValues}
-                        //billing={billingValues}
-                    />
                     </div>
-                </div>
-                
-            );
-        case 5:
-            console.log("\nBOOKING VALS:\n")
-            console.log(bookingValues)
-            console.log("\nUSER VALS:\n")
-            console.log(this.userValues);
-            return(
-                <div className="formContainer"
-                style={{marginTop: "40px"}}>
-                    <div className="formCard">
-                        <PaymentForm
+                );
+            case 4:
+                console.log("\nBOOKING VALS:\n")
+                console.log(bookingValues)
+                console.log("\USER VALS:\n")
+                console.log(userValues)
+                return (
+                    <div className="formContainer"
+                    style={{marginTop: "40px"}}>
+                        <div className="formCard">
+                        <SignUp
                             prevStep={this.prevStep}
+                            nextStep={this.nextStep}
+                            handleChange={this.handleChange}
+                            handleBookingChange = {this.handleBookingChange}
                             bookingValues = {bookingValues}
                             userValues = {userValues}
+                            //billing={billingValues}
                         />
+                        </div>
                     </div>
+                    
+                );
+            case 5:
+                console.log("\nBOOKING VALS:\n")
+                console.log(bookingValues)
+                console.log("\nUSER VALS:\n")
+                console.log(this.userValues);
+                return(
+                    <div className="formContainer"
+                    style={{marginTop: "40px"}}>
+                        <div className="formCard">
+                            <PaymentForm
+                                prevStep={this.prevStep}
+                                bookingValues = {bookingValues}
+                                userValues = {userValues}
+                            />
+                        </div>
 
-                </div>
-            );
-        default:
-            return(<div></div>);
-    }
+                    </div>
+                );
+            default:
+                return(<div></div>);
+        }
     }
 }
