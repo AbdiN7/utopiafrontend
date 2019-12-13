@@ -5,7 +5,7 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 
-const url = "http:///ansible-spring-lb-2032029588.us-east-2.elb.amazonaws.com/charge"; // site that doesn’t send Access-Control-*
+const url = "http://ansible-spring-lb-232633842.us-east-2.elb.amazonaws.com/charge"; // site that doesn’t send Access-Control-*
 
 export default class Payment extends React.Component {
     constructor(props){
