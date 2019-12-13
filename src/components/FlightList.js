@@ -4,6 +4,7 @@ import FlightListElement from './FlightListElement';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import {getFlightsByAirports} from '../actions/bookingActions';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import axios from 'axios';
 
 class FlightList extends React.Component{
@@ -37,6 +38,14 @@ class FlightList extends React.Component{
     }
 
     render(){
+        if(this.props.isPending){
+            return(
+                <div>
+                    <h1>Loading Flights</h1>
+                    <CircularProgress className='spinner'/>
+                </div>
+            )
+        }
         return(
             <React.Fragment>
                 <Grid container spacing={3}>
@@ -66,11 +75,13 @@ class FlightList extends React.Component{
 }
 
 FlightList.propTypes = {
-    getFlightsByAirports: PropTypes.func.isRequired
+    getFlightsByAirports: PropTypes.func.isRequired,
+    isPending: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-    flights: state.booking.flights
+    flights: state.booking.flights,
+    isPending: state.booking.isPending
 });
 
 export default connect(mapStateToProps, { getFlightsByAirports })(FlightList);

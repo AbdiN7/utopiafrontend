@@ -13,15 +13,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
 function SignUp(props) {
-    // function handleOnClick(event){
-    //     event.persist();
-    //     event.preventDefault();
-    //     console.log(event.target.userFirstName.value);
-    //     console.log(event.target.userLastName.value);
-    //     console.log(event.target.email.value);
-    //     console.log(event.target.address.value);
-    //     console.log(event.target.phone.value);
-    // }
 
     function submitBooking(){
         // props.postBooking(  props.userValues.userId, 
