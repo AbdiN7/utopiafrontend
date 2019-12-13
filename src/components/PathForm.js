@@ -49,7 +49,7 @@ class PathForm extends React.Component{
                         id="srcAirport"
                         name="srcAirport"
                         onChange={this.props.handleSrcAirportChange}
-                        defaultValue={{airportCode: "AAA", airportName: "name1"}}
+                        defaultValue={this.props.airports.find(ele => ele.airportCode == this.props.values.srcAirport)}
                         options={this.props.airports}
                         getOptionLabel={airport => airport.airportCode + ' - ' + airport.airportName}
                         renderInput={params => (
@@ -78,7 +78,7 @@ class PathForm extends React.Component{
                         id="destAirport"
                         name="destAirport"
                         onChange={this.props.handleDestAirportChange}
-                        defaultValue={{airportCode: "BBB", airportName: "name2"}}
+                        defaultValue={this.props.airports.find(ele => ele.airportCode == this.props.values.destAirport)}
                         options={this.props.airports}
                         getOptionLabel={airport => airport.airportCode + ' - ' + airport.airportName}
                         renderInput={params => (
