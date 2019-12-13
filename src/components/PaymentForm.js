@@ -20,18 +20,6 @@ class PaymentForm extends React.Component {
         // this.cost = 0;
     }
 
-    // componentDidMount() {
-    //     axios.get(`https://ma35v84odj.execute-api.us-east-2.amazonaws.com/dev/ticket/booking/${this.props.bookingValues.createdBooking.bookingId}`)
-    //     .then((resolve) => {
-    //         this.setState({tickets: resolve.data,
-    //                         spinning: false});
-    //         this.findCost()
-    //     })
-    //     .catch((reject) => {
-    //         console.log("REJECTED: \n" + reject )
-    //     });
-    // }
-
     componentDidMount(){
         this.props.getTicketsById(this.props.bookingValues.createdBooking.bookingId)
         console.log(this.props.tickets)
