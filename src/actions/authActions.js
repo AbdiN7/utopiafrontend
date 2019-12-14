@@ -6,8 +6,7 @@ import { GET_ERRORS, SET_CURRENT_USER , SET_GUEST_ID} from './types';
 
 // Register User
 // creating an instance of axios so that the action hits the node.js server to register / login / authenticate a user
-const instance = axios.create({baseURL: 'http://localhost:5000'})
-// const instance = axios.create({baseURL: 'http://ansible-lb-1350890422.us-east-2.elb.amazonaws.com'})
+const instance = axios.create({baseURL: 'http://ansible-lb-1350890422.us-east-2.elb.amazonaws.com'})
 export const registerUser = (userData, history) => dispatch => {
   instance
     .post('/users/register', userData) 

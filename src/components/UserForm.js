@@ -54,6 +54,8 @@ export default class UserForm extends Component {
                 userId: decoded.userId,
                 userFirstName: decoded.userFirstName,
                 userLastName: decoded.userLastName,
+                phone: decoded.phone,
+                address: decoded.address,
                 email: decoded.email
             })
         }

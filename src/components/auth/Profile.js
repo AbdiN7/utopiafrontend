@@ -10,6 +10,8 @@ class Profile extends Component {
       userFirstName: '',
       userLastName: '',
       email: '',
+      phone: '',
+      address: '',
       errors: {}
     }
   }
@@ -20,6 +22,8 @@ class Profile extends Component {
     this.setState({
       userFirstName: decoded.userFirstName,
       userLastName: decoded.userLastName,
+      phone: decoded.phone,
+      address: decoded.address,
       email: decoded.email
     })
   }
@@ -37,6 +41,10 @@ class Profile extends Component {
               <Grid item xs={6}>{this.state.userLastName}</Grid>
               <Grid item xs={6}>Email</Grid>
               <Grid item xs={6}>{this.state.email}</Grid>
+              <Grid item xs={6}>Phone</Grid>
+              <Grid item xs={6}>{this.state.phone}</Grid>
+              <Grid item xs={6}>Address</Grid>
+              <Grid item xs={6}>{this.state.address}</Grid>
             </Grid>
       </div>
       </div>
