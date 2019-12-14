@@ -14,6 +14,9 @@ export default class Payment extends React.Component {
     }
 
     onToken = (token) => {
+        console.log(url, {method: 'POST', 
+                            headers: {'token': JSON.stringify(token),
+                                        'amount': this.props.cost}});
         fetch(url, {
             method: 'POST',
             headers: {'token': JSON.stringify(token),
