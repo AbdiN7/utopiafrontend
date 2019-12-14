@@ -15,6 +15,8 @@ class Register extends Component {
       userLastName: '',
       email: '',
       password: '',
+      phone: '',
+      address: '',
       errors: {}
     };
 
@@ -45,6 +47,8 @@ class Register extends Component {
       userFirstName: this.state.userFirstName,
       userLastName: this.state.userLastName,
       email: this.state.email,
+      phone: this.state.phone,
+      address: this.state.address,
       password: this.state.password,
     };
 
@@ -70,6 +74,8 @@ class Register extends Component {
                   <TextField
                     type="text"
                     placeholder="First Name"
+                    // style={{left: "20%"}}
+                    style={{width: "100%"}}
                     name="userFirstName"
                     value={this.state.userFirstName}
                     onChange={this.onChange}
@@ -81,6 +87,8 @@ class Register extends Component {
                 <Grid item xs={5}>
                   <TextField
                     type="text"
+                    // style={{right: "20%"}}
+                    style={{width: "100%"}}
                     placeholder="Last Name"
                     name="userLastName"
                     value={this.state.userLastName}
@@ -89,17 +97,42 @@ class Register extends Component {
                   {errors.name && (
                     <div className="invalid-feedback">{errors.name}</div>
                   )}
+                <Grid item xs={1}></Grid>
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
                     placeholder="Email Address"
-                    style={{width: "80%"}}
+                    style={{width: "82%"}}
                     name="email"
                     value={this.state.email}
                     onChange={this.onChange}
                   />
                   {errors.email && (
                     <div className="invalid-feedback">{errors.email}</div>
+                  )}
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    placeholder="Phone Number"
+                    style={{width: "82%"}}
+                    name="phone"
+                    value={this.state.phone}
+                    onChange={this.onChange}
+                  />
+                  {errors.phone && (
+                    <div className="invalid-feedback">{errors.phone}</div>
+                  )}
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    placeholder="Address"
+                    style={{width: "82%"}}
+                    name="address"
+                    value={this.state.address}
+                    onChange={this.onChange}
+                  />
+                  {errors.address && (
+                    <div className="invalid-feedback">{errors.address}</div>
                   )}
                 </Grid>
                 <Grid item xs={12}
@@ -109,7 +142,7 @@ class Register extends Component {
                     type="password"
                     placeholder="Password"
                     name="password"
-                    style={{width: "80%"}}
+                    style={{width: "82%"}}
                     value={this.state.password}
                     onChange={this.onChange}
                   />
@@ -119,7 +152,7 @@ class Register extends Component {
                 </Grid>
                 <Grid item xs={12}>
                 <Button 
-                  style={{width: "80%"}}
+                  style={{width: "82%"}}
                   className="formButtons" 
                   type="submit">Sign Up</Button>
                 </Grid>

@@ -1,9 +1,10 @@
 import isEmpty from '../validation/is-empty';
 
-import { SET_CURRENT_USER } from '../actions/types';
+import { SET_CURRENT_USER, SET_GUEST_ID } from '../actions/types';
 
 const initialState = {
   isAuthenticated: false,
+  guestId: 0,
   user: {}
 };
 
@@ -15,6 +16,11 @@ export default function(state = initialState, action) {
         isAuthenticated: !isEmpty(action.payload),
         user: action.payload
       };
+    case SET_GUEST_ID:
+      return {
+        ...state,
+        guestId: action.payload
+      }
     default:
       return state;
   }
