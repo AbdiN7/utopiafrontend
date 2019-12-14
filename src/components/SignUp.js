@@ -8,11 +8,13 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import PropTypes from 'prop-types'
 import {postBooking} from '../actions/bookingActions'
+import {addGuest} from '../actions/authActions';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
 function SignUp(props) {
+    let bookingData = {}
 
     function submitBooking(){
         // props.postBooking(  props.userValues.userId, 
@@ -26,15 +28,26 @@ function SignUp(props) {
 
         // console.log("POSTED BOOKING:")
         // console.log(props.postedBooking);
-        
-        const bookingData = {
-            userId: props.userValues.userId,
-            flightId: props.bookingValues.selectedFlight.flightId,
-            ticketCount: props.bookingValues.ticketCount,
-            ticketDate: props.bookingValues.ticketDate.toISOString().split('T')[0],
-            ticketCost: props.bookingValues.ticketCost,
-        };
-        
+        if(props.userValues.userId){
+             bookingData = {
+                userId: props.userValues.userId,
+                flightId: props.bookingValues.selectedFlight.flightId,
+                ticketCount: props.bookingValues.ticketCount,
+                ticketDate: props.bookingValues.ticketDate.toISOString().split('T')[0],
+                ticketCost: props.bookingValues.ticketCost,
+            };
+        }
+        else{
+            console.log(props.guestId)
+             bookingData = {
+                userId: props.guestId,
+                flightId: props.bookingValues.selectedFlight.flightId,
+                ticketCount: props.bookingValues.ticketCount,
+                ticketDate: props.bookingValues.ticketDate.toISOString().split('T')[0],
+                ticketCost: props.bookingValues.ticketCost,
+            }
+        }
+        console.log(bookingData);
         axios.post('https://ma35v84odj.execute-api.us-east-2.amazonaws.com/dev/booking', bookingData)
         .then((resolve) => {
             props.handleBookingChange(resolve.data);
@@ -45,7 +58,19 @@ function SignUp(props) {
             console.log(reject);
         });
     }
-
+    const createGuestSubmitBooking = async () => {
+        const guest = {
+            userFirstName: props.userValues.userFirstName,
+            userLastName: props.userValues.userLastName,
+            email: props.userValues.email,
+            phone: props.userValues.phone,
+            address: props.userValues.address
+        }
+        await props.addGuest(guest);
+        console.log(props.guestId)
+        // props.userValues.userId = props.guestValues.guestId
+        submitBooking();
+    }
     return (
         <React.Fragment>
             <Grid container spacing={3}>
@@ -58,7 +83,7 @@ function SignUp(props) {
                 <Grid item xs ={4}/>
 
                 <Grid item xs={5}>
-                    <Button onClick={submitBooking} className="formButtons">
+                    <Button onClick={props.userValues.isLoggedIn ? submitBooking: createGuestSubmitBooking} className="formButtons">
                         Submit
                     </Button>
                 </Grid>
@@ -151,11 +176,13 @@ function SignUp(props) {
 
 
 SignUp.propTypes = {
-    postBooking: PropTypes.func.isRequired
+    postBooking: PropTypes.func.isRequired,
+    addGuest: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-    postedBooking: state.booking.postedBooking
+    postedBooking: state.booking.postedBooking,
+    guestId: state.auth.guestId
 });
 
-export default connect(mapStateToProps, { postBooking })(SignUp);
+export default connect(mapStateToProps, { postBooking, addGuest })(SignUp);

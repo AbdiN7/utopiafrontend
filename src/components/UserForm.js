@@ -5,6 +5,8 @@ import SignUp from './SignUp';
 import FlightList from './FlightList';
 import PaymentForm from './PaymentForm';
 import jwt_decode from 'jwt-decode'
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
 
 export default class UserForm extends Component {
     constructor() {
@@ -12,7 +14,8 @@ export default class UserForm extends Component {
         this.state = {
             // form state
             step: 1 ,
-            // user information
+            // user 
+            loggedIn: false,
             userId: 0,
             userFirstName: '',
             userLastName: '',
@@ -47,6 +50,7 @@ export default class UserForm extends Component {
             const token = localStorage.usertoken
             const decoded = jwt_decode(token)
             this.setState({
+                loggedIn: true,
                 userId: decoded.userId,
                 userFirstName: decoded.userFirstName,
                 userLastName: decoded.userLastName,
@@ -105,8 +109,8 @@ export default class UserForm extends Component {
    
     render() {
         const { step } = this.state;
-        const { userId, userFirstName, userLastName, address, email, phone, ticketDate, ticketCount, ticketCost, srcAirport, destAirport, selectedFlight, createdBooking } = this.state;
-        const userValues = { userId, userFirstName, userLastName, address, email , phone};
+        const { loggedIn, userId, userFirstName, userLastName, address, email, phone, ticketDate, ticketCount, ticketCost, srcAirport, destAirport, selectedFlight, createdBooking } = this.state;
+        const userValues = { loggedIn, userId, userFirstName, userLastName, address, email , phone};
         const bookingValues = {ticketDate, ticketCount, ticketCost, srcAirport, destAirport, selectedFlight, createdBooking};
         
         switch (step) {
@@ -215,3 +219,4 @@ export default class UserForm extends Component {
         }
     }
 }
+

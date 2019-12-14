@@ -2,11 +2,12 @@ import axios from 'axios';
 import setAuthToken from '../util/setAuthToken';
 import jwt_decode from 'jwt-decode';
 
-import { GET_ERRORS, SET_CURRENT_USER } from './types';
+import { GET_ERRORS, SET_CURRENT_USER , SET_GUEST_ID} from './types';
 
 // Register User
 // creating an instance of axios so that the action hits the node.js server to register / login / authenticate a user
-const instance = axios.create({baseURL: 'http://ansible-lb-1350890422.us-east-2.elb.amazonaws.com'})
+const instance = axios.create({baseURL: 'http://localhost:5000'})
+// const instance = axios.create({baseURL: 'http://ansible-lb-1350890422.us-east-2.elb.amazonaws.com'})
 export const registerUser = (userData, history) => dispatch => {
   instance
     .post('/users/register', userData) 
@@ -18,7 +19,20 @@ export const registerUser = (userData, history) => dispatch => {
       })
     );
 };
-
+export const addGuest = (guestData) => dispatch => {
+  instance
+    .post('/users/guest', guestData)
+    .then(res => {
+      const response = res.data;
+      dispatch(guestId(response.id));
+    })
+    .catch(err => 
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data 
+      })
+    );
+};
 // Login - Get User Token
 export const loginUser = (userData, history) => dispatch => {
   instance
@@ -48,6 +62,7 @@ export const loginUser = (userData, history) => dispatch => {
     );
 };
 
+
 // Set logged in user
 export const setCurrentUser = decoded => {
   return {
@@ -55,7 +70,12 @@ export const setCurrentUser = decoded => {
     payload: decoded
   };
 };
-
+export const guestId = (data) => {
+  return {
+    type: SET_GUEST_ID,
+    payload: data
+  }
+}
 // Log user out
 export const logoutUser = () => dispatch => {
   // Remove token from localStorage
