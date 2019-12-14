@@ -10,6 +10,7 @@ let store;
 
 // for development purposes if the browser is chrome and Redux dev tools are enabled 
 //than add redux dev tools window to the store 
+
 if(window.navigator.userAgent.includes("Chrome")&&ReactReduxDevTools) {
     store = createStore(
         rootReducer,
@@ -18,6 +19,7 @@ if(window.navigator.userAgent.includes("Chrome")&&ReactReduxDevTools) {
         ReactReduxDevTools
         )
     );
+    console.log(store.gustId)
 } else {
     store = createStore(
         rootReducer,
