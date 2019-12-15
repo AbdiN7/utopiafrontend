@@ -24,7 +24,7 @@ export default class Payment extends React.Component {
                         'amount': this.props.cost},
         }).then(response => {
             response.json().then(data => {
-                window.location.href = "http://utopia-airline.s3-website.us-east-2.amazonaws.com/#/";
+                    window.location.href = "http://utopia-airline.s3-website.us-east-2.amazonaws.com/#/";
                 alert(`Enjoy your flight, ${data.source.name}`);
             });
         });
