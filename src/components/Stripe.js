@@ -6,6 +6,8 @@ class Stripe extends Component {
     constructor(props){
         super(props);
         this.cost = props;
+        console.log("COST");
+        console.log(this.cost);
     }
     render() {
         return (

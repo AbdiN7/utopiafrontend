@@ -16,21 +16,22 @@ import {getTicketsById} from '../actions/bookingActions';
 class PaymentForm extends React.Component {
     constructor(props){
         super(props);
+        this.cost = 0;
         this.state= {cost: 0};
         // this.cost = 0;
     }
 
     componentDidMount(){
         this.props.getTicketsById(this.props.bookingValues.createdBooking.bookingId)
-        console.log(this.props.tickets)
+        this.findCost()
     }
 
     findCost(){
         let temp = 0;
-        this.state.tickets.forEach(element => {
+        this.props.tickets.forEach(element => {
             temp = temp + element.cost;
         });
-        this.setState({cost: temp});
+        this.cost = temp;
     }
 
     render(){
@@ -42,6 +43,9 @@ class PaymentForm extends React.Component {
                 </div>
             )
         }
+        console.log("Tickets")
+        console.log(this.props.tickets)
+        this.findCost()
         return (
             <div>
                 <h1>Checkout</h1>
@@ -81,8 +85,7 @@ class PaymentForm extends React.Component {
                 {this.props.tickets.map((ticket) => 
                     <TicketCard key= {ticket.ticketId} ticket = {ticket}/>
                 )}
-
-                <Stripe values={this.state.cost}/>
+                <Stripe values={this.cost}/>
             </div>
         );
     }

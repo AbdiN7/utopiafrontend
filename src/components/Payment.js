@@ -5,7 +5,7 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 
-const url = "http://ansible-spring-lb-232633842.us-east-2.elb.amazonaws.com/charge"; // site that doesn’t send Access-Control-*
+const url = "http://localhost:8090/charge"; // site that doesn’t send Access-Control-*
 
 export default class Payment extends React.Component {
     constructor(props){
@@ -15,7 +15,7 @@ export default class Payment extends React.Component {
 
     onToken = (token) => {
         console.log(url, {method: 'POST', 
-                            headers: {'token': JSON.stringify(token),
+                            headers: {'token': token,
                                         'amount': this.props.cost},
                             body: JSON.stringify(token)});
         fetch(url, {
@@ -24,7 +24,7 @@ export default class Payment extends React.Component {
                         'amount': this.props.cost},
         }).then(response => {
             response.json().then(data => {
-                window.location.href = "http://utopia-airline.s3-website.us-east-2.amazonaws.com/#/";
+                //window.location.href = "http://utopia-airline.s3-website.us-east-2.amazonaws.com/#/";
                 alert(`Enjoy your flight, ${data.source.name}`);
             });
         });
