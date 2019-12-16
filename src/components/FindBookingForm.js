@@ -31,10 +31,8 @@ class FindBookingForm extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
-        // console.log("HANDLING:")
-        // console.log(e.target.userEmailInput.value);
-        console.log(e.target.bookingIdInput.value)
         this.props.getBookingById(e.target.bookingIdInput.value);
+        this.props.getTicketsById(e.target.bookingIdInput.value);
     }
 
     handleClick(e){
@@ -42,48 +40,48 @@ class FindBookingForm extends React.Component{
     }
 
     render(){
-        let bookingCard = (<div>no booking</div>);
-        let ticketList = (<div>no tickets</div>);
+        let bookingCard = (<div>no booking found</div>);
+        let ticketList = (<div>no tickets found</div>);
+        // the booking form will always be displayed
         const findBookingForm = (
-            <form style={{marginBottom: "20px"}} onSubmit={this.handleSubmit}>
-                <Grid container spacing={3}>
-                    {/* TOP ROW  */}
-                    <Grid item xs={7}>
-                        <TextField
-                            style={{color: '#eeeeee'}}
-                            onChange={this.handleChange}
-                            // defaultValue={props.userValues.userFirstName}
-                            required
-                            fullWidth
-                            label="Email Address"
-                            id="userEmailInput"
-                            name="userEmailInput"
-                        />
-                    </Grid>
-                        
-                    <Grid item xs={3}>
-                        <TextField
-                            style={{color: '#eeeeee'}}
-                            onChange={this.handleChange}
-                            // defaultValue={props.userValues.userFirstName}
-                            required
-                            fullWidth
-                            onInput={(e) => {
-                                e.target.value = e.target.value.replace(/[^0-9]/g, '');
-                            }}
-                            label="Booking Id"
-                            id="bookingIdInput"
-                            name="bookingIdInput"
-                        />
-                    </Grid>
+                <form style={{marginBottom: "20px"}} onSubmit={this.handleSubmit}>
+                    <Grid container spacing={0} alignItems="center">
+                        <Grid item xs={7}>
+                            <TextField
+                                style={{color: '#eeeeee', width:"90%"}}
+                                onChange={this.handleChange}
+                                // defaultValue={props.userValues.userFirstName}
+                                required
+                                fullWidth
+                                label="Email Address"
+                                id="userEmailInput"
+                                name="userEmailInput"
+                            />
+                        </Grid>
+                            
+                        <Grid item xs={3}>
+                            <TextField
+                                style={{color: '#eeeeee'}}
+                                onChange={this.handleChange}
+                                // defaultValue={props.userValues.userFirstName}
+                                required
+                                fullWidth
+                                onInput={(e) => {
+                                    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                                }}
+                                label="Booking Id"
+                                id="bookingIdInput"
+                                name="bookingIdInput"
+                            />
+                        </Grid>
 
-                    <Grid item xs={2}>
-                        <Button className="formButtons" type="submit">
-                            Search
-                        </Button>
+                        <Grid item xs={2}>
+                            <Button className="formButtons" type="submit">
+                                Search
+                            </Button>
+                        </Grid>
                     </Grid>
-                </Grid>
-            </form>
+                </form>
         );
 
         // if an action is currently happening, show a spinner
@@ -105,7 +103,7 @@ class FindBookingForm extends React.Component{
         if(this.props.booking.bookingId){
             bookingCard = (
                 <Card className="cardClass">
-                    <Grid container spacing={0} alignItems="center">
+                    <Grid container spacing={3} alignItems="center">
                         <Grid item xs={6}>
                             <Typography className="typogClass">
                                 Booking: {this.props.booking.bookingId}
@@ -126,7 +124,7 @@ class FindBookingForm extends React.Component{
 
                         <Grid item xs={6}>
                             <Typography className="typogClass">
-                                Booked by: {this.props.booking.user.userFirstName}, {this.props.booking.user.userLastName}
+                                Booked by: {this.props.booking.user.userFirstName}&nbsp;{this.props.booking.user.userLastName}
                             </Typography>
                         </Grid>
                     </Grid>
@@ -136,27 +134,38 @@ class FindBookingForm extends React.Component{
 
         // if we have tickets, display them, otherwise display the default value above
         if(this.props.tickets.length >= 1){
+            console.log("tickets condition!")
+            console.log(this.props.tickets[0].flight.flightId.toString())
+
             ticketList = (
-                this.props.tickets.map((ticket) =>{
+                this.props.tickets.map((ticket) =>
                     <FlightListElement
                         key={ticket.flight.flightId.toString()}
                         values={ticket.flight}
-                        ticketDate={ticket.ticketDate}
+                        ticketDate={new Date(ticket.ticketDate)}
                         selectButtonClicked={this.handleClick}
                     />
-                })
-            );
+                ))
         }
+        
+        const stuff = ['a','b','c'];
         
         return(
             <div className="formContainer" style={{marginTop: "40px"}}>
                 <div className="formCard">
-                    
-                    {findBookingForm}
-                    {/* BOOKING DETAILS  */}
-                    {bookingCard}
-                    {/* TICKETS LIST */}
-                    {ticketList}
+                    <Grid container spacing={3}>
+                        <Grid item xs={12}>
+                            {findBookingForm}
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            {bookingCard} 
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            {ticketList}
+                        </Grid>
+                    </Grid>
                 </div>
             </div>
         );
