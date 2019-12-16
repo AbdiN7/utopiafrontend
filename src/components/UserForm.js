@@ -30,6 +30,8 @@ export default class UserForm extends Component {
             destAirport: 'BBB',
             selectedFlight: {},
             createdBooking: {},
+            //test
+            buttonClicked: false
         }
 
         this.nextStep = this.nextStep.bind(this);
@@ -42,6 +44,7 @@ export default class UserForm extends Component {
         this.handleTicketCountChange = this.handleTicketCountChange.bind(this);
         this.handleFlightChange = this.handleFlightChange.bind(this);
         this.handleBookingChange = this.handleBookingChange.bind(this);
+        this.handleButtonClicked = this.handleButtonClicked.bind(this);
     }
 
     componentDidMount() {
@@ -107,8 +110,9 @@ export default class UserForm extends Component {
         console.log("BOOKING MADE:");
         console.log(this.state.createdBooking);
     }
-    
-   
+    handleButtonClicked(){
+        this.setState({buttonClicked: true})
+    }
     render() {
         const { step } = this.state;
         const { loggedIn, userId, userFirstName, userLastName, address, email, phone, ticketDate, ticketCount, ticketCost, srcAirport, destAirport, selectedFlight, createdBooking } = this.state;
@@ -192,6 +196,8 @@ export default class UserForm extends Component {
                             handleBookingChange = {this.handleBookingChange}
                             bookingValues = {bookingValues}
                             userValues = {userValues}
+                            handleButtonClicked = {this.handleButtonClicked}
+
                             //billing={billingValues}
                         />
                         </div>

@@ -12,10 +12,11 @@ import {addGuest} from '../actions/authActions';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
+import store from '../store';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 function SignUp(props) {
     let bookingData = {}
-
     function submitBooking(){
         // props.postBooking(  props.userValues.userId, 
         //                     props.bookingValues.selectedFlight.flightId, 
@@ -47,7 +48,6 @@ function SignUp(props) {
                 ticketCost: props.bookingValues.ticketCost,
             }
         }
-        console.log(bookingData);
         axios.post('https://ma35v84odj.execute-api.us-east-2.amazonaws.com/dev/booking', bookingData)
         .then((resolve) => {
             props.handleBookingChange(resolve.data);
@@ -57,8 +57,9 @@ function SignUp(props) {
             console.log("BOOKING REJECTED:\n");
             console.log(reject);
         });
+
     }
-    const createGuestSubmitBooking = async () => {
+    const createGuest = async () => {
         const guest = {
             userFirstName: props.userValues.userFirstName,
             userLastName: props.userValues.userLastName,
@@ -66,11 +67,10 @@ function SignUp(props) {
             phone: props.userValues.phone,
             address: props.userValues.address
         }
+        props.handleButtonClicked();
         await props.addGuest(guest);
-        console.log(props.guestId)
-        // props.userValues.userId = props.guestValues.guestId
-        submitBooking();
     }
+
     return (
         <React.Fragment>
             <Grid container spacing={3}>
@@ -83,8 +83,8 @@ function SignUp(props) {
                 <Grid item xs ={4}/>
 
                 <Grid item xs={5}>
-                    <Button onClick={props.userValues.isLoggedIn ? submitBooking: createGuestSubmitBooking} className="formButtons">
-                        Submit
+                    <Button onClick={props.guestIdPending ? null :submitBooking} className={props.guestIdPending ? "formButtonsInactive" : "formButtons"}>
+                        {props.userValues.buttonClicked ? <CircularProgress className='spinner'/> : "Submit"}
                     </Button>
                 </Grid>
 
@@ -166,6 +166,13 @@ function SignUp(props) {
                                 type="phone"
                                 id="phone"
                             />
+                            {!props.userValues.isLoggedIn ? 
+                                <div>
+                                    <Button style={{marginTop: '50px'}} 
+                                            className={!props.guestIdPending ? "formButtonsInactive": "formButtons"}
+                                            onClick={createGuest}>{props.userValues.buttonClicked ? <CircularProgress className='spinner'/> : "Confirm Your Information"}</Button>
+                                </div> : <div>Logged In</div>
+                            }
                         </form>
                     </div>
                 </Container>
@@ -182,7 +189,8 @@ SignUp.propTypes = {
 
 const mapStateToProps = state => ({
     postedBooking: state.booking.postedBooking,
-    guestId: state.auth.guestId
+    guestId: state.auth.guestId,
+    guestIdPending: state.auth.guestIdPending
 });
 
 export default connect(mapStateToProps, { postBooking, addGuest })(SignUp);
