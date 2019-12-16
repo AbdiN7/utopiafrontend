@@ -81,6 +81,8 @@ export const getBookingById = (bookingId) => dispatch => {
                 type:GET_BOOKING_SUCCESS,
                 payload: resolve.data
             });
+            console.log("booking found!")
+            console.log(resolve.data)
         })
         .catch((reject) => {
             dispatch({
