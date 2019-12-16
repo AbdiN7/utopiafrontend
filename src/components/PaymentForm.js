@@ -18,6 +18,8 @@ class PaymentForm extends React.Component {
         super(props);
         this.cost = 0;
         this.state= {cost: 0};
+        console.log("PaymentForm Props\n\n\n\n");
+        console.log(props);
         // this.cost = 0;
     }
 
@@ -85,7 +87,7 @@ class PaymentForm extends React.Component {
                 {this.props.tickets.map((ticket) => 
                     <TicketCard key= {ticket.ticketId} ticket = {ticket}/>
                 )}
-                <Stripe values={this.cost}/>
+                <Stripe values={this.cost} bookingId={this.props.bookingValues.createdBooking.bookingId}/>
             </div>
         );
     }

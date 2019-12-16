@@ -6,6 +6,8 @@ class Stripe extends Component {
     constructor(props){
         super(props);
         this.cost = props;
+        console.log("Stripe Props");
+        console.log(props);
         console.log("COST");
         console.log(this.cost);
     }
@@ -14,7 +16,7 @@ class Stripe extends Component {
         <StripeProvider apiKey="pk_test_OIWeWKfTkuN2DuNcic60fqAi00CjwhKqQn">
             <div>
             <Elements>
-                <Payment cost={this.props.values}/>
+                <Payment cost={this.props.values} bookingId={this.props.bookingId}/>
             </Elements>
             </div>
         </StripeProvider>
