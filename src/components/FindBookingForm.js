@@ -14,7 +14,7 @@ class FindBookingForm extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            bookingIdInput: 0,
+            bookingIdInput: null,
             userEmailInput: ''
         };
 
@@ -25,8 +25,6 @@ class FindBookingForm extends React.Component{
 
     handleChange(e){
         this.setState({ [e.target.name]: e.target.value });
-        // console.log("FindBookingForm State:")
-        // console.log(this.state)
     };
 
     handleSubmit(e){
@@ -40,8 +38,8 @@ class FindBookingForm extends React.Component{
     }
 
     render(){
-        let bookingCard = (<div>no booking found</div>);
-        let ticketList = (<div>no tickets found</div>);
+        let bookingCard = (<div>DEBUG: no booking to show</div>);
+        let ticketList = (<div>DEBUG: no tickets to list</div>);
         // the booking form will always be displayed
         const findBookingForm = (
                 <form style={{marginBottom: "20px"}} onSubmit={this.handleSubmit}>
@@ -50,7 +48,7 @@ class FindBookingForm extends React.Component{
                             <TextField
                                 style={{color: '#eeeeee', width:"90%"}}
                                 onChange={this.handleChange}
-                                // defaultValue={props.userValues.userFirstName}
+                                defaultValue={this.state.userEmailInput}
                                 required
                                 fullWidth
                                 label="Email Address"
@@ -63,7 +61,7 @@ class FindBookingForm extends React.Component{
                             <TextField
                                 style={{color: '#eeeeee'}}
                                 onChange={this.handleChange}
-                                // defaultValue={props.userValues.userFirstName}
+                                defaultValue={this.state.bookingIdInput}
                                 required
                                 fullWidth
                                 onInput={(e) => {
@@ -84,7 +82,7 @@ class FindBookingForm extends React.Component{
                 </form>
         );
 
-        // if an action is currently happening, show a spinner
+        // if an action is currently happening, show the booking form and a spinner
         if(this.props.isPending){
             return(
                 <div className="formContainer" style={{marginTop: "40px"}}>
@@ -100,7 +98,7 @@ class FindBookingForm extends React.Component{
         }
         
         // if we have a booking, display it, otherwise display the default value above
-        if(this.props.booking.bookingId){
+        if(this.props.booking.bookingId && this.props.tickets.length >= 1){
             bookingCard = (
                 <Card className="cardClass">
                     <Grid container spacing={3} alignItems="center">
@@ -133,9 +131,7 @@ class FindBookingForm extends React.Component{
         }
 
         // if we have tickets, display them, otherwise display the default value above
-        if(this.props.tickets.length >= 1){
-            console.log("tickets condition!")
-            console.log(this.props.tickets[0].flight.flightId.toString())
+        if(this.props.tickets.length >= 1 && this.props.booking.bookingId){
 
             ticketList = (
                 this.props.tickets.map((ticket) =>
@@ -147,8 +143,6 @@ class FindBookingForm extends React.Component{
                     />
                 ))
         }
-        
-        const stuff = ['a','b','c'];
         
         return(
             <div className="formContainer" style={{marginTop: "40px"}}>
