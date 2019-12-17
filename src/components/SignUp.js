@@ -6,8 +6,8 @@ import Grid from '@material-ui/core/Grid';
 import AirlineSeatReclineNormalIcon from '@material-ui/icons/AirlineSeatReclineNormal';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import PropTypes from 'prop-types'
-import {postBooking} from '../actions/bookingActions'
+import PropTypes from 'prop-types';
+import {postBooking} from '../actions/bookingActions';
 import {addGuest} from '../actions/authActions';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -16,7 +16,7 @@ import store from '../store';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 function SignUp(props) {
-    let bookingData = {}
+    let bookingData = {};
     function submitBooking(){
         // props.postBooking(  props.userValues.userId, 
         //                     props.bookingValues.selectedFlight.flightId, 
@@ -39,14 +39,14 @@ function SignUp(props) {
             };
         }
         else{
-            console.log(props.guestId)
+            console.log(props.guestId);
              bookingData = {
                 userId: props.guestId,
                 flightId: props.bookingValues.selectedFlight.flightId,
                 ticketCount: props.bookingValues.ticketCount,
                 ticketDate: props.bookingValues.ticketDate.toISOString().split('T')[0],
                 ticketCost: props.bookingValues.ticketCost,
-            }
+             };
         }
         axios.post('https://ma35v84odj.execute-api.us-east-2.amazonaws.com/dev/booking', bookingData)
         .then((resolve) => {
@@ -59,17 +59,26 @@ function SignUp(props) {
         });
 
     }
-    const createGuest = async () => {
+    const showGuestButton = () => {
+            return(
+                <div>
+                  <Button style={{marginTop: '50px'}}
+                          className={!props.guestIdPending ? "formButtonsInactive": "formButtons"}
+                          onClick={props.guestIdPending ? createGuest : null}>{"Confirm Your Information"}</Button>
+                </div>
+            );
+    };
+    const createGuest = () => {
         const guest = {
             userFirstName: props.userValues.userFirstName,
             userLastName: props.userValues.userLastName,
             email: props.userValues.email,
             phone: props.userValues.phone,
             address: props.userValues.address
-        }
+        };
         props.handleButtonClicked();
-        await props.addGuest(guest);
-    }
+        props.addGuest(guest);
+    };
 
     return (
         <React.Fragment>
@@ -103,7 +112,6 @@ function SignUp(props) {
                                 <Grid item xs>
                                     <TextField
                                         style={{color: '#eeeeee'}}
-                                        
                                         onChange={props.handleChange}
                                         defaultValue={props.userValues.userFirstName}
                                         required
@@ -119,7 +127,6 @@ function SignUp(props) {
                                 <Grid item xs>
                                     <TextField
                                         style={{color: '#eeeeee'}}
-                                        
                                         onChange={props.handleChange}
                                         defaultValue={props.userValues.userLastName}
                                         required
@@ -133,7 +140,6 @@ function SignUp(props) {
 
                             <TextField
                                     style={{color: '#eeeeee'}}
-                                    
                                     onChange={props.handleChange}
                                     defaultValue={props.userValues.email}
                                     required
@@ -144,7 +150,6 @@ function SignUp(props) {
                             />
                             <TextField
                                 style={{color: '#eeeeee'}}
-                                
                                 required
                                 fullWidth
                                 onChange={props.handleChange}
@@ -156,7 +161,6 @@ function SignUp(props) {
                             />
                             <TextField
                                 style={{color: '#eeeeee'}}
-                                
                                 required
                                 fullWidth
                                 onChange={props.handleChange}
@@ -166,13 +170,7 @@ function SignUp(props) {
                                 type="phone"
                                 id="phone"
                             />
-                            {!props.userValues.isLoggedIn ? 
-                                <div>
-                                    <Button style={{marginTop: '50px'}} 
-                                            className={!props.guestIdPending ? "formButtonsInactive": "formButtons"}
-                                            onClick={createGuest}>{props.userValues.buttonClicked ? <CircularProgress className='spinner'/> : "Confirm Your Information"}</Button>
-                                </div> : <div>Logged In</div>
-                            }
+                          { showGuestButton()}
                         </form>
                     </div>
                 </Container>

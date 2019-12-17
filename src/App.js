@@ -10,13 +10,13 @@ import Register from './components/auth/Register';
 import React from 'react';
 import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import home from './components/home';
-import BookingList from './components/BookingList'
-import AppBarHeader from './components/appBarHeader'
-import TicketTable from './components/TicketTable'
-import FlightList from './components/FlightList'
-import UserForm from './components/UserForm'
-import PaymentForm from './components/PaymentForm'
-import Payment from './components/Payment'
+import BookingList from './components/BookingList';
+import AppBarHeader from './components/appBarHeader';
+import TicketTable from './components/TicketTable';
+import FlightList from './components/FlightList';
+import UserForm from './components/UserForm';
+import PaymentForm from './components/PaymentForm';
+import Payment from './components/Payment';
 import './styles/app.scss';
 import Profile from './components/auth/Profile';
 import { getAirports } from './actions/bookingActions';
@@ -29,7 +29,6 @@ if (localStorage.jwtToken) {
   const decoded = jwt_decode(localStorage.jwtToken);
   // Set user and isAuthenticated
   store.dispatch(setCurrentUser(decoded));
- 
 
   // Check for expired token
   const currentTime = Date.now() / 1000;
