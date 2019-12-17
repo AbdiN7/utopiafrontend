@@ -5,8 +5,6 @@ import SignUp from './SignUp';
 import FlightList from './FlightList';
 import PaymentForm from './PaymentForm';
 import jwt_decode from 'jwt-decode'
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types'
 
 export default class UserForm extends Component {
     constructor() {
@@ -84,7 +82,6 @@ export default class UserForm extends Component {
     };
 
     handleSrcAirportChange(e){
-        console.log(e.target.textContent)
         this.setState({srcAirport: e.target.textContent.split(' ')[0]});
     }
 
@@ -103,9 +100,6 @@ export default class UserForm extends Component {
 
     handleBookingChange(booking){
         this.setState({createdBooking: booking});
-
-        console.log("BOOKING MADE:");
-        console.log(this.state.createdBooking);
     }
     
    
