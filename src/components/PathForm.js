@@ -13,7 +13,7 @@ class PathForm extends React.Component{
 
     constructor(props){
         super(props);
-    }   
+    }
 
     componentDidMount(){
         this.props.getAirports();
@@ -35,15 +35,12 @@ class PathForm extends React.Component{
                         Prev
                     </Button>
                 </Grid>
-    
                 <Grid item xs ={6}/>
-    
                 <Grid item xs={3}>
                     <Button onClick={this.props.nextStep} className="formButtons">
                         Next
                     </Button>
                 </Grid>
-    
                 <Grid item xs={9}>
                     <Autocomplete
                         id="srcAirport"

@@ -25,7 +25,6 @@ export default class Payment extends React.Component {
             });
         });
     }
-  
     render() {
         return (
             <StripeCheckout
@@ -38,6 +37,6 @@ export default class Payment extends React.Component {
                 label="Finish and Pay with 💳"
                 token={this.onToken}
             />
-        )
+        );
     }
   }

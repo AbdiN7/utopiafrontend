@@ -7,7 +7,7 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup'
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { Typography } from '@material-ui/core';
 
 const FlightDate = (props) => {
