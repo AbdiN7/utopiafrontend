@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import FlightListElement from './FlightListElement'
+import TicketListElement from './TicketListElement'
 import {getBookingById, getTicketsById} from '../actions/bookingActions';
 
 class FindBookingForm extends React.Component{
@@ -33,56 +33,56 @@ class FindBookingForm extends React.Component{
         this.props.getTicketsById(e.target.bookingIdInput.value);
     }
 
+    // just for debugging
     handleClick(e){
         console.log("e is clicked")
     }
 
     render(){
-        let bookingCard = (<div>DEBUG: no booking to show</div>);
-        let ticketList = (<div>DEBUG: no tickets to list</div>);
-        // the booking form will always be displayed
+        let bookingCard = (<div></div>);
+        let ticketList = (<div></div>);
         const findBookingForm = (
-                <form style={{marginBottom: "20px"}} onSubmit={this.handleSubmit}>
-                    <Grid container spacing={0} alignItems="center">
-                        <Grid item xs={7}>
-                            <TextField
-                                style={{color: '#eeeeee', width:"90%"}}
-                                onChange={this.handleChange}
-                                defaultValue={this.state.userEmailInput}
-                                required
-                                fullWidth
-                                label="Email Address"
-                                id="userEmailInput"
-                                name="userEmailInput"
-                            />
-                        </Grid>
-                            
-                        <Grid item xs={3}>
-                            <TextField
-                                style={{color: '#eeeeee'}}
-                                onChange={this.handleChange}
-                                defaultValue={this.state.bookingIdInput}
-                                required
-                                fullWidth
-                                onInput={(e) => {
-                                    e.target.value = e.target.value.replace(/[^0-9]/g, '');
-                                }}
-                                label="Booking Id"
-                                id="bookingIdInput"
-                                name="bookingIdInput"
-                            />
-                        </Grid>
-
-                        <Grid item xs={2}>
-                            <Button className="formButtons" type="submit">
-                                Search
-                            </Button>
-                        </Grid>
+            <form style={{marginBottom: "20px"}} onSubmit={this.handleSubmit}>
+                <Grid container spacing={3} alignItems="center">
+                    <Grid item xs={7}>
+                        <TextField
+                            style={{color: '#eeeeee', width:"100%"}}
+                            onChange={this.handleChange}
+                            defaultValue={this.state.userEmailInput}
+                            required
+                            fullWidth
+                            label="Email Address"
+                            id="userEmailInput"
+                            name="userEmailInput"
+                        />
                     </Grid>
-                </form>
+                        
+                    <Grid item xs={3}>
+                        <TextField
+                            style={{color: '#eeeeee'}}
+                            onChange={this.handleChange}
+                            defaultValue={this.state.bookingIdInput}
+                            required
+                            fullWidth
+                            onInput={(e) => {
+                                e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                            }}
+                            label="Booking Id"
+                            id="bookingIdInput"
+                            name="bookingIdInput"
+                        />
+                    </Grid>
+
+                    <Grid item xs={2}>
+                        <Button className="formButtons" type="submit">
+                            Search
+                        </Button>
+                    </Grid>
+                </Grid>
+            </form>
         );
 
-        // if an action is currently happening, show the booking form and a spinner
+        // if an action is currently happening, return the findBookingForm and a spinner
         if(this.props.isPending){
             return(
                 <div className="formContainer" style={{marginTop: "40px"}}>
@@ -97,7 +97,7 @@ class FindBookingForm extends React.Component{
             );
         }
         
-        // if we have a booking, display it, otherwise display the default value above
+        // if we have a booking and tickets, display it, otherwise display the default value above
         if(this.props.booking.bookingId && this.props.tickets.length >= 1){
             bookingCard = (
                 <Card className="cardClass">
@@ -128,18 +128,12 @@ class FindBookingForm extends React.Component{
                     </Grid>
                 </Card>
             );
-        }
-
-        // if we have tickets, display them, otherwise display the default value above
-        if(this.props.tickets.length >= 1 && this.props.booking.bookingId){
 
             ticketList = (
                 this.props.tickets.map((ticket) =>
-                    <FlightListElement
-                        key={ticket.flight.flightId.toString()}
-                        values={ticket.flight}
-                        ticketDate={new Date(ticket.ticketDate)}
-                        selectButtonClicked={this.handleClick}
+                    <TicketListElement
+                        key={ticket.ticketId.toString()}
+                        ticket={ticket}
                     />
                 ))
         }

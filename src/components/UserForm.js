@@ -26,8 +26,8 @@ export default class UserForm extends Component {
             ticketDate: new Date(),
             ticketCount: 1,
             ticketCost: null,
-            srcAirport: 'AAA',
-            destAirport: 'BBB',
+            srcAirport: null,
+            destAirport: null,
             selectedFlight: {},
             createdBooking: {},
         }
