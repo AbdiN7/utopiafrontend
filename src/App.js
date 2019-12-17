@@ -56,7 +56,6 @@ function App() {
           <Route path='/booking' component={BookingList}/>
           <Route path='/PaymentForm' component={PaymentForm}/>
           <Route path='/flight' component={FindBookingForm}/>
-          <Route path='/singleTicket' component={TicketListElement}/>
           <Route path='/form' component={UserForm}/>
           <Route path="/profile" component={Profile} />
           <Route path='/payment' component={Payment}/>

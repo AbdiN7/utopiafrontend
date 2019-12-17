@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import FlightListElement from './FlightListElement'
+import TicketListElement from './TicketListElement'
 import {getBookingById, getTicketsById} from '../actions/bookingActions';
 
 class FindBookingForm extends React.Component{
@@ -42,44 +42,44 @@ class FindBookingForm extends React.Component{
         let bookingCard = (<div></div>);
         let ticketList = (<div></div>);
         const findBookingForm = (
-                <form style={{marginBottom: "20px"}} onSubmit={this.handleSubmit}>
-                    <Grid container spacing={0} alignItems="center">
-                        <Grid item xs={7}>
-                            <TextField
-                                style={{color: '#eeeeee', width:"95%"}}
-                                onChange={this.handleChange}
-                                defaultValue={this.state.userEmailInput}
-                                required
-                                fullWidth
-                                label="Email Address"
-                                id="userEmailInput"
-                                name="userEmailInput"
-                            />
-                        </Grid>
-                            
-                        <Grid item xs={3}>
-                            <TextField
-                                style={{color: '#eeeeee'}}
-                                onChange={this.handleChange}
-                                defaultValue={this.state.bookingIdInput}
-                                required
-                                fullWidth
-                                onInput={(e) => {
-                                    e.target.value = e.target.value.replace(/[^0-9]/g, '');
-                                }}
-                                label="Booking Id"
-                                id="bookingIdInput"
-                                name="bookingIdInput"
-                            />
-                        </Grid>
-
-                        <Grid item xs={2}>
-                            <Button className="formButtons" type="submit">
-                                Search
-                            </Button>
-                        </Grid>
+            <form style={{marginBottom: "20px"}} onSubmit={this.handleSubmit}>
+                <Grid container spacing={3} alignItems="center">
+                    <Grid item xs={7}>
+                        <TextField
+                            style={{color: '#eeeeee', width:"100%"}}
+                            onChange={this.handleChange}
+                            defaultValue={this.state.userEmailInput}
+                            required
+                            fullWidth
+                            label="Email Address"
+                            id="userEmailInput"
+                            name="userEmailInput"
+                        />
                     </Grid>
-                </form>
+                        
+                    <Grid item xs={3}>
+                        <TextField
+                            style={{color: '#eeeeee'}}
+                            onChange={this.handleChange}
+                            defaultValue={this.state.bookingIdInput}
+                            required
+                            fullWidth
+                            onInput={(e) => {
+                                e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                            }}
+                            label="Booking Id"
+                            id="bookingIdInput"
+                            name="bookingIdInput"
+                        />
+                    </Grid>
+
+                    <Grid item xs={2}>
+                        <Button className="formButtons" type="submit">
+                            Search
+                        </Button>
+                    </Grid>
+                </Grid>
+            </form>
         );
 
         // if an action is currently happening, return the findBookingForm and a spinner
@@ -131,11 +131,9 @@ class FindBookingForm extends React.Component{
 
             ticketList = (
                 this.props.tickets.map((ticket) =>
-                    <FlightListElement
+                    <TicketListElement
                         key={ticket.ticketId.toString()}
-                        values={ticket.flight}
-                        ticketDate={new Date(ticket.ticketDate)}
-                        selectButtonClicked={this.handleClick}
+                        ticket={ticket}
                     />
                 ))
         }
