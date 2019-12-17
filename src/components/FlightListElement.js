@@ -10,13 +10,13 @@ const FlightListElement = (props) => {
                 <Grid container spacing={0} alignItems="center">
                     <Grid item xs={5}>
                         <Typography className="typogClass">
-                            {props.values.flightPath.srcAirport.airportCode}&nbsp;&rarr;&nbsp;{props.values.flightPath.destAirport.airportCode}
-                        </Typography>
+                            UTA {props.values.flightId}
+                            </Typography>
                     </Grid>
 
                     <Grid item xs={5}>
                         <Typography className="typogClass">
-                            UTA {props.values.flightId}
+                            {props.values.flightPath.srcAirport.airportCode}&nbsp;&rarr;&nbsp;{props.values.flightPath.destAirport.airportCode}
                         </Typography>
                     </Grid>
 
@@ -28,19 +28,19 @@ const FlightListElement = (props) => {
 
                     <Grid item xs={5}>
                         <Typography className="typogClass">
-                        {props.values.departureTime}&nbsp;&rarr;&nbsp;{props.values.arrivalTime}
+                            {props.ticketDate.toDateString()}
                         </Typography>
                     </Grid>
 
                     <Grid item xs={5}>
                         <Typography className="typogClass">
-                            {props.ticketDate.toDateString()}
+                            {props.values.departureTime}&nbsp;&rarr;&nbsp;{props.values.arrivalTime}
                             {/* {Math.abs(((new Date(ticket.flight.arrivalTime).getTime() - new Date(ticket.flight.departureTime).getTime())/ (1000 * 60 * 60)).toFixed(1))} Hours */}
                         </Typography>
                     </Grid>
 
                     <Grid item xs={2}>
-                        <Typography className="typogClass">{cost}</Typography>
+                        <Typography className="typogClass">${cost}</Typography>
                     </Grid>
                 </Grid>
             </Card>

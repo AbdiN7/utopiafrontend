@@ -33,20 +33,20 @@ class FindBookingForm extends React.Component{
         this.props.getTicketsById(e.target.bookingIdInput.value);
     }
 
+    // just for debugging
     handleClick(e){
         console.log("e is clicked")
     }
 
     render(){
-        let bookingCard = (<div>DEBUG: no booking to show</div>);
-        let ticketList = (<div>DEBUG: no tickets to list</div>);
-        // the booking form will always be displayed
+        let bookingCard = (<div></div>);
+        let ticketList = (<div></div>);
         const findBookingForm = (
                 <form style={{marginBottom: "20px"}} onSubmit={this.handleSubmit}>
                     <Grid container spacing={0} alignItems="center">
                         <Grid item xs={7}>
                             <TextField
-                                style={{color: '#eeeeee', width:"90%"}}
+                                style={{color: '#eeeeee', width:"95%"}}
                                 onChange={this.handleChange}
                                 defaultValue={this.state.userEmailInput}
                                 required
@@ -82,7 +82,7 @@ class FindBookingForm extends React.Component{
                 </form>
         );
 
-        // if an action is currently happening, show the booking form and a spinner
+        // if an action is currently happening, return the findBookingForm and a spinner
         if(this.props.isPending){
             return(
                 <div className="formContainer" style={{marginTop: "40px"}}>
@@ -97,7 +97,7 @@ class FindBookingForm extends React.Component{
             );
         }
         
-        // if we have a booking, display it, otherwise display the default value above
+        // if we have a booking and tickets, display it, otherwise display the default value above
         if(this.props.booking.bookingId && this.props.tickets.length >= 1){
             bookingCard = (
                 <Card className="cardClass">
@@ -128,15 +128,11 @@ class FindBookingForm extends React.Component{
                     </Grid>
                 </Card>
             );
-        }
-
-        // if we have tickets, display them, otherwise display the default value above
-        if(this.props.tickets.length >= 1 && this.props.booking.bookingId){
 
             ticketList = (
                 this.props.tickets.map((ticket) =>
                     <FlightListElement
-                        key={ticket.flight.flightId.toString()}
+                        key={ticket.ticketId.toString()}
                         values={ticket.flight}
                         ticketDate={new Date(ticket.ticketDate)}
                         selectButtonClicked={this.handleClick}
