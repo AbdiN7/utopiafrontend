@@ -1,11 +1,10 @@
 import React from 'react';
-import { Grid, Card, Typography, Button } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
 import FlightListElement from './FlightListElement';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import {getFlightsByAirports} from '../actions/bookingActions';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import axios from 'axios';
 
 class FlightList extends React.Component{
     constructor(props){
@@ -21,17 +20,6 @@ class FlightList extends React.Component{
         this.props.handleFlightChange(flight, cost);
         this.props.nextStep();
     }
-
-    // componentDidMount(){
-    //     axios.get(`https://ma35v84odj.execute-api.us-east-2.amazonaws.com/dev/flight/${this.props.values.srcAirport}/to/${this.props.values.destAirport}`)
-    //     .then((resolve) => {
-    //         console.log(resolve.data);
-    //         this.setState({flights: resolve.data});
-    //     })
-    //     .catch((reject) => {
-    //         console.log("REJECTED: \n" + reject )
-    //     });
-    // }
 
     componentDidMount(){
         this.props.getFlightsByAirports(this.props.values.srcAirport, this.props.values.destAirport);
