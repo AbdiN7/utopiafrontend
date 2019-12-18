@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import authReducer from './authReducer';
 import bookingReducer from './bookingReducer';
-// import errorReducer from './errorReducer';
+import cancelReducer from './cancelReducer';
+import errorReducer from './errorReducer';
 
 export default combineReducers({
   auth: authReducer,
   booking: bookingReducer,
-  // errors: errorReducer
+  cancel: cancelReducer,
+  errors: errorReducer
 });
