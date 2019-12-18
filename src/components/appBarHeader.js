@@ -17,17 +17,17 @@ export default class AppBarHeader extends React.Component {
     super();
     this.state = {
       loggedIn: false
-    }
+    };
   }
   logOut(e) {
-    e.preventDefault()
-    localStorage.removeItem('usertoken')
-    this.setState({loggedIn: false})
-    this.props.history.push(`/`)
+      e.preventDefault();
+      localStorage.removeItem('usertoken');
+      this.setState({loggedIn: false});
+      this.props.history.push(`/`);
   }
   login(e) {
-    e.preventDefault()
-    this.setState({loggedIn: true})
+      e.preventDefault();
+      this.setState({loggedIn: true});
   }
   render(){
     const loginRegLink = (
@@ -35,7 +35,7 @@ export default class AppBarHeader extends React.Component {
           <Button onClick={this.login.bind(this)}><Link to='/login'>Login</Link></Button>
           <Button><Link to='/register'>Register</Link></Button>
       </div>
-    )
+    );
     const LogoutProfileLink = (
       <div >
         <Button><Link to='/profile'>Profile</Link></Button>
@@ -43,35 +43,7 @@ export default class AppBarHeader extends React.Component {
         onClick={this.logOut.bind(this)}
         ><Link to='/'>Logout</Link></Button>
       </div>
-    )
-    // const useStyles = makeStyles(theme => ({
-    //   grow: {
-    //     flexGrow: 1,
-    //   },
-    //   menuButton: {
-    //     marginRight: theme.spacing(2),
-    //   },
-    //   title: {
-    //     display: 'none',
-    //     [theme.breakpoints.up('sm')]: {
-    //       display: 'block',
-    //     },
-    //   },
-    
-    //   sectionDesktop: {
-    //     display: 'none',
-    //     [theme.breakpoints.up('md')]: {
-    //       display: 'flex',
-    //     },
-    //   },
-    //   sectionMobile: {
-    //     display: 'flex',
-    //     [theme.breakpoints.up('md')]: {
-    //       display: 'none',
-    //     },
-    //   },
-    // })
-    // );
+    );
 //https://i.imgur.com/Cmbf7ln.png
   return (
     <div style={{flexGrow: 1}}>

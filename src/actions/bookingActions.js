@@ -8,7 +8,6 @@ export const getAirports = () => dispatch => {
     dispatch({
         type: GET_AIRPORTS_PENDING,
     });
-
     instance
         .get('/airport')
         .then(resolve => {
