@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+
 class UserForm extends Component {
     constructor() {
         super();
@@ -27,8 +28,8 @@ class UserForm extends Component {
             ticketDate: new Date(),
             ticketCount: 1,
             ticketCost: null,
-            srcAirport: 'AAA',
-            destAirport: 'BBB',
+            srcAirport: null,
+            destAirport: null,
             selectedFlight: {},
             createdBooking: {},
             //test
@@ -88,7 +89,6 @@ class UserForm extends Component {
     };
 
     handleSrcAirportChange(e){
-        console.log(e.target.textContent)
         this.setState({srcAirport: e.target.textContent.split(' ')[0]});
     }
 
@@ -107,9 +107,6 @@ class UserForm extends Component {
 
     handleBookingChange(booking){
         this.setState({createdBooking: booking});
-
-        console.log("BOOKING MADE:");
-        console.log(this.state.createdBooking);
     }
     handleButtonClicked(){
         this.setState({buttonClicked: true})
@@ -121,8 +118,6 @@ class UserForm extends Component {
         const bookingValues = {ticketDate, ticketCount, ticketCost, srcAirport, destAirport, selectedFlight, createdBooking};
         switch (step) {
             case 1:
-                console.log("\nBOOKING VALS:\n")
-                console.log(bookingValues)
                 return (
                     <div className="formContainer"
                     style={{marginTop: "40px"}}>
@@ -137,8 +132,6 @@ class UserForm extends Component {
             
                 );
             case 2:
-                console.log("\nBOOKING VALS:\n")
-                console.log(bookingValues)
                 return (
                     <div className="formContainer"
                     style={{marginTop: "40px"}}>
@@ -156,8 +149,6 @@ class UserForm extends Component {
                     </div>
                 );
             case 3:
-                console.log("\nBOOKING VALS:\n")
-                console.log(bookingValues)
                 return(
                     <div className="formContainer"
                     style={{marginTop: "40px"}}>

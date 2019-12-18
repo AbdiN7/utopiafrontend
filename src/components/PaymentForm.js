@@ -16,33 +16,24 @@ import {getTicketsById} from '../actions/bookingActions';
 class PaymentForm extends React.Component {
     constructor(props){
         super(props);
+        this.cost = 0;
         this.state= {cost: 0};
+        console.log("PaymentForm Props\n\n\n\n");
+        console.log(props);
         // this.cost = 0;
     }
 
-    // componentDidMount() {
-    //     axios.get(`https://ma35v84odj.execute-api.us-east-2.amazonaws.com/dev/ticket/booking/${this.props.bookingValues.createdBooking.bookingId}`)
-    //     .then((resolve) => {
-    //         this.setState({tickets: resolve.data,
-    //                         spinning: false});
-    //         this.findCost()
-    //     })
-    //     .catch((reject) => {
-    //         console.log("REJECTED: \n" + reject )
-    //     });
-    // }
-
     componentDidMount(){
         this.props.getTicketsById(this.props.bookingValues.createdBooking.bookingId)
-        console.log(this.props.tickets)
+        this.findCost()
     }
 
     findCost(){
         let temp = 0;
-        this.state.tickets.forEach(element => {
+        this.props.tickets.forEach(element => {
             temp = temp + element.cost;
         });
-        this.setState({cost: temp});
+        this.cost = temp;
     }
 
     render(){
@@ -54,6 +45,9 @@ class PaymentForm extends React.Component {
                 </div>
             )
         }
+        console.log("Tickets")
+        console.log(this.props.tickets)
+        this.findCost()
         return (
             <div>
                 <h1>Checkout</h1>
@@ -93,8 +87,7 @@ class PaymentForm extends React.Component {
                 {this.props.tickets.map((ticket) => 
                     <TicketCard key= {ticket.ticketId} ticket = {ticket}/>
                 )}
-
-                <Stripe values={this.state.cost}/>
+                <Stripe values={this.cost} bookingId={this.props.bookingValues.createdBooking.bookingId}/>
             </div>
         );
     }
