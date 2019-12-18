@@ -4,11 +4,13 @@ import PathForm from './PathForm';
 import SignUp from './SignUp';
 import FlightList from './FlightList';
 import PaymentForm from './PaymentForm';
-import jwt_decode from 'jwt-decode'
+import jwt_decode from 'jwt-decode';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-export default class UserForm extends Component {
+
+class UserForm extends Component {
     constructor() {
         super();
         this.state = {
@@ -30,7 +32,9 @@ export default class UserForm extends Component {
             destAirport: null,
             selectedFlight: {},
             createdBooking: {},
-        }
+            //test
+            buttonClicked: false
+        };
 
         this.nextStep = this.nextStep.bind(this);
         this.prevStep = this.prevStep.bind(this);
@@ -42,6 +46,7 @@ export default class UserForm extends Component {
         this.handleTicketCountChange = this.handleTicketCountChange.bind(this);
         this.handleFlightChange = this.handleFlightChange.bind(this);
         this.handleBookingChange = this.handleBookingChange.bind(this);
+        this.handleButtonClicked = this.handleButtonClicked.bind(this);
     }
 
     componentDidMount() {
@@ -84,7 +89,6 @@ export default class UserForm extends Component {
     };
 
     handleSrcAirportChange(e){
-        console.log(e.target.textContent)
         this.setState({srcAirport: e.target.textContent.split(' ')[0]});
     }
 
@@ -103,18 +107,15 @@ export default class UserForm extends Component {
 
     handleBookingChange(booking){
         this.setState({createdBooking: booking});
-
-        console.log("BOOKING MADE:");
-        console.log(this.state.createdBooking);
     }
-    
-   
+    handleButtonClicked(){
+        this.setState({buttonClicked: true})
+    }
     render() {
         const { step } = this.state;
         const { loggedIn, userId, userFirstName, userLastName, address, email, phone, ticketDate, ticketCount, ticketCost, srcAirport, destAirport, selectedFlight, createdBooking } = this.state;
         const userValues = { loggedIn, userId, userFirstName, userLastName, address, email , phone};
         const bookingValues = {ticketDate, ticketCount, ticketCost, srcAirport, destAirport, selectedFlight, createdBooking};
-        
         switch (step) {
             case 1:
                 return (
@@ -165,27 +166,44 @@ export default class UserForm extends Component {
                     </div>
                 );
             case 4:
-                console.log("\nBOOKING VALS:\n")
-                console.log(bookingValues)
                 console.log("\USER VALS:\n")
                 console.log(userValues)
-                return (
-                    <div className="formContainer"
-                    style={{marginTop: "40px"}}>
-                        <div className="formCard">
-                        <SignUp
-                            prevStep={this.prevStep}
-                            nextStep={this.nextStep}
-                            handleChange={this.handleChange}
-                            handleBookingChange = {this.handleBookingChange}
-                            bookingValues = {bookingValues}
-                            userValues = {userValues}
-                            //billing={billingValues}
-                        />
+                if(this.state.buttonClicked && this.props.guestIdPending)
+                {
+                    return (
+                        <div className="formContainer" style={{marginTop: "40px"}}>
+                            <div className="formCardInactive">
+                            <CircularProgress size = {200} 
+                            style={{ position: 'absolute', top: "100px",left: "36%",  right: "40%"}} 
+                            className='spinner'/>
+                            <SignUp
+                                prevStep={this.prevStep}
+                                nextStep={this.nextStep}
+                                handleChange={this.handleChange}
+                                handleBookingChange = {this.handleBookingChange}
+                                bookingValues = {bookingValues}
+                                userValues = {userValues}
+                                handleButtonClicked = {this.handleButtonClicked}
+                            />
+                            </div>
                         </div>
-                    </div>
-                    
-                );
+                    );
+                }
+                    return (
+                        <div className="formContainer"
+                        style={{marginTop: "40px"}}>
+                            <div className="formCard">
+                            <SignUp
+                                prevStep={this.prevStep}
+                                nextStep={this.nextStep}
+                                handleChange={this.handleChange}
+                                handleBookingChange = {this.handleBookingChange}
+                                bookingValues = {bookingValues}
+                                userValues = {userValues}
+                                handleButtonClicked = {this.handleButtonClicked}
+                                />
+                            </div>
+                        </div>);
             case 5:
                 console.log("\nBOOKING VALS:\n")
                 console.log(bookingValues)
@@ -210,3 +228,10 @@ export default class UserForm extends Component {
     }
 }
 
+
+
+const mapStateToProps = state => ({
+    guestIdPending: state.auth.guestIdPending
+});
+
+export default connect(mapStateToProps)(UserForm);
