@@ -26,8 +26,8 @@ export default class UserForm extends Component {
             ticketDate: new Date(),
             ticketCount: 1,
             ticketCost: null,
-            srcAirport: 'AAA',
-            destAirport: 'BBB',
+            srcAirport: null,
+            destAirport: null,
             selectedFlight: {},
             createdBooking: {},
         }
@@ -117,10 +117,6 @@ export default class UserForm extends Component {
         
         switch (step) {
             case 1:
-                console.log("\nBOOKING VALS:\n")
-                console.log(bookingValues)
-                console.log("\USER VALS:\n")
-                console.log(userValues)
                 return (
                     <div className="formContainer"
                     style={{marginTop: "40px"}}>
@@ -135,10 +131,6 @@ export default class UserForm extends Component {
             
                 );
             case 2:
-                console.log("\nBOOKING VALS:\n")
-                console.log(bookingValues)
-                console.log("\USER VALS:\n")
-                console.log(userValues)
                 return (
                     <div className="formContainer"
                     style={{marginTop: "40px"}}>
@@ -156,10 +148,6 @@ export default class UserForm extends Component {
                     </div>
                 );
             case 3:
-                console.log("\nBOOKING VALS:\n")
-                console.log(bookingValues)
-                console.log("\USER VALS:\n")
-                console.log(userValues)
                 return(
                     <div className="formContainer"
                     style={{marginTop: "40px"}}>

@@ -2,7 +2,7 @@ import isEmpty from '../validation/is-empty';
 import { GET_AIRPORTS_SUCCESS, GET_FLIGHTS_SUCCESS, POST_BOOKING_SUCCESS, GET_BOOKING_SUCCESS, GET_ERRORS, GET_TICKETS_SUCCESS, GET_FLIGHTS_PENDING, GET_AIRPORTS_PENDING, POST_BOOKING_PENDING, GET_BOOKING_PENDING, GET_TICKETS_PENDING } from '../actions/types';
 
 const initialState = {
-    isPending: true,
+    isPending: false,
     airports: [],
     flights: [],
     tickets: [],

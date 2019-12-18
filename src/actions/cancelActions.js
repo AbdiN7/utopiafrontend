@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {GET_TICKETS_BY_USER_SUCCESS, GET_TICKETS_BY_USER_PENDING, POST_BOOKING_BY_USER_SUCCESS, GET_ERRORS, GET_BOOKING_BY_USER_SUCCESS} from './types';
+import {GET_TICKETS_BY_USER_SUCCESS, GET_TICKETS_BY_USER_PENDING, GET_BOOKINGS_BY_USER_SUCCESS, GET_ERRORS, GET_BOOKINGS_BY_USER_PENDING} from './types';
 
-const instance = axios.create({baseURL: 'http://ansible-spring-lb-232633842.us-east-2.elb.amazonaws.com/utopia/'});
+const instance = axios.create({baseURL: 'http://ansible-spring-lb-232633842.us-east-2.elb.amazonaws.com/utopia'});
 
 export const getTicketsByUser = (userId) => dispatch => {
     dispatch({
@@ -11,6 +11,8 @@ export const getTicketsByUser = (userId) => dispatch => {
     instance
         .get(`/tickets/user/${userId}`)
         .then(resolve => {
+            console.log("\n\nResolve");
+            console.log(resolve)
             dispatch({
                 type:GET_TICKETS_BY_USER_SUCCESS,
                 payload: resolve.data});
@@ -28,14 +30,14 @@ export const getTicketsByUser = (userId) => dispatch => {
 
 export const getBookingsByUser = (userId) => dispatch => {
     dispatch({
-        type: GET_TICKETS_BY_USER_PENDING,
+        type: GET_BOOKINGS_BY_USER_PENDING,
     });
 
     instance
-        .get(`/bookings/user/${userId}`)
+        .get(`/booking/user/${userId}`)
         .then(resolve => {
             dispatch({
-                type:GET_TICKETS_BY_USER_SUCCESS,
+                type:GET_BOOKINGS_BY_USER_SUCCESS,
                 payload: resolve.data});
             })
         .catch(reject =>{

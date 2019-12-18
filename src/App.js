@@ -12,7 +12,7 @@ import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import home from './components/home';
 import BookingList from './components/BookingList'
 import AppBarHeader from './components/appBarHeader'
-import TicketTable from './components/TicketTable'
+import TicketListElement from './components/TicketListElement'
 import FlightList from './components/FlightList'
 import UserForm from './components/UserForm'
 import PaymentForm from './components/PaymentForm'
@@ -20,6 +20,7 @@ import Payment from './components/Payment'
 import './styles/app.scss';
 import Profile from './components/auth/Profile';
 import { getAirports } from './actions/bookingActions';
+import FindBookingForm from './components/FindBookingForm';
 
 
 if (localStorage.jwtToken) {
@@ -54,7 +55,7 @@ function App() {
           <Route path='/flightList' component={FlightList}/>
           <Route path='/booking' component={BookingList}/>
           <Route path='/PaymentForm' component={PaymentForm}/>
-          <Route path='/flight' component={TicketTable}/>
+          <Route path='/flight' component={FindBookingForm}/>
           <Route path='/form' component={UserForm}/>
           <Route path="/profile" component={Profile} />
           <Route path='/payment' component={Payment}/>
