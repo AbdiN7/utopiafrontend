@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {GET_TICKETS_BY_USER_SUCCESS, GET_TICKETS_BY_USER_PENDING, GET_BOOKINGS_BY_USER_SUCCESS, GET_ERRORS, GET_BOOKINGS_BY_USER_PENDING} from './types';
+import {DELETE_TICKET_PENDING, DELETE_TICKET_SUCCESS, DELETE_BOOKING_PENDING, DELETE_BOOKING_SUCCESS, GET_TICKETS_BY_USER_SUCCESS, GET_TICKETS_BY_USER_PENDING, GET_BOOKINGS_BY_USER_SUCCESS, GET_ERRORS, GET_BOOKINGS_BY_USER_PENDING} from './types';
 
-const instance = axios.create({baseURL: 'http://ansible-spring-lb-232633842.us-east-2.elb.amazonaws.com/utopia'});
+const instance = axios.create({baseURL: 'http://localhost:8090/utopia'});
 
 export const getTicketsByUser = (userId) => dispatch => {
     dispatch({
@@ -34,7 +34,7 @@ export const getBookingsByUser = (userId) => dispatch => {
     });
 
     instance
-        .get(`/booking/user/${userId}`)
+        .get(`/bookings/user/${userId}`)
         .then(resolve => {
             dispatch({
                 type:GET_BOOKINGS_BY_USER_SUCCESS,
@@ -51,90 +51,69 @@ export const getBookingsByUser = (userId) => dispatch => {
         });
 }
 
-// export const getFlightsByAirports = (srcAirportCode, destAirportCode) => dispatch => {
-//     dispatch({
-//         type: GET_FLIGHTS_PENDING,
-//     });
+export const deleteBooking = (bookingId, userId) => dispatch => {
+    dispatch({
+        type: DELETE_BOOKING_PENDING,
+    });
 
-//     instance
-//         .get(`/flight/${srcAirportCode}/to/${destAirportCode}`)
-//         .then((resolve) => {
-//             dispatch({
-//                 type:GET_FLIGHTS_SUCCESS,
-//                 payload: resolve.data
-//             });
-//         })
-//         .catch((reject) => {
-//             dispatch({
-//                 type: GET_ERRORS,
-//                 payload: reject.data
-//             });
-//         });
-// }
+    instance
+        .delete(`/booking/${bookingId}`)
+        .then(res =>    
+            instance
+            .get(`/bookings/user/${userId}`)
+            .then(resolve => {
+                console.log(res);
+                console.log("\n\nRESOLVE BOOKING\n");
+                console.log(resolve);
+                dispatch({
+                    type: DELETE_BOOKING_SUCCESS,
+                    payload: resolve.data
+                });
+            })
+        )
+        .catch(reject =>{
+            console.log("Could Not Delete Booking:");
+            console.log(reject);
 
-// export const getTicketsById = (bookingId) => dispatch => {
-//     dispatch({
-//         type: GET_TICKETS_PENDING,
-//     });
+            dispatch({
+                type: GET_ERRORS,
+                payload: reject.data
+            });
+        });
+}
 
-//     instance
-//         .get(`/ticket/booking/${bookingId}`)
-//         .then((resolve) => {
-//             dispatch({
-//                 type:GET_TICKETS_SUCCESS,
-//                 payload: resolve.data
-//             });
-//         })
-//         .catch((reject) => {
-//             dispatch({
-//                 type: GET_ERRORS,
-//                 payload: reject.data
-//             });
-//         });
-// }
 
-// export const getBookingById = (bookingId) => dispatch => {
-//     dispatch({
-//         type: GET_BOOKING_PENDING
-//     });
 
-//     instance
-//         .get(`/booking/${bookingId}`)
-//         .then((resolve) => {
-//             dispatch({
-//                 type:GET_BOOKING_SUCCESS,
-//                 payload: resolve.data
-//             });
-//         })
-//         .catch((reject) => {
-//             dispatch({
-//                 type: GET_ERRORS,
-//                 payload: reject.data
-//             });
-//         });
-// }
 
-// export const postBooking = (userId, flightId, ticketCount, ticketDate, ticketCost) => dispatch => {
-//     dispatch({
-//         type: POST_BOOKING_PENDING
-//     });
-    
-//     instance.post('/booking', {userId, flightId, ticketCount, ticketCost, ticketDate})
-//         .then((resolve) => {
-//             console.log("post booking success :");
-//             console.log(resolve.data);
-//             dispatch({
-//                 type: POST_BOOKING_SUCCESS,
-//                 payload: resolve.data
-//             });
-//         })
-//         .catch((reject) => {
-//             console.log("post booking failed:");
-//             console.log(reject);
 
-//             dispatch({
-//                 type: GET_ERRORS,
-//                 payload: reject.data
-//             });
-//         });
-// }
+
+
+export const deleteTicket = (ticketId, userId) => dispatch => {
+    dispatch({
+        type: DELETE_TICKET_PENDING,
+    });
+
+    instance
+        .delete(`/ticket/${ticketId}`)
+        .then(res=>         
+            instance
+            .get(`/tickets/user/${userId}`)
+            .then(resolve => {
+                console.log("\n\nRESOLVE TICKET\n");
+                console.log(resolve);
+                dispatch({
+                    type: DELETE_TICKET_SUCCESS,
+                    payload: resolve.data
+                });
+            })
+        )
+        .catch(reject =>{
+            console.log("Could Not Delete Tickets:");
+            console.log(reject);
+
+            dispatch({
+                type: GET_ERRORS,
+                payload: reject.data
+            });
+        });
+}

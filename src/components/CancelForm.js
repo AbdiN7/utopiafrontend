@@ -1,18 +1,16 @@
 import React from 'react';
 import jwt_decode from 'jwt-decode'
-import {getBookingsByUser, getTicketsByUser} from '../actions/cancelActions';
+import {getBookingsByUser, getTicketsByUser, deleteTicket, deleteBooking} from '../actions/cancelActions';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import TicketListElement from './TicketListElement'
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import FindBookingForm from './FindBookingForm';
+import TicketCancelListElement from './TicketCancelListElement'
+import BookingCancelListElement from './BookingCancelListElement';
 
 
-class BookingList extends React.Component{
+class CancelForm extends React.Component{
   constructor(props){
     super();
     this.state={
@@ -22,7 +20,7 @@ class BookingList extends React.Component{
       userLastName: '',
       phone: '',
       address: '',
-      email: ''
+      email: '',
     };
     this.clicked = false;
     this.bookingClicked = false;
@@ -30,6 +28,8 @@ class BookingList extends React.Component{
     this.tickets = [];
     this.handleTicketClick = this.handleTicketClick.bind(this);
     this.handleBookingClick = this.handleBookingClick.bind(this);
+    this.handleTicketCancelClick = this.handleTicketCancelClick.bind(this);
+    this.handleBookingCancelClick = this.handleBookingCancelClick.bind(this);
   }
 
   componentDidMount() {
@@ -46,11 +46,7 @@ class BookingList extends React.Component{
             address: decoded.address,
             email: decoded.email
         })
-        ///this.props.getTicketsByUser(jwt_decode().userId);
-        console.log("\nHere\n");
-        ///console.log(this.props.getTicketsByUser(jwt_decode().userId));
     }
-    console.log("Here123");
   }
 
   handleTicketClick(e){
@@ -66,15 +62,22 @@ class BookingList extends React.Component{
     this.clicked = true;
   }
 
-  render(){
-    console.log("\n\nProps");
-    console.log(this.props);
+  handleBookingCancelClick(e, bookingId){
+    console.log(bookingId);
+    this.props.deleteBooking(bookingId, this.state.userId);
+  }
+  handleTicketCancelClick(e, ticketId){
+    this.props.deleteTicket(ticketId, this.state.userId);
+  }
 
+  render(){
     const ticketList = (
       this.props.tickets.map((ticket) =>
-          <TicketListElement
-              key={ticket.ticketId.toString()}
+          <TicketCancelListElement
+              key={ticket.ticketId}
               ticket={ticket}
+              userId={this.state.userId}
+              handleClick={this.handleTicketCancelClick}
           />
       )
     )
@@ -82,33 +85,12 @@ class BookingList extends React.Component{
 
     const bookingList = (
       this.props.bookings.map((booking) =>
-        <Card className="cardClass">
-            <Grid container spacing={3} alignItems="center">
-                <Grid item xs={6}>
-                    <Typography className="typogClass">
-                        Booking: {booking.bookingId}
-                    </Typography>
-                </Grid>
-
-                <Grid item xs={6}>
-                    <Typography className="typogClass">
-                        Payment Status: {Boolean(booking.isPaid).toString()}
-                    </Typography>
-                </Grid>
-
-                <Grid item xs={6}>
-                    <Typography className="typogClass">
-                        Booked on: {new Date(booking.bookDate).toLocaleString()}
-                    </Typography>
-                </Grid>
-
-                <Grid item xs={6}>
-                    <Typography className="typogClass">
-                        Booked by: {booking.user.userFirstName}&nbsp;{booking.user.userLastName}
-                    </Typography>
-                </Grid>
-            </Grid>
-        </Card>
+        <BookingCancelListElement
+          key={booking.bookingId}
+          booking={booking}
+          userId={this.state.userId}
+          handleClick={this.handleBookingCancelClick}
+        />
       )
     );
 
@@ -116,42 +98,55 @@ class BookingList extends React.Component{
       <div>
         <Grid container spacing={3} justify="center">
             <Grid>
-              <Button onClick={this.handleTicketClick}>Cancel A Ticket</Button>
+              <Button style={{margin: "15px"}} className="formButtons" onClick={this.handleTicketClick}>Cancel A Ticket</Button>
             </Grid>
             <Grid>
-              <Button onClick={this.handleBookingClick}>Cancel A Booking</Button>
+              <Button style={{margin: "15px"}} className="formButtons" onClick={this.handleBookingClick}>Cancel A Booking</Button>
             </Grid>
         </Grid>
       </div>
     )
     if(this.props.isPending && this.clicked){
       return(
-        <div>
-          {Buttons}
-          <CircularProgress/>
+        <div className="formContainer" style={{marginTop: "40px"}}>
+          <div className="formCard">
+            {Buttons}
+            <CircularProgress/>
+          </div>
         </div>
       )
     }
     if(this.props.isPending){
       return(
-        <div>
-          {Buttons}
+        <div className="formContainer" style={{marginTop: "40px"}}>
+          <div className="formCard">
+            {Buttons}
+          </div>
         </div>
       )
     }
     else if(this.ticketClicked){
       return (
-        <div>
-          {Buttons}
-          {ticketList}
+        <div className="formContainer" style={{marginTop: "40px"}}>
+          <div className="formCard">
+            {Buttons}
+            {ticketList}
+          </div>
         </div>
       )
     }
     else if(this.bookingClicked){
+      console.log("\n\nBOOKINGS CLICKED\n");
+      console.log(this.props.bookings);
+      console.log("TICKET CLICKED");
+      console.log(this.ticketClicked);
       return (
-        <div>
-          {Buttons}
-          {bookingList}
+        
+        <div className="formContainer" style={{marginTop: "40px"}}>
+          <div className="formCard">
+            {Buttons}
+            {bookingList}
+          </div>
         </div>
       )
     }
@@ -159,9 +154,11 @@ class BookingList extends React.Component{
 }
 
 
-BookingList.propTypes = {
+CancelForm.propTypes = {
   getBookingsByUser: PropTypes.func.isRequired,
   getTicketsByUser: PropTypes.func.isRequired,
+  deleteTicket: PropTypes.func.isRequired,
+  deleteBooking: PropTypes.func.isRequired,
   isPending: PropTypes.bool.isRequired
 };
 
@@ -171,4 +168,4 @@ const mapStateToProps = state => ({
   isPending: state.cancel.isPending
 });
 
-export default connect(mapStateToProps, { getBookingsByUser, getTicketsByUser })(BookingList);
+export default connect(mapStateToProps, { getBookingsByUser, getTicketsByUser, deleteTicket, deleteBooking })(CancelForm);

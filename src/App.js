@@ -10,7 +10,7 @@ import Register from './components/auth/Register';
 import React from 'react';
 import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import home from './components/home';
-import BookingList from './components/BookingList'
+import CancelForm from './components/CancelForm'
 import AppBarHeader from './components/appBarHeader'
 import TicketListElement from './components/TicketListElement'
 import FlightList from './components/FlightList'
@@ -53,7 +53,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={home}/>
           <Route path='/flightList' component={FlightList}/>
-          <Route path='/booking' component={BookingList}/>
+          <Route path='/cancel' component={CancelForm}/>
           <Route path='/PaymentForm' component={PaymentForm}/>
           <Route path='/flight' component={FindBookingForm}/>
           <Route path='/form' component={UserForm}/>

@@ -82,7 +82,7 @@ export default class AppBarHeader extends React.Component {
           </Link>
           <Button><Link to="/form"> Create Booking </Link></Button>
           <Button><Link to="/flight"> Find Booking </Link></Button>
-          <Button><Link to="/booking"> Cancel Booking </Link></Button>
+          <Button><Link to="/cancel"> Cancel Booking </Link></Button>
           <div style={{flexGrow: 1}} />
           {localStorage.usertoken ? LogoutProfileLink : loginRegLink}
         </Toolbar>
