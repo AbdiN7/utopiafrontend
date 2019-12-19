@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {DELETE_TICKET_PENDING, DELETE_TICKET_SUCCESS, DELETE_BOOKING_PENDING, DELETE_BOOKING_SUCCESS, GET_TICKETS_BY_USER_SUCCESS, GET_TICKETS_BY_USER_PENDING, GET_BOOKINGS_BY_USER_SUCCESS, GET_ERRORS, GET_BOOKINGS_BY_USER_PENDING} from './types';
 
-const instance = axios.create({baseURL: 'http://localhost:8090/utopia'});
+const instance = axios.create({baseURL: 'http://ansible-spring-lb-232633842.us-east-2.elb.amazonaws.com/utopia'});
 
 export const getTicketsByUser = (userId) => dispatch => {
     dispatch({
