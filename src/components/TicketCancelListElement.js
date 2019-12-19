@@ -40,7 +40,7 @@ class TicketCancelListElement extends React.Component{
                         </Grid>
                         <Grid item xs={8}>
                             <Typography className="typogClass">
-                                {new Date(this.props.ticket.ticketDate).toDateString()}, {this.props.ticket.flight.departureTime}&nbsp;&rarr;&nbsp;{this.props.ticket.flight.arrivalTime}
+                                {new Date(this.props.ticket.ticketDate).toLocaleString()}, {this.props.ticket.flight.departureTime}&nbsp;&rarr;&nbsp;{this.props.ticket.flight.arrivalTime}
                             </Typography>
                         </Grid>
                     </Grid>
