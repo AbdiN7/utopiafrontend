@@ -25,7 +25,6 @@ class CancelForm extends React.Component{
     this.clicked = false;
     this.bookingClicked = false;
     this.ticketClicked = false;
-    this.tickets = [];
     this.handleTicketClick = this.handleTicketClick.bind(this);
     this.handleBookingClick = this.handleBookingClick.bind(this);
     this.handleTicketCancelClick = this.handleTicketCancelClick.bind(this);
@@ -33,6 +32,11 @@ class CancelForm extends React.Component{
   }
 
   componentDidMount() {
+    console.log("\n\nDIDMOUNT\n");
+    console.log(this.clicked);
+    console.log(this.bookingClicked);
+    console.log(this.ticketClicked);
+    console.log(this.props.isPending);
     if(localStorage.usertoken)
     {
         const token = localStorage.usertoken
@@ -47,6 +51,16 @@ class CancelForm extends React.Component{
             email: decoded.email
         })
     }
+  }
+
+  componentWillUnmount(){
+    console.log(this.clicked);
+    console.log(this.bookingClicked);
+    console.log(this.ticketClicked);
+    console.log(this.props.isPending);
+    this.clicked = false;
+    this.bookingClicked = false;
+    this.ticketClicked = false;
   }
 
   handleTicketClick(e){
@@ -116,7 +130,7 @@ class CancelForm extends React.Component{
         </div>
       )
     }
-    if(this.props.isPending){
+    if(!this.clicked){
       return(
         <div className="formContainer" style={{marginTop: "40px"}}>
           <div className="formCard">
@@ -126,6 +140,8 @@ class CancelForm extends React.Component{
       )
     }
     else if(this.ticketClicked){
+      console.log("TICKET CLICKED");
+      console.log(this.ticketClicked);
       return (
         <div className="formContainer" style={{marginTop: "40px"}}>
           <div className="formCard">
@@ -138,8 +154,6 @@ class CancelForm extends React.Component{
     else if(this.bookingClicked){
       console.log("\n\nBOOKINGS CLICKED\n");
       console.log(this.props.bookings);
-      console.log("TICKET CLICKED");
-      console.log(this.ticketClicked);
       return (
         
         <div className="formContainer" style={{marginTop: "40px"}}>

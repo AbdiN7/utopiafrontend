@@ -29,7 +29,7 @@ export default class BookingCancelListElement extends React.Component{
                         </Grid>
                         <Grid item xs={6}>
                             <Typography className="typogClass">
-                                Booked on: {new Date(this.props.booking.bookDate).toLocaleString()}
+                                Booked on: {new Date(this.props.booking.bookDate).toDateString()}
                             </Typography>
                         </Grid>
 

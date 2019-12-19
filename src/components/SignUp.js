@@ -60,6 +60,8 @@ function SignUp(props) {
 
     }
     const showGuestButton = () => {
+        if(!props.userValues.loggedIn)
+        {
             return(
                 <div>
                   <Button style={{marginTop: '50px'}}
@@ -67,6 +69,11 @@ function SignUp(props) {
                           onClick={props.guestIdPending ? createGuest : null}>{"Confirm Your Information"}</Button>
                 </div>
             );
+        }
+    
+            
+        
+   
     };
     const createGuest = () => {
         const guest = {
@@ -92,7 +99,7 @@ function SignUp(props) {
                 <Grid item xs ={4}/>
 
                 <Grid item xs={5}>
-                    <Button onClick={props.guestIdPending ? null :submitBooking} className={props.guestIdPending ? "formButtonsInactive" : "formButtons"}>
+                    <Button onClick={props.guestIdPending && !props.userValues.loggedIn ? null :submitBooking} className={props.guestIdPending && !props.userValues.loggedIn ? "formButtonsInactive" : "formButtons"}>
                         {props.userValues.buttonClicked ? <CircularProgress className='spinner'/> : "Submit"}
                     </Button>
                 </Grid>

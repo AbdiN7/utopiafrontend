@@ -168,7 +168,7 @@ class UserForm extends Component {
             case 4:
                 console.log("\USER VALS:\n")
                 console.log(userValues)
-                if(this.state.buttonClicked && this.props.guestIdPending)
+                if(this.state.buttonClicked && this.props.guestIdPending  && this.state.loggedIn)
                 {
                     return (
                         <div className="formContainer" style={{marginTop: "40px"}}>
