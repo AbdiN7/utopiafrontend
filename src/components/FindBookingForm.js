@@ -96,6 +96,16 @@ class FindBookingForm extends React.Component{
                 </div>
             );
         }
+
+        if(this.props.booking.bookingId && this.props.booking.user.email !== this.state.userEmailInput){
+            return(
+                <div className="formContainer" style={{marginTop: "40px"}}>
+                    <div className="formCard">
+                        {findBookingForm}
+                    </div>
+                </div>
+            );
+        }
         
         // if we have a booking and tickets, display it, otherwise display the default value above
         if(this.props.booking.bookingId && this.props.tickets.length >= 1){
